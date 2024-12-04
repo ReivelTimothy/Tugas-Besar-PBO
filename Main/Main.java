@@ -13,6 +13,7 @@ import Models.classes.UserCustomer;
 import Models.enumaration.Membership;
 import Models.enumaration.TransactionStatus;
 import Models.enumaration.statusBlocked;
+import View.mainMenu;
 
 public class Main {
     public static void main(String[] args) {
@@ -85,5 +86,6 @@ public class Main {
             tickets,
             statusBlocked.BLOCK
         );
+        new mainMenu();
     }
 }
