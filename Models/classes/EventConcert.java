@@ -1,8 +1,8 @@
-package models.classes;
+package Models.classes;
 
 import java.sql.Date;
 
-public abstract class EventConcert extends Eventt{
+public abstract class EventConcert extends Event{
     String jenisKonser, singer;
     public EventConcert(String title, String location, String snk, String vendor, String dateTime, String information,
             double price, double discount, int rating, String jenisKonser, String singer, Date tanggal) {

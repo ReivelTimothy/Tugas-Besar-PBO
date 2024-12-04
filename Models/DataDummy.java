@@ -1,7 +1,7 @@
-package models;
+package Models;
 import java.util.ArrayList;
 
-import models.classes.*;
+import Models.classes.*;
 public class DataDummy {
     public static void generate(){
 
