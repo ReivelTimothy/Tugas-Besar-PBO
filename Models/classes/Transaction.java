@@ -1,19 +1,19 @@
-package models.classes;
+package Models.classes;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import models.enumaration.*;
+import Models.enumaration.TransactionStatus;
 
 public class Transaction {
     private int idTransaksi;
     private int idCustomer;
     private double totalBayar;
     private TransactionStatus statusTransaksi;
-    private List<Eventt> listEvent = new ArrayList<>();
+    private List<Event> listEvent = new ArrayList<>();
 
     public Transaction(int idTransaksi, int idCustomer, double totalBayar, TransactionStatus statusTransaksi,
-            List<Eventt> listEvent) {
+            List<Event> listEvent) {
         this.idTransaksi = idTransaksi;
         this.idCustomer = idCustomer;
         this.totalBayar = totalBayar;
@@ -53,11 +53,11 @@ public class Transaction {
         this.statusTransaksi = statusTransaksi;
     }
 
-    public List<Eventt> getListEvent() {
+    public List<Event> getListEvent() {
         return listEvent;
     }
 
-    public void setListEvent(List<Eventt> listEvent) {
+    public void setListEvent(List<Event> listEvent) {
         this.listEvent = listEvent;
     }
 

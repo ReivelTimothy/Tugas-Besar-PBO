@@ -1,5 +1,5 @@
 package Models.classes;
 
-public class UserAdmin {
+public class UserSeller {
     
 }
