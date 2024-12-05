@@ -1,3 +1,4 @@
+package View;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,6 +9,9 @@ public class Login {
 
     public Login() {
         inputLogin();
+    }
+    public static void main(String[] args) {
+        new Login().inputLogin();
     }
 
     public void inputLogin() {
@@ -41,12 +45,15 @@ public class Login {
         JButton submitButton = new JButton("LOGIN");
         submitButton.setBounds(60, 180, 150, 30);
         frame.add(submitButton);
+        
 
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // cek login
                 String username = usernameField.getText();
                 String password = String.valueOf(passwordField.getPassword());
+                JOptionPane.showMessageDialog(null, "selamat datang " + username);
+                System.exit(0);
 
             }
         });
