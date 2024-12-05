@@ -41,9 +41,9 @@ public class Main {
             150.0,
             10.0,
             4,
-            Date.valueOf("2024-12-18"),
             "The Rockers",
-            "Steven Pangestu"
+            "Steven Pangestu",
+            Date.valueOf("2024-12-18"),
         );
 
         EventSport eventSport = new EventSport(

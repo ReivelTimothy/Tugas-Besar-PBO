@@ -1,20 +1,21 @@
 package View;
 
 import java.awt.Font;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class MainMenu {
+public class mainMenu {
     private JFrame frame;
 
-    public MainMenu() {
+    public mainMenu() {
         showMainMenu();
     }
 
     public static void main(String[] args) {
-        new MainMenu().showMainMenu();
+        new mainMenu().showMainMenu();
     }
 
     public void showMainMenu() {
@@ -47,7 +48,7 @@ public class MainMenu {
 
         registerBtn.addActionListener(e -> {
             frame.dispose();
-            // Ganti dengan implementasi kelas Register
+            new Register();
             System.out.println("Register button clicked");
         });
 
