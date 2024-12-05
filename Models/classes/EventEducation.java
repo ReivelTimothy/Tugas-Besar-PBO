@@ -1,8 +1,8 @@
-package models.classes;
+package Models.classes;
 
 import java.util.Date;
 
-public class EventEducation extends Eventt {
+public class EventEducation extends Event {
     String namaPembicara;
 
     public EventEducation(String title, String location, String snk, String vendor, String dateTime, String information,

@@ -1,14 +1,14 @@
-package models.classes;
+package Models.classes;
 
 import java.util.Date;
 
-public abstract class Eventt {
+public abstract class Event {
     String title, location, snk, vendor, dateTime, information;
     double price, discount;
     int rating;
     Date tanggal;
 
-    public Eventt(String title, String location, String snk, String vendor, String dateTime, String information,
+    public Event(String title, String location, String snk, String vendor, String dateTime, String information,
             double price, double discount, int rating, Date tanggal) {
         this.title = title;
         this.location = location;
