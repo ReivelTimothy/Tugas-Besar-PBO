@@ -43,7 +43,7 @@ public class Main {
             4,
             "The Rockers",
             "Steven Pangestu",
-            Date.valueOf("2024-12-18"),
+            Date.valueOf("2024-12-18")
         );
 
         EventSport eventSport = new EventSport(
