@@ -1,13 +1,13 @@
 package models.classes;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class EventEducation extends Eventt {
     String namaPembicara;
 
     public EventEducation(String title, String location, String snk, String vendor, String dateTime, String information,
-            double price, double discount, int rating, String namaPembicara,Date tanggal) {
-        super(title, location, snk, vendor, dateTime, information, price, discount, rating, tanggal);
+            double price, double discount, int rating, String namaPembicara, Date date) {
+        super(title, location, snk, vendor, dateTime, information, price, discount, rating, date);
         this.namaPembicara = namaPembicara;
     }
 
@@ -17,6 +17,14 @@ public class EventEducation extends Eventt {
 
     public void setNamaPembicara(String namaPembicara) {
         this.namaPembicara = namaPembicara;
+    }
+
+    @Override
+    public String toString() {
+        return "EventEducation [title=" + title + ", location=" + location + ", namaPembicara=" + namaPembicara
+                + ", snk=" + snk + ", vendor=" + vendor + ", dateTime=" + dateTime + ", information=" + information
+                + ", price=" + price + ", discount=" + discount + ", rating=" + rating + ", tanggal=" + tanggal
+                ;
     }
     
 }

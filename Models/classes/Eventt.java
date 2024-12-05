@@ -1,6 +1,6 @@
 package models.classes;
 
-import java.sql.Date;
+import java.util.Date;
 
 public abstract class Eventt {
     String title, location, snk, vendor, dateTime, information;
