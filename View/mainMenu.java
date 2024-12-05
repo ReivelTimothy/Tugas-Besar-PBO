@@ -1,17 +1,22 @@
 package View;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Font;
+import java.awt.Frame;
 
-public class MainMenu {
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class mainMenu {
     Frame frame;
-    public MainMenu() {
+    public mainMenu() {
 
         showMainMenu();
 
     }
     public static void main(String[] args) {
-        new MainMenu().showMainMenu();
+        new mainMenu().showMainMenu();
     }
     public void showMainMenu() {
 
