@@ -44,6 +44,12 @@ public class mainMenu {
         JButton registerBtn = new JButton("REGISTER");
         registerBtn.setBounds(10, 200, 260, 50);
         registerBtn.add(registerBtn);
+
+        registerBtn.addActionListener(e -> {
+            frame.dispose();
+            new Register();
+        });
+
         JButton exitBtn = new JButton("EXIT");
         exitBtn.setBounds(10, 270, 260, 50);
         panel.add(exitBtn);
