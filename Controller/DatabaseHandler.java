@@ -13,7 +13,7 @@ public class DatabaseHandler {
     private String driver = "com.mysql.cj.jdbc.Driver";
     // private String url = "jdbc:mysql://localhost/tickethbo";
     // private String url = "jdbc:mysql://localhost/db_test?serverTimezone=" + TimeZone.getDefault().getID();
-    private String url = "jdbc:mysql://localhost/tickethbo";
+    private String url = "jdbc:mysql://localhost/hboticket";
 
     private String username = "root";
     private String password = "";
