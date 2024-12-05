@@ -1,11 +1,9 @@
-package view.adminMenu;
+package View.adminMenu;
 
 import javax.swing.*;
 import org.jdatepicker.impl.JDatePickerImpl;
-
-import models.classes.EventEducation;
-import view.Create;
-
+import Models.classes.EventEducation;
+import View.Create;
 import java.awt.*;
 import java.sql.Date;
 import java.text.ParseException;
@@ -19,25 +17,27 @@ public class AddConcert {
         // Membuat JFrame
         JFrame frame = create.createJframe("Add Concert");
 
+        
+
         // Layout dan Constraints
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // Komponen Form
-        JLabel labelConcertName = create.createLabel("Nama Konser:");
+        JLabel labelConcertName = create.createLabel("Nama Konser:",20, 20);
         JTextField textConcertName = create.createJTextField(200, 30);
 
-        JLabel labelLocation = create.createLabel("Lokasi:");
+        JLabel labelLocation = create.createLabel("Lokasi:",20, 20);
         JTextField textLocation = create.createJTextField(200, 30);
 
-        JLabel labelSNK = create.createLabel("Syarat & Ketentuan:");
+        JLabel labelSNK = create.createLabel("Syarat & Ketentuan:",20, 20);
         JTextField textSNK = create.createJTextField(200, 30);
 
-        JLabel labelVendor = create.createLabel("Vendor:");
+        JLabel labelVendor = create.createLabel("Vendor:",20, 20);
         JTextField textVendor = create.createJTextField(200, 30);
 
-        JLabel labelDateTime = create.createLabel("Tanggal & Waktu:");
+        JLabel labelDateTime = create.createLabel("Tanggal & Waktu:",20, 20);
         JDatePickerImpl datePicker = create.createJDatePicker();
 
         JLabel label = new JLabel();
@@ -57,13 +57,13 @@ public class AddConcert {
             }
         });
 
-        JLabel labelInfo = create.createLabel("Informasi Tambahan:");
+        JLabel labelInfo = create.createLabel("Informasi Tambahan:",20, 20);
         JTextField textInfo = create.createJTextField(200, 30);
 
-        JLabel labelPrice = create.createLabel("Harga:");
+        JLabel labelPrice = create.createLabel("Harga:",20, 20);
         JTextField textPrice = create.createJTextField(200, 30);
 
-        JLabel labelDiscount = create.createLabel("Diskon:");
+        JLabel labelDiscount = create.createLabel("Diskon:",20, 20);
         JTextField textDiscount = create.createJTextField(200, 30);
 
         // Menambahkan Komponen ke JFrame
@@ -155,6 +155,8 @@ public class AddConcert {
                     "Samuel Tarigant",
                     (Date) datePicker.getModel().getValue());
             System.out.println(event.toString());
+            JOptionPane.showMessageDialog(null,"selamat anda berhasil membuat sebuah event");
+            System.exit(0);
         });
     }
 }
