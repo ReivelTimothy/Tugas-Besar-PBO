@@ -9,9 +9,9 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-public class AddConcert {
+public class addConcert {
 
-    public static void main(String[] args) throws ParseException {
+    public addConcert(){
         Create create = new Create();
         Date datee = new Date(0);
         // Membuat JFrame

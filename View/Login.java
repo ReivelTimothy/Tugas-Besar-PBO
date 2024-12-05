@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import View.adminMenu.*;
 public class Login {
     private Frame frame;
 
@@ -50,11 +50,11 @@ public class Login {
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // cek login
+                frame.dispose();
                 String username = usernameField.getText();
                 String password = String.valueOf(passwordField.getPassword());
                 JOptionPane.showMessageDialog(null, "selamat datang " + username);
-                System.exit(0);
-
+                new addConcert();
             }
         });
     }
