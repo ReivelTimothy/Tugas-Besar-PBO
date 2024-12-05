@@ -11,8 +11,8 @@ import Models.classes.Ticket;
 import Models.classes.Transaction;
 import Models.classes.UserCustomer;
 import Models.enumaration.Membership;
+import Models.enumaration.StatusBlocked;
 import Models.enumaration.TransactionStatus;
-import Models.enumaration.statusBlocked;
 import View.mainMenu;
 
 public class Main {
@@ -84,7 +84,7 @@ public class Main {
             "1234567890123456",
             500.0,
             tickets,
-            statusBlocked.BLOCK
+            StatusBlocked.BLOCK
         );
         new mainMenu();
     }
