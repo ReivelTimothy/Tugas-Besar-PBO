@@ -11,8 +11,10 @@ public class DatabaseHandler {
 
     public Connection con;
     private String driver = "com.mysql.cj.jdbc.Driver";
-    private String url = "jdbc:mysql://localhost/tickethbo";
+    // private String url = "jdbc:mysql://localhost/tickethbo";
     // private String url = "jdbc:mysql://localhost/db_test?serverTimezone=" + TimeZone.getDefault().getID();
+    private String url = "jdbc:mysql://localhost/tickethbo";
+
     private String username = "root";
     private String password = "";
 
@@ -32,7 +34,9 @@ public class DatabaseHandler {
     }
     private void logOff() {
         try {
-            con.close();
+            if (con != null && !con.isClosed()) {
+                con.close();
+            }
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error Ocurred when login" + ex);
@@ -42,6 +46,11 @@ public class DatabaseHandler {
     public void connect() {
         try {
             con = logOn();
+            if (con != null) {
+                System.out.println("Koneksi berhasil!");
+            } else {
+                System.out.println("Koneksi gagal. Periksa konfigurasi database Anda.");
+            }
         }
         catch (Exception ex) {
             System.out.println("Error occured when connecting to database");
