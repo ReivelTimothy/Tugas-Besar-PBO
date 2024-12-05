@@ -1,7 +1,6 @@
 package View;
 
 import java.awt.Font;
-import java.awt.Frame;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -9,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class mainMenu {
-    Frame frame;
+    private JFrame frame;
     public mainMenu() {
 
         showMainMenu();
@@ -20,9 +19,9 @@ public class mainMenu {
     }
     public void showMainMenu() {
 
-    
         frame = new JFrame("Main Menu");
         frame.setBounds(50, 50, 450, 800); // SET FRAME BOUND
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
      
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -45,7 +44,6 @@ public class mainMenu {
         JButton registerBtn = new JButton("REGISTER");
         registerBtn.setBounds(10, 200, 260, 50);
         registerBtn.add(registerBtn);
-
         JButton exitBtn = new JButton("EXIT");
         exitBtn.setBounds(10, 270, 260, 50);
         panel.add(exitBtn);

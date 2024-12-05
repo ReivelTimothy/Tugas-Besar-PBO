@@ -1,17 +1,19 @@
 package View;
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import Controller.DBController;
+
 public class Login {
-    private Frame frame;
+    private JFrame frame;
 
     public Login() {
         inputLogin();
@@ -25,6 +27,7 @@ public class Login {
         frame.setBounds(50, 50, 400, 1000);
         frame.setTitle("LOGIN");
         frame.setLayout(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JLabel labelTitleLogin = new JLabel("==LOGIN==");
         labelTitleLogin.setBounds(150, 50, 70, 35);
@@ -46,21 +49,43 @@ public class Login {
         passwordField.setBounds(110, 130, 120, 30);
         frame.add(passwordField);
 
-        frame.setVisible(true);
+        JLabel labelRole = new JLabel("Login as: ");
+        labelRole.setBounds(25, 160, 90, 25);
+        frame.add(labelRole);
+
+        String[] roles = {"ADMIN", "SELLER", "Customer"};
+        JComboBox<String> roleBox = new JComboBox<>(roles);
+        roleBox.setBounds(110, 160, 200, 25);
+        frame.add(roleBox);
 
         JButton submitButton = new JButton("LOGIN");
-        submitButton.setBounds(60, 180, 150, 30);
+        submitButton.setBounds(110, 210, 100, 30);
         frame.add(submitButton);
         
+        frame.setVisible(true);
 
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // cek login
-                String username = usernameField.getText();
+                String email = usernameField.getText();
                 String password = String.valueOf(passwordField.getPassword());
-                JOptionPane.showMessageDialog(null, "selamat datang " + username);
-                System.exit(0);
+                String role = (String) roleBox.getSelectedItem();
 
+                boolean isValid = false;
+
+                if (role.equals("ADMIN")) {
+                    isValid = DBController.cekAdmin(email, password);
+                } else if (role.equals("SELLER")) {
+                    isValid = DBController.cekSeller(email, password);
+                } else if (role.equals("Customer")) {
+                    isValid = DBController.cekCustomer(email, password);
+                }
+
+                if (isValid) {
+                    JOptionPane.showMessageDialog(null, "Selamat datang " + email);
+                    System.exit(0);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Email atau password salah!", "Login Gagal", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }
