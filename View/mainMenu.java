@@ -1,23 +1,26 @@
 package View;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Font;
+import java.awt.Frame;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-public class MainMenu { // Ubah nama kelas menjadi MainMenu
-    JFrame frame; // Gunakan JFrame daripada Frame
-
-    public MainMenu() {
+public class mainMenu {
+    Frame frame;
+    public mainMenu() {
         showMainMenu();
     }
 
     public static void main(String[] args) {
-        new MainMenu(); // Panggil konstruktor
+        new mainMenu(); // 
+        new mainMenu().showMainMenu();
     }
 
     public void showMainMenu() {
         frame = new JFrame("Main Menu");
-        frame.setBounds(50, 50, 450, 800);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Tambahkan ini agar frame bisa ditutup
+        frame.setBounds(50, 50, 450, 800); // Tambahkan ini agar frame bisa ditutup
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
