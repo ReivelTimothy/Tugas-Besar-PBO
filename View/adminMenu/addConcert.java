@@ -19,7 +19,7 @@ import View.Create;
 
 public class addConcert {
 
-    public static void main(String[] args) throws ParseException {
+    public addConcert(){
         Create create = new Create();
         Date datee = new Date(0);
         // Membuat JFrame
