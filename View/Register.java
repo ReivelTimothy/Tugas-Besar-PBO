@@ -53,7 +53,7 @@ public class Register {
         labelRole.setBounds(25, 160, 90, 25);
         frame.add(labelRole);
 
-        String[] roles = {"SELLER", "Customer"};
+        String[] roles = {"Seller", "Customer"};
         JComboBox<String> roleBox = new JComboBox<>(roles);
         roleBox.setBounds(110, 160, 200, 25);
         frame.add(roleBox);
@@ -73,13 +73,14 @@ public class Register {
                 boolean isSaved = DBController.addUser(role, username, password);
         
                 if (isSaved) {
-                    JOptionPane.showMessageDialog(null, "Selamat, Account Anda sudah didaftarkan!");
+                    JOptionPane.showMessageDialog(null, "Selamat, Anda sudah selesai melakukan pendaftaran dan akan melanjutkan ke menu " + role);
+                    frame.dispose();
+                    new Login();
                 } else {
                     JOptionPane.showMessageDialog(null, "Account Anda gagal didaftarkan!", "Coba lagi", JOptionPane.ERROR_MESSAGE);
                 }
                 frame.dispose();
             }
         });
-        
     }
 }
