@@ -2,7 +2,7 @@ package View;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import View.adminMenu.*;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -37,19 +37,25 @@ public class Login {
         JPasswordField passwordField = new JPasswordField();
         passwordField.setBounds(110, 130, 120, 30);
         frame.add(passwordField);
-        frame.setVisible(true);
+
         JButton submitButton = new JButton("LOGIN");
-        submitButton.setBounds(60, 180, 150, 30);
+        submitButton.setBounds(110, 210, 100, 30);
         frame.add(submitButton);
         
+        frame.setVisible(true);
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // cek login
-                frame.dispose();
                 String username = usernameField.getText();
                 String password = String.valueOf(passwordField.getPassword());
-                JOptionPane.showMessageDialog(null, "selamat datang " + username);
-                new AdminMainMenu();
+
+                boolean isValid = false;
+
+                if (isValid) {
+                    JOptionPane.showMessageDialog(null, "Selamat, Account anda sudah terdaftar");
+                    System.exit(0);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Email atau password salah!", "Login Gagal", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }

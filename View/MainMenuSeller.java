@@ -7,13 +7,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class mainMenu {
+public class MainMenuSeller {
     private JFrame frame;
 
-    public mainMenu() {
+    public MainMenuSeller() {
         showMainMenu();
     }
-    
+
+    public static void main(String[] args) {
+        new MainMenuSeller().showMainMenu();
+    }
+
     public void showMainMenu() {
         frame = new JFrame("Main Menu");
         frame.setBounds(50, 50, 450, 800); // SET FRAME BOUND
@@ -28,25 +32,31 @@ public class mainMenu {
         title2.setFont(new Font("SansSerif", Font.BOLD, 24));
         panel.add(title2);
 
-        JButton loginBtn = new JButton("LOGIN");
-        loginBtn.setBounds(95, 150, 260, 50);
-        panel.add(loginBtn);
 
-        loginBtn.addActionListener(e -> {
+
+        JButton createBtn = new JButton("Create Event");
+        createBtn.setBounds(95, 150, 260, 50);
+        panel.add(createBtn);
+
+        createBtn.addActionListener(e -> {
             frame.dispose();
-            // Ganti dengan implementasi kelas Login
-            new Login().inputLogin();
+            new Create();
         });
 
-        JButton registerBtn = new JButton("REGISTER");
-        registerBtn.setBounds(95, 230, 260, 50);
-        panel.add(registerBtn); // Tambahkan tombol ke panel
 
-        registerBtn.addActionListener(e -> {
+
+        JButton reqEditBtn = new JButton("Request Edit Price Event");
+        reqEditBtn.setBounds(95, 230, 260, 50);
+        panel.add(reqEditBtn);
+
+        reqEditBtn.addActionListener(e -> {
             frame.dispose();
-            new Register();
-            System.out.println("Register button clicked");
+            new RequestEditPriceEvent();
         });
+
+
+
+
 
         JButton exitBtn = new JButton("EXIT");
         exitBtn.setBounds(95, 310, 260, 50);
@@ -54,9 +64,12 @@ public class mainMenu {
 
         exitBtn.addActionListener(e -> {
             frame.dispose();
-            System.out.println("Application exited");
         });
 
+
+
+
+        
         frame.add(panel);
         frame.setVisible(true);
     }
