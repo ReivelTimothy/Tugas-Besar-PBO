@@ -5,13 +5,12 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.util.ArrayList;
 import java.util.Properties;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import org.jdatepicker.impl.JDatePanelImpl;
@@ -39,7 +38,7 @@ public class Create {
 
     public JTextField createJTextField (int marginLeft, int marginTop){
         JTextField jTextField = new JTextField();
-        jTextField.setPreferredSize(new Dimension(50, 30));
+        jTextField.setPreferredSize(new Dimension(150, 30));
         return jTextField;
     }
 
@@ -49,11 +48,11 @@ public class Create {
         label.setFont(new Font(null, Font.PLAIN, 10));
         label.setText(txt);
         label.setOpaque(true);
-        label.setHorizontalAlignment(JLabel.LEFT); 
+        label.setHorizontalAlignment(JLabel.LEFT);
         return label;
     }
 
-     public static JDatePickerImpl createJDatePicker() {
+    public static JDatePickerImpl createJDatePicker() {
         UtilDateModel model = new UtilDateModel();
         Properties p = new Properties();
         p.put("text.today", "Today");
@@ -89,40 +88,41 @@ public class Create {
         gbc.gridx = 1; gbc.gridy = 1;
         frame.add(locationField, gbc);
 
-        JLabel snkLabel = create.createLabel("Terms & Conditions (SNK):", 0, 0);
-        JTextField snkField = create.createJTextField(0, 0);
+        JLabel eventStartLabel = create.createLabel("Event Start:", 0, 0);
+        JDatePickerImpl eventStartPicker = Create.createJDatePicker();
         gbc.gridx = 0; gbc.gridy = 2;
-        frame.add(snkLabel, gbc);
+        frame.add(eventStartLabel, gbc);
         gbc.gridx = 1; gbc.gridy = 2;
-        frame.add(snkField, gbc);
+        frame.add(eventStartPicker, gbc);
 
-        JLabel vendorLabel = create.createLabel("Vendor:", 0, 0);
-        JTextField vendorField = create.createJTextField(0, 0);
+        JLabel eventEndLabel = create.createLabel("Event End:", 0, 0);
+        JDatePickerImpl eventEndPicker = Create.createJDatePicker();
         gbc.gridx = 0; gbc.gridy = 3;
-        frame.add(vendorLabel, gbc);
+        frame.add(eventEndLabel, gbc);
         gbc.gridx = 1; gbc.gridy = 3;
-        frame.add(vendorField, gbc);
+        frame.add(eventEndPicker, gbc);
+
+        JLabel kategoriLabel = create.createLabel("Category:", 0, 0);
+        String[] categories = {"Music", "Sports", "Education", "Others"};
+        JComboBox<String> kategoriComboBox = new JComboBox<>(categories);
+        gbc.gridx = 0; gbc.gridy = 4;
+        frame.add(kategoriLabel, gbc);
+        gbc.gridx = 1; gbc.gridy = 4;
+        frame.add(kategoriComboBox, gbc);
+
+        JLabel capacityLabel = create.createLabel("Capacity:", 0, 0);
+        JTextField capacityField = create.createJTextField(0, 0);
+        gbc.gridx = 0; gbc.gridy = 5;
+        frame.add(capacityLabel, gbc);
+        gbc.gridx = 1; gbc.gridy = 5;
+        frame.add(capacityField, gbc);
 
         JLabel descLabel = create.createLabel("Description:", 0, 0);
         JTextField descField = create.createJTextField(0, 0);
-        gbc.gridx = 0; gbc.gridy = 4;
-        frame.add(descLabel, gbc);
-        gbc.gridx = 1; gbc.gridy = 4;
-        frame.add(descField, gbc);
-
-        JLabel feedbackLabel = create.createLabel("Feedback:", 0, 0);
-        JTextField feedbackField = create.createJTextField(0, 0);
-        gbc.gridx = 0; gbc.gridy = 5;
-        frame.add(feedbackLabel, gbc);
-        gbc.gridx = 1; gbc.gridy = 5;
-        frame.add(feedbackField, gbc);
-
-        JLabel dateLabel = create.createLabel("Date & Time:", 0, 0);
-        JDatePickerImpl datePicker = Create.createJDatePicker();
         gbc.gridx = 0; gbc.gridy = 6;
-        frame.add(dateLabel, gbc);
+        frame.add(descLabel, gbc);
         gbc.gridx = 1; gbc.gridy = 6;
-        frame.add(datePicker, gbc);
+        frame.add(descField, gbc);
 
         JLabel priceLabel = create.createLabel("Price:", 0, 0);
         JTextField priceField = create.createJTextField(0, 0);
@@ -131,59 +131,28 @@ public class Create {
         gbc.gridx = 1; gbc.gridy = 7;
         frame.add(priceField, gbc);
 
-        JLabel ticketsLabel = create.createLabel("Tickets (comma-separated):", 0, 0);
-        JTextField ticketsField = create.createJTextField(0, 0);
-        gbc.gridx = 0; gbc.gridy = 8;
-        frame.add(ticketsLabel, gbc);
-        gbc.gridx = 1; gbc.gridy = 8;
-        frame.add(ticketsField, gbc);
-
         JButton submitButton = create.createJButton("Submit");
         submitButton.setText("Submit");
-        gbc.gridx = 0; gbc.gridy = 9;
+        gbc.gridx = 0; gbc.gridy = 8;
         gbc.gridwidth = 2;
         frame.add(submitButton, gbc);
 
         submitButton.addActionListener(e -> {
             String name = nameField.getText();
-            String location = locationField.getText();
-            String snk = snkField.getText();
-            String vendor = vendorField.getText();
-            String desc = descField.getText();
-            String feedback = feedbackField.getText();
-            String date = datePicker.getJFormattedTextField().getText();
+            String eventStart = eventStartPicker.getJFormattedTextField().getText();
+            String eventEnd = eventEndPicker.getJFormattedTextField().getText();
+            String kategori = (String) kategoriComboBox.getSelectedItem();
+            String capacityText = capacityField.getText();
             String priceText = priceField.getText();
-            String ticketsText = ticketsField.getText();
-
-            ArrayList<String> tickets = new ArrayList<>();
-            for (String ticket : ticketsText.split(",")) {
-                tickets.add(ticket.trim());
-            }
-
-            double price = 0.0;
-            try {
-                price = Double.parseDouble(priceText);
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(frame, "Invalid price format!", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            String message = "Event Created:\n" +
-                    "Name: " + name + "\n" +
-                    "Location: " + location + "\n" +
-                    "SNK: " + snk + "\n" +
-                    "Vendor: " + vendor + "\n" +
-                    "Description: " + desc + "\n" +
-                    "Feedback: " + feedback + "\n" +
-                    "Date: " + date + "\n" +
-                    "Price: " + price + "\n" +
-                    "Tickets: " + tickets;
-
-            JOptionPane.showMessageDialog(frame, message, "Event Created", JOptionPane.INFORMATION_MESSAGE);
+            String desc = descField.getText();
+        
+            Controller.CreateEvent.EventCreate(name, eventStart, eventEnd, desc, kategori, capacityText, priceText);
+            frame.dispose();
+            new MainMenuSeller();
         });
+        
 
         frame.pack();
         frame.setVisible(true);
     }
-
 }
