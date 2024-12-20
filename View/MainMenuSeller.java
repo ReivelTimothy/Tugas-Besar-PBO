@@ -10,10 +10,6 @@ import javax.swing.JPanel;
 public class MainMenuSeller {
     private JFrame frame;
 
-    public MainMenuSeller() {
-        showMainMenu();
-    }
-
     public static void main(String[] args) {
         new MainMenuSeller().showMainMenu();
     }
@@ -39,7 +35,6 @@ public class MainMenuSeller {
         panel.add(createBtn);
 
         createBtn.addActionListener(e -> {
-            frame.dispose();
             new Create();
         });
 
