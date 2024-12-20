@@ -3,16 +3,13 @@ package Controller;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-// import java.sql.SQLException;
-// import java.util.TimeZone;
 import javax.swing.JOptionPane;
 
 public class DatabaseHandler {
 
     public Connection con;
     private String driver = "com.mysql.cj.jdbc.Driver";
-    private String url = "jdbc:mysql://localhost/tickethbo";
-    // private String url = "jdbc:mysql://localhost/db_test?serverTimezone=" + TimeZone.getDefault().getID();
+    private String url = "jdbc:mysql://localhost/tickethbo?serverTimezone=UTC&useSSL=false";
     private String username = "root";
     private String password = "";
 
