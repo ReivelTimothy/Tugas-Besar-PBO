@@ -3,11 +3,11 @@ package Models.classes;
 import java.sql.Date;
 
 public class EventSport extends Event{
-    String jenisSport;
+    private String jenisSport;
 
-    public EventSport(String title, String location, String snk, String vendor, String dateTime, String information,
-            double price, double discount, int rating, String jenisSport, Date tanggal) {
-        super(title, location, snk, vendor, dateTime, information, price, discount, rating, tanggal);
+    public EventSport(int eventId, String title, String location, String snk, String vendor, String desc,
+            String timeStart, String timeEnd, double price, int capacity, Date tanggal, String jenisSport) {
+        super(eventId, title, location, snk, vendor, desc, timeStart, timeEnd, price, capacity, tanggal);
         this.jenisSport = jenisSport;
     }
 
