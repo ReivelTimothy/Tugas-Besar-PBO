@@ -1,26 +1,28 @@
-package View;
+package view; 
 
-import java.text.SimpleDateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.swing.JFormattedTextField.AbstractFormatter;
-import java.util.Date;
+import java.util.Calendar;
 
 public class DateLabelFormatter extends AbstractFormatter {
-    private final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+     
+    private String datePattern = "dd-MM-yyyy";
+    private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
 
     @Override
     public Object stringToValue(String text) throws ParseException {
-        if (text == null || text.trim().isEmpty()) {
-            return null; // Handle empty string input gracefully
-        }
-        return dateFormatter.parse(text); // Attempt to parse the date
+        return dateFormatter.parseObject(text);
     }
 
     @Override
-    public String valueToString(Object value) {
-        if (value instanceof Date) {
-            return dateFormatter.format((Date) value); // Only format if value is a Date
+    public String valueToString(Object value) throws ParseException {
+        if (value != null) {
+            Calendar cal = (Calendar) value;
+            return dateFormatter.format(cal.getTime());
         }
-        return ""; // Return empty string if the value is not a Date object
+        
+        return "";
+        
     }
 }

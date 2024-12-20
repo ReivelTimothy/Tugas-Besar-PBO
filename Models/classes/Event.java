@@ -1,25 +1,35 @@
 package Models.classes;
 
-import java.util.Date;
+import java.util.*;
 
 public abstract class Event {
-    String title, location, snk, vendor, dateTime, information;
-    double price, discount;
-    int rating;
+    int eventId;
+    String title, location, snk, vendor, desc, timeStart, timeEnd;
+    double price;
+    int capacity;
     Date tanggal;
 
-    public Event(String title, String location, String snk, String vendor, String dateTime, String information,
-            double price, double discount, int rating, Date tanggal) {
+    public Event(int eventId, String title, String location, String snk, String vendor, String desc,
+            String timeStart, String timeEnd, double price, int capacity, Date tanggal) {
+        this.eventId = eventId;
         this.title = title;
         this.location = location;
         this.snk = snk;
         this.vendor = vendor;
-        this.dateTime = dateTime;
-        this.information = information;
+        this.desc = desc;
+        this.timeStart = timeStart;
+        this.timeEnd = timeEnd;
         this.price = price;
-        this.discount = discount;
-        this.rating = rating;
+        this.capacity = capacity;
         this.tanggal = tanggal;
+    }
+
+    public int getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
     }
 
     public String getTitle() {
@@ -54,20 +64,28 @@ public abstract class Event {
         this.vendor = vendor;
     }
 
-    public String getDateTime() {
-        return dateTime;
+    public String getDesc() {
+        return desc;
     }
 
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
-    public String getInformation() {
-        return information;
+    public String getTimeStart() {
+        return timeStart;
     }
 
-    public void setInformation(String information) {
-        this.information = information;
+    public void setTimeStart(String timeStart) {
+        this.timeStart = timeStart;
+    }
+
+    public String getTimeEnd() {
+        return timeEnd;
+    }
+
+    public void setTimeEnd(String timeEnd) {
+        this.timeEnd = timeEnd;
     }
 
     public double getPrice() {
@@ -78,20 +96,20 @@ public abstract class Event {
         this.price = price;
     }
 
-    public double getDiscount() {
-        return discount;
+    public int getCapacity() {
+        return capacity;
     }
 
-    public void setDiscount(double discount) {
-        this.discount = discount;
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
-    public int getRating() {
-        return rating;
+    public Date getTanggal() {
+        return tanggal;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
+    public void setTanggal(Date tanggal) {
+        this.tanggal = tanggal;
     }
 
 }

@@ -1,13 +1,15 @@
 package Models.classes;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class EventEducation extends Event {
     String namaPembicara;
 
-    public EventEducation(String title, String location, String snk, String vendor, String dateTime, String information,
-            double price, double discount, int rating, String namaPembicara, Date date) {
-        super(title, location, snk, vendor, dateTime, information, price, discount, rating, date);
+
+    public EventEducation(int eventId, String title, String location, String snk, String vendor, 
+            String desc, String timeStart, String timeEnd, double price, int capacity, Date tanggal,
+            String namaPembicara) {
+        super(eventId, title, location, snk, vendor,  desc, timeStart, timeEnd, price, capacity, tanggal);
         this.namaPembicara = namaPembicara;
     }
 
@@ -17,14 +19,6 @@ public class EventEducation extends Event {
 
     public void setNamaPembicara(String namaPembicara) {
         this.namaPembicara = namaPembicara;
-    }
-
-    @Override
-    public String toString() {
-        return "EventEducation [title=" + title + ", location=" + location + ", namaPembicara=" + namaPembicara
-                + ", snk=" + snk + ", vendor=" + vendor + ", dateTime=" + dateTime + ", information=" + information
-                + ", price=" + price + ", discount=" + discount + ", rating=" + rating + ", tanggal=" + tanggal
-                ;
     }
     
 }
