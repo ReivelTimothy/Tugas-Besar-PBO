@@ -1,20 +1,20 @@
-package Models.classes;
+package models.classes;
 
 import java.util.ArrayList;
 
-import Models.enumaration.Membership;
-import Models.enumaration.StatusBlocked;
+import models.enumaration.Membership;
+import models.enumaration.statusBlocked;
 
 public class UserCustomer extends User {
     private Membership statusMembership;
     private String cardNumber;
     private double balance;
     private ArrayList<Ticket> listTicket = new ArrayList<>();
-    private StatusBlocked blockedStatus;
+    private statusBlocked blockedStatus;
     
     public UserCustomer(int iD_karyawan, String name, String password, String noTlp, String email,
             Membership statusMembership, String cardNumber, double balance, ArrayList<Ticket> listTicket,
-            StatusBlocked blockedStatus) {
+            statusBlocked blockedStatus) {
         super(iD_karyawan, name, password, noTlp, email);
         this.statusMembership = statusMembership;
         this.cardNumber = cardNumber;
@@ -47,10 +47,10 @@ public class UserCustomer extends User {
     public void setListTicket(ArrayList<Ticket> listTicket) {
         this.listTicket = listTicket;
     }
-    public StatusBlocked getBlockedStatus() {
+    public statusBlocked getBlockedStatus() {
         return blockedStatus;
     }
-    public void setBlockedStatus(StatusBlocked blockedStatus) {
+    public void setBlockedStatus(statusBlocked blockedStatus) {
         this.blockedStatus = blockedStatus;
     }
 

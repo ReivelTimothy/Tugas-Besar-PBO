@@ -1,9 +1,9 @@
-package Models.classes;
+package models.classes;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import Models.enumaration.TransactionStatus;
+import models.enumaration.TransactionStatus;
 
 public class Transaction {
     private int idTransaksi;

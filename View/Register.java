@@ -1,4 +1,4 @@
-package View;
+package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import Controller.DBController;
+import controller.DBController;
 
 public class Register {
     private JFrame frame;

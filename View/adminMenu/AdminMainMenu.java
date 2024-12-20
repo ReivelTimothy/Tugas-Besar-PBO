@@ -1,4 +1,4 @@
-package View.adminMenu;
+package view.adminMenu;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
