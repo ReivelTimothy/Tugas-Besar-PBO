@@ -13,11 +13,7 @@ public class mainMenu {
     public mainMenu() {
         showMainMenu();
     }
-
-    public static void main(String[] args) {
-        new mainMenu().showMainMenu();
-    }
-
+    
     public void showMainMenu() {
         frame = new JFrame("Main Menu");
         frame.setBounds(50, 50, 450, 800); // SET FRAME BOUND
