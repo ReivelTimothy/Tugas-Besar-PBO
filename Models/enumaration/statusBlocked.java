@@ -1,5 +1,5 @@
-package Models.enumaration;
+package models.enumaration;
 
-public enum StatusBlocked {
+public enum statusBlocked {
     BLOCK, OPENBLOCK;
 }

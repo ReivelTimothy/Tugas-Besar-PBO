@@ -1,21 +1,26 @@
 package view.adminMenu;
 
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.util.Date;
+import java.util.Properties;
 
-import Models.classes.*;
-import Models.classes.Event;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
-import Controller.DBController;
-import Models.enumaration.statusBlocked;
+import controller.DBController;
+import models.classes.EventConcert;
 import view.DateLabelFormatter;
-
-import java.awt.*;
-import java.util.Date;
-import java.util.Properties;
 
 public class addConcert {
 
