@@ -1,4 +1,4 @@
-package view.adminMenu;
+package view.sellerMenu;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -33,7 +33,7 @@ public class AdminMainMenu {
 
         addConcertBtn.addActionListener(e -> {
             frame.dispose();
-            new addConcert();
+            new AddConcert();
         });
 
         frame.add(panel);
