@@ -1,6 +1,6 @@
 package models.classes;
 
-import java.util.*;
+import java.sql.Date;
 
 public abstract class Event {
     int eventId;
