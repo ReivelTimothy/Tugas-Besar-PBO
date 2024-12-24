@@ -3,11 +3,16 @@ package view.sellerMenu;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.Properties;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -18,7 +23,6 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
-import controller.DBController;
 import controller.sellerController.InsertConcert;
 import models.classes.EventConcert;
 import models.classes.EventEducation;
@@ -29,9 +33,7 @@ import models.enumaration.*;
 public class AddConcert {
     static EventCat eventCat = EventCat.MUSIC;
 
-    public static void main(String[] args) {
-        DBController dbController = new DBController();
-
+    public AddConcert() {
         InsertConcert concert = new InsertConcert();
 
         JFrame frame = new JFrame("ADD A CONCERT");
@@ -42,9 +44,9 @@ public class AddConcert {
         masterPanel.setLayout(new BoxLayout(masterPanel, BoxLayout.Y_AXIS));
         masterPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Padding for master panel
         JDatePickerImpl date = createJDatePicker();
-        JButton concertButton = new JButton("KOSER");
+        JButton concertButton = new JButton("CONCERT");
         JButton sportButton = new JButton("SPORT");
-        JButton eduButton = new JButton("EDUKASI");
+        JButton eduButton = new JButton("EDUCATION");
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout());
@@ -70,6 +72,7 @@ public class AddConcert {
         JPanel discount = createInputText("Discount 4 member");
         JPanel kapasitas = createInputText("total Kapasitas ");
         JPanel genre = createInputText("genre");
+        JPanel gambar = createInputFileChooser("Masukan Gambar Anda", frame);
 
         // variabel hanya ada didalam event tertentu
         penyanyi.setVisible(true);
@@ -94,6 +97,8 @@ public class AddConcert {
         masterPanel.add(tanggal);
         masterPanel.add(jamMulai);
         masterPanel.add(jamSelesai);
+
+        masterPanel.add(gambar);
         masterPanel.add(button);
 
         frame.add(masterPanel);
@@ -140,7 +145,7 @@ public class AddConcert {
                             Integer.parseInt(getText(kapasitas)),
                             sqlDate,
                             getText(pembicara));
-                        concert.InsertEduEvent(eventEducation, 0);
+                    concert.InsertEduEvent(eventEducation, 0);
                 } else {
                     EventSport eventSport = new EventSport(
                             0,
@@ -231,6 +236,62 @@ public class AddConcert {
 
         return container;
 
+    }
+
+    public JPanel createInputFileChooser(String labeltxt, JFrame frame) {
+
+        JPanel panel = new JPanel();
+        JPanel subContainer = new JPanel();
+        JTextField path = new JTextField();
+        path.setVisible(false);
+
+        JButton openButton = new JButton("Open File");
+        openButton.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Pilih File Gambar");
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            fileChooser.setAcceptAllFileFilterUsed(false);
+            fileChooser.addChoosableFileFilter(new javax.swing.filechooser.FileNameExtensionFilter(
+                    "Image Files", "jpg", "jpeg", "png", "gif", "bmp"));
+
+            // Tampilkan JFileChooser
+            int userSelection = fileChooser.showOpenDialog(null);
+
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                // File yang dipilih oleh pengguna
+                File selectedFile = fileChooser.getSelectedFile();
+
+                // Tentukan direktori tujuan
+                File destinationFolder = new File("assets"); // Direktori relatif dalam folder proyek
+
+                // Tentukan lokasi file tujuan
+                File destinationFile = new File(destinationFolder, selectedFile.getName());
+
+                try {
+                    // Pindahkan file ke folder tujuan
+                    Files.move(selectedFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    String relativePath = "images" + File.separator + selectedFile.getName();
+                    path.setText(relativePath);
+                    path.setVisible(false);
+                    System.out.println("File berhasil dipindahkan ke: " + destinationFile.getPath());
+                } catch (IOException re) {
+                    System.err.println("Terjadi kesalahan saat memindahkan file: " + re.getMessage());
+                }
+            } else {
+                System.out.println("Tidak ada file yang dipilih.");
+            }
+        });
+
+        subContainer.setLayout(new BorderLayout());
+        subContainer.add(new JLabel(labeltxt), BorderLayout.WEST);
+        subContainer.add(openButton, BorderLayout.EAST);
+
+        panel.add(subContainer);
+        panel.add(path);
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+
+        return panel;
     }
 
     public static String getText(JPanel panel) {
