@@ -2,8 +2,6 @@ package controller.sellerController;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Date;
-
 import javax.swing.JOptionPane;
 
 import controller.DatabaseHandler;
@@ -11,7 +9,6 @@ import models.classes.EventConcert;
 import models.classes.EventEducation;
 import models.classes.EventSport;
 import models.enumaration.EventCat;
-import models.enumaration.statusBlocked;
 
 public class InsertConcert {
     static DatabaseHandler conn = new DatabaseHandler();
