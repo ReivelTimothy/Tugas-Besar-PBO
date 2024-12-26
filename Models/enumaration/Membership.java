@@ -1,4 +1,4 @@
-package models.enumaration;
+package Models.Enumaration;
 
 public enum Membership {
     ACTIVE,
