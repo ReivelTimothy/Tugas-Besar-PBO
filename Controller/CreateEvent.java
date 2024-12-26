@@ -1,4 +1,4 @@
-package controller;
+package Controller;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -12,16 +12,17 @@ public class CreateEvent {
 
         try {
             conn.connect();
-            String query = "INSERT INTO events (judul, harga, eventStart, eventEnd, description, kategori, capacity) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO events (event_id, judul, harga, eventStart, eventEnd, description, kategori, capacity) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement stmt = conn.con.prepareStatement(query);
-            stmt.setString(1, eventName);
-            stmt.setString(2, eventStart);
-            stmt.setString(3, eventEnd);
-            stmt.setString(4, Description);
-            stmt.setString(5, kategori);
-            stmt.setString(6, capacity);
-            stmt.setString(7, price);
+            stmt.setInt(1, 0);
+            stmt.setString(2, eventName);
+            stmt.setString(3, eventStart);
+            stmt.setString(4, eventEnd);
+            stmt.setString(5, Description);
+            stmt.setString(6, kategori);
+            stmt.setString(7, capacity);
+            stmt.setString(8, price);
 
             int rows = stmt.executeUpdate();
             if (rows > 0) {
