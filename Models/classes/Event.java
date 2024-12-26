@@ -1,6 +1,6 @@
-package models.classes;
+package Models.classes;
 
-import java.util.*;
+import java.util.Date;
 
 public abstract class Event {
     int eventId;

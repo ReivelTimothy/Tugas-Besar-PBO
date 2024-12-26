@@ -1,4 +1,4 @@
-package view;
+package View;
 
 import java.awt.Font;
 
@@ -45,7 +45,6 @@ public class MainMenuSeller {
         panel.add(reqEditBtn);
 
         reqEditBtn.addActionListener(e -> {
-            frame.dispose();
             new RequestEditPriceEvent();
         });
 
