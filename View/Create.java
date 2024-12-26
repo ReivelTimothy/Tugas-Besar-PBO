@@ -148,6 +148,7 @@ public class Create {
         
             controller.CreateEvent.EventCreate(name, eventStart, eventEnd, desc, kategori, capacityText, priceText);
             frame.dispose();
+            new MainMenuSeller();
         });
         
 
