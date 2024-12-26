@@ -1,9 +1,9 @@
-package models.classes;
+package Models.Classess;
 
 import java.util.ArrayList;
 
-import models.enumaration.Membership;
-import models.enumaration.statusBlocked;
+import Models.Enumeration.Membership;
+import Models.Enumeration.statusBlocked;
 
 public class UserCustomer extends User {
     private Membership statusMembership;
