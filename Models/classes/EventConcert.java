@@ -1,6 +1,6 @@
 package models.classes;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class EventConcert extends Event {
     String jenisKonser, singer;
