@@ -1,4 +1,4 @@
-package models.classes;
+package Models.Classess;
 
 public class UserSeller {
     

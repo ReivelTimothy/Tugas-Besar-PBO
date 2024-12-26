@@ -1,4 +1,4 @@
-package Models.Enumaration;
+package Models.Enumeration;
 
 public enum EventCat {
     MUSIC, 

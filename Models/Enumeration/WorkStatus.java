@@ -1,4 +1,4 @@
-package models.enumaration;
+package Models.Enumeration;
 public enum WorkStatus{
     Internship,
     Permanent;

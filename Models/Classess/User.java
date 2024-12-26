@@ -1,4 +1,4 @@
-package Models.Classes;
+package Models.Classess;
 
 import java.util.ArrayList;
 
