@@ -40,7 +40,7 @@ public class MainMenu {
 
         JButton registerBtn = new JButton("REGISTER");
         registerBtn.setBounds(95, 230, 260, 50);
-        panel.add(registerBtn); // Tambahkan tombol ke panel
+        panel.add(registerBtn);
 
         registerBtn.addActionListener(e -> {
             frame.dispose();
