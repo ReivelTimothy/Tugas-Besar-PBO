@@ -1,4 +1,4 @@
-package models.enumaration;
+package Models.Enumeration;
 
 public enum statusBlocked {
     BLOCK, OPENBLOCK;
