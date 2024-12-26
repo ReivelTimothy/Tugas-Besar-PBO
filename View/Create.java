@@ -1,4 +1,4 @@
-package view;
+package View;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -146,7 +146,7 @@ public class Create {
             String priceText = priceField.getText();
             String desc = descField.getText();
         
-            controller.CreateEvent.EventCreate(name, eventStart, eventEnd, desc, kategori, capacityText, priceText);
+            Controller.CreateEvent.EventCreate(name, eventStart, eventEnd, desc, kategori, capacityText, priceText);
             frame.dispose();
             new MainMenuSeller();
         });
