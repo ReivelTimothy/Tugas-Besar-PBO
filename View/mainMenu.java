@@ -1,4 +1,4 @@
-package view;
+package View;
 
 import java.awt.Font;
 
@@ -7,10 +7,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class mainMenu {
+public class MainMenu {
     private JFrame frame;
 
-    public mainMenu() {
+    public MainMenu() {
         showMainMenu();
     }
     

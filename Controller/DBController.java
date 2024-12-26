@@ -1,4 +1,4 @@
-package controller;
+package Controller;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-import models.classes.EventConcert;
-import models.enumaration.EventCat;
+import Models.Classess.EventConcert;
+import Models.Enumeration.EventCat;
 
 public class DBController {
 

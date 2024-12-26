@@ -1,9 +1,10 @@
-package view; 
+package View; 
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import javax.swing.JFormattedTextField.AbstractFormatter;
 import java.util.Calendar;
+
+import javax.swing.JFormattedTextField.AbstractFormatter;
 
 public class DateLabelFormatter extends AbstractFormatter {
      
