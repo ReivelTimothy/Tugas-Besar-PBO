@@ -27,7 +27,7 @@ public class TopupBalance {
 
     public void showTopUpBalance() {
         LoginCheck loginCheck = LoginCheck.getInstance();
-        UserCustomer user = (UserCustomer) loginCheck.getUserLogin();
+        UserCustomer user = loginCheck.getUserLogin();
 
         if (user == null) {
             JOptionPane.showMessageDialog(null, "No user logged in. Please log in first.", "Error", JOptionPane.ERROR_MESSAGE);
