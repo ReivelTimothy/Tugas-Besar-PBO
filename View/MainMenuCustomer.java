@@ -20,10 +20,10 @@ public class MainMenuCustomer {
     private JFrame frame;
 
     public MainMenuCustomer() {
-        showMainMenu();
+        showMainMenuCustomer();
     }
 
-    public void showMainMenu() {
+    public void showMainMenuCustomer() {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension screenSize = toolkit.getScreenSize();
 
@@ -47,7 +47,7 @@ public class MainMenuCustomer {
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
-        panel.setBackground(Color.getHSBColor(0.6f, 0.7f, 0.9f));
+        panel.setBackground(new Color(0x66d9c2));
         panel.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
 
         JLabel title = new JLabel("Customer Main Menu");
@@ -141,7 +141,7 @@ public class MainMenuCustomer {
         JButton button = new JButton(text);
         button.setBounds(x, y, 360, 50);
         button.setFont(font);
-        button.setBackground(new Color(3, 123, 252));
+        button.setBackground(new Color(0x66d9c5));
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
         button.setBorderPainted(false);
