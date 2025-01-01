@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -40,14 +39,13 @@ public class MainMenuCustomer {
         Font buttonFont = new Font("SansSerif", Font.BOLD, 18);
 
         frame = new JFrame("Main Menu - Customer");
-        frame.setUndecorated(true);
-        frame.setBounds(start_x, start_y, FRAME_WIDTH, FRAME_HEIGHT);
-        frame.setShape(new RoundRectangle2D.Double(0, 0, FRAME_WIDTH, FRAME_HEIGHT, 30, 30));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setBounds(start_x, start_y, FRAME_WIDTH, FRAME_HEIGHT);
+
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
-        panel.setBackground(new Color(0x66d9c2));
+        panel.setBackground(new Color(0x567af0));
         panel.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
 
         JLabel title = new JLabel("Customer Main Menu");
@@ -141,7 +139,7 @@ public class MainMenuCustomer {
         JButton button = new JButton(text);
         button.setBounds(x, y, 360, 50);
         button.setFont(font);
-        button.setBackground(new Color(0x66d9c5));
+        button.setBackground(new Color(0x2d5aed));
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
         button.setBorderPainted(false);
