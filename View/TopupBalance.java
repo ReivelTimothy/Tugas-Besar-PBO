@@ -1,150 +1,124 @@
 package View;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.geom.RoundRectangle2D;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import Controller.LoginCheck;
+import Models.Classess.UserCustomer;
 
 public class TopupBalance {
 
     private JFrame frame;
 
-    // public TopupBalance() {
-    //     showTopUpBalance();
-    // }
+    public TopupBalance() {
+        showTopUpBalance();
+    }
 
-    // public void showTopUpBalance() {
-    //     //singleton
-    //     //userCustomer 
+    public void showTopUpBalance() {
+        LoginCheck loginCheck = LoginCheck.getInstance();
+        UserCustomer user = (UserCustomer) loginCheck.getUserLogin();
 
-    //     Toolkit toolkit = Toolkit.getDefaultToolkit();
-    //     Dimension screenSize = toolkit.getScreenSize();
+        if (user == null) {
+            JOptionPane.showMessageDialog(null, "No user logged in. Please log in first.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    //     int screenWidth = screenSize.width;
-    //     int screenHeight = screenSize.height;
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = toolkit.getScreenSize();
 
-    //     final int FRAME_WIDTH = 500;
-    //     final int FRAME_HEIGHT = 750;
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
 
-    //     int start_x = screenWidth / 2 - (FRAME_WIDTH / 2);
-    //     int start_y = screenHeight / 2 - (FRAME_HEIGHT / 2);
+        final int FRAME_WIDTH = 500;
+        final int FRAME_HEIGHT = 400;
 
-    //     Font buttonFont = new Font("SansSerif", Font.BOLD, 18);
+        int start_x = screenWidth / 2 - (FRAME_WIDTH / 2);
+        int start_y = screenHeight / 2 - (FRAME_HEIGHT / 2);
 
-    //     frame = new JFrame("Top-Up Saldo");
-    //     frame.setUndecorated(true);
-    //     frame.setBounds(start_x, start_y, FRAME_WIDTH, FRAME_HEIGHT);
-    //     frame.setShape(new RoundRectangle2D.Double(0, 0, FRAME_WIDTH, FRAME_HEIGHT, 30, 30));
-    //     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Font buttonFont = new Font("SansSerif", Font.BOLD, 18);
 
-    //     JPanel panel = new JPanel();
-    //     panel.setLayout(null);
-    //     panel.setBackground(Color.getHSBColor(0.6f, 0.7f, 0.9f));
-    //     panel.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+        frame = new JFrame("Top-Up Balance");
+        frame.setUndecorated(true);
+        frame.setBounds(start_x, start_y, FRAME_WIDTH, FRAME_HEIGHT);
+        frame.setShape(new RoundRectangle2D.Double(0, 0, FRAME_WIDTH, FRAME_HEIGHT, 30, 30));
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    //     JLabel title = new JLabel("SALDO ANDA : Rp." + nasabah.getSaldo());
-    //     title.setBounds(50, 50, 400, 30);
-    //     title.setFont(new Font("SansSerif", Font.BOLD, 20));
-    //     title.setForeground(Color.WHITE);
-    //     panel.add(title);
+        JPanel panel = new JPanel();
+        panel.setLayout(null);
+        panel.setBackground(Color.getHSBColor(0.6f, 0.7f, 0.9f));
+        panel.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
 
-    //     JLabel saldoLabel = new JLabel("Input Jumlah Saldo Yang Ingin Di Top-Up : ");
-    //     saldoLabel.setBounds(120, 200, 500, 50);
-    //     saldoLabel.setForeground(Color.WHITE);
-    //     panel.add(saldoLabel);
+        // Display current balance
+        JLabel title = new JLabel("Your Current Balance: Rp. " + user.getBalance());
+        title.setBounds(50, 50, 400, 30);
+        title.setFont(new Font("SansSerif", Font.BOLD, 20));
+        title.setForeground(Color.WHITE);
+        panel.add(title);
 
-    //     JTextField inputSaldo = new JTextField(16);
-    //     inputSaldo.setHorizontalAlignment(JTextField.CENTER);
-    //     inputSaldo.setBorder(BorderFactory.createEmptyBorder());
-    //     inputSaldo.setBounds(120, 240, 260, 50);
-    //     panel.add(inputSaldo);
+        JLabel saldoLabel = new JLabel("Enter Amount to Top-Up: ");
+        saldoLabel.setBounds(120, 120, 300, 30);
+        saldoLabel.setForeground(Color.WHITE);
+        panel.add(saldoLabel);
 
-    //     JLabel eMoneyLabel = new JLabel("Nomor E-Money Tujuan : ");
-    //     eMoneyLabel.setBounds(120, 280, 500, 50);
-    //     eMoneyLabel.setForeground(Color.WHITE);
-    //     panel.add(eMoneyLabel);
+        JTextField inputSaldo = new JTextField(16);
+        inputSaldo.setHorizontalAlignment(JTextField.CENTER);
+        inputSaldo.setBorder(BorderFactory.createEmptyBorder());
+        inputSaldo.setBounds(120, 160, 260, 40);
+        panel.add(inputSaldo);
 
-    //     JTextField inputEMoney = new JTextField(16);
-    //     inputEMoney.setHorizontalAlignment(JTextField.CENTER);
-    //     inputEMoney.setBorder(BorderFactory.createEmptyBorder());
-    //     inputEMoney.setBounds(120, 320, 260, 50);
-    //     panel.add(inputEMoney);
+        JButton topUpButton = new JButton("TOP UP!");
+        topUpButton.setBounds(120, 220, 260, 50);
+        topUpButton.setFont(buttonFont);
+        topUpButton.setBackground(new Color(3, 123, 252));
+        topUpButton.setForeground(Color.WHITE);
+        topUpButton.addActionListener(e -> {
+            try {
+                String saldoInput = inputSaldo.getText();
+                double amount = Double.parseDouble(saldoInput);
 
-    //     JLabel topUpTypeLabel = new JLabel("Pilih Jenis E-Money : ");
-    //     topUpTypeLabel.setBounds(120, 360, 500, 50);
-    //     topUpTypeLabel.setForeground(Color.WHITE);
-    //     panel.add(topUpTypeLabel);
+                if (amount <= 0) {
+                    JOptionPane.showMessageDialog(frame, "harus positif.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
 
-    //     JComboBox<String> eMoneyComboBox = new JComboBox<>(new String[] {"DANA", "OVO", "GOPAY"});
-    //     eMoneyComboBox.setBounds(120, 400, 260, 50);
-    //     eMoneyComboBox.setBackground(Color.WHITE);
-    //     panel.add(eMoneyComboBox);
+                // Update balance
+                double newBalance = user.getBalance() + amount;
+                user.setBalance(newBalance);
 
-    //     JLabel promoLabel = new JLabel("Promo Code (optional) : ");
-    //     promoLabel.setBounds(120, 440, 500, 50);
-    //     promoLabel.setForeground(Color.WHITE);
-    //     panel.add(promoLabel);
+                JOptionPane.showMessageDialog(frame, "Top-Up Berhasil! Balance: Rp. " + newBalance);
 
-    //     JTextField inputPromo = new JTextField(16);
-    //     inputPromo.setHorizontalAlignment(JTextField.CENTER);
-    //     inputPromo.setBorder(BorderFactory.createEmptyBorder());
-    //     inputPromo.setBounds(120, 480, 260, 50);
-    //     panel.add(inputPromo);
+                // Update the displayed balance
+                title.setText("Balance: Rp. " + newBalance);
+                inputSaldo.setText("");
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(frame, "Please enter a valid amount.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+        panel.add(topUpButton);
 
-    //     JButton topUpButton = new JButton("TOP UP!");
-    //     topUpButton.setBounds(120, 540, 260, 50);
-    //     Component.styleButton(topUpButton, new Color(3, 123, 252), buttonFont);
-    //     topUpButton.addActionListener(e -> {
-    //         try {
-    //             String promoCode = inputPromo.getText();
-    //             String saldoInput = inputSaldo.getText();
-    //             String eMoneyInput = inputEMoney.getText();
-    //             double amount = Double.parseDouble(saldoInput);
+        JButton exitButton = new JButton("Back to Homepage");
+        exitButton.setBounds(120, 290, 260, 50);
+        exitButton.setFont(buttonFont);
+        exitButton.setBackground(new Color(255, 69, 58));
+        exitButton.setForeground(Color.WHITE);
+        exitButton.addActionListener(e -> {
+            frame.dispose();
+            new MainMenuCustomer(); // Redirect to the homepage
+        });
+        panel.add(exitButton);
 
-    //             if (amount < 0) {
-    //                 JOptionPane.showMessageDialog(frame, "Jumlah saldo tidak boleh negatif.", "Error", JOptionPane.ERROR_MESSAGE);
-    //                 return;
-    //             }
-                
-
-    //             String selectedTopUpType = (String) eMoneyComboBox.getSelectedItem();
-    //             TopUpType topUpType = TopUpType.valueOf(selectedTopUpType);
-
-    //             if (TransaksiController.verifyNomorRekeningTujuan(Integer.parseInt(eMoneyInput))) { 
-    //                 JOptionPane.showMessageDialog(frame, "Nomor e-money tujuan tidak valid.", "Error", JOptionPane.ERROR_MESSAGE);
-    //                 return;
-    //             }
-
-    //             boolean promoValid = TransaksiController.verifyKodePromo(promoCode, TransaksiType.TOPUP);
-    //             if (amount > nasabah.getSaldo()) {
-    //                 JOptionPane.showMessageDialog(frame, "Jumlah saldo tidak mencukupi.", "Error", JOptionPane.ERROR_MESSAGE);
-    //                 return;
-    //             }
-    //             if (!promoValid) {
-    //                 if (amount + 2500 > nasabah.getSaldo()) {
-    //                     JOptionPane.showMessageDialog(frame, "Jumlah saldo tidak mencukupi.", "Error", JOptionPane.ERROR_MESSAGE);
-    //                     return;
-    //                 }
-    //             }
-    //             if (promoValid || promoCode.isEmpty()) {
-    //                 frame.dispose();
-    //                 new MenuBonTransaksi(TransaksiType.TOPUP, promoValid, amount, Integer.parseInt(eMoneyInput), 2500.0, topUpType);
-    //             } else {
-    //                 JOptionPane.showMessageDialog(frame, "Kode promo tidak valid.", "Error", JOptionPane.ERROR_MESSAGE);
-    //             }
-    //         } catch (NumberFormatException ex) {
-    //             JOptionPane.showMessageDialog(frame, "Input saldo harus berupa angka.", "Error", JOptionPane.ERROR_MESSAGE);
-    //         }
-    //     });
-    //     panel.add(topUpButton);
-
-    //     JButton exitButton = new JButton("Back To Homepage");
-    //     exitButton.setBounds(120, 600, 260, 50);
-    //     Component.styleButton(exitButton, new Color(255, 69, 58), buttonFont);
-    //     exitButton.addActionListener(e -> {
-    //         frame.dispose();
-    //         new MenuNasabah(); 
-    //     });
-    //     panel.add(exitButton);
-
-    //     frame.add(panel);
-    //     frame.setVisible(true);
-    // }
+        frame.add(panel);
+        frame.setVisible(true);
+    }
 }
