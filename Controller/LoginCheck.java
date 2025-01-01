@@ -93,6 +93,10 @@ public class LoginCheck {
             while (rs.next()) {
                 emailLogin = rs.getString("email");
                 pass = rs.getString("password");
+                String id = rs.getString("seller_id");
+                String name = rs.getString("seller_name");
+                String phone = rs.getString("phone_num");
+                // userLogin = new UserSeller(id, name, password, phone, emailLogin);
             }
 
             if (emailLogin.equals(email) && pass.equals(password)) {
