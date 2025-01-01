@@ -11,11 +11,15 @@ public abstract class User {
     private ArrayList<Transaction> listTiket = new ArrayList<>();
     // ada konfirmasi pemakaian tiket
 
+    public User() {
+
+    }
+
     public User(int iD_karyawan, String name, String password, String noTlp, String email) {
-        Id_User = iD_karyawan;
+        this.Id_User = iD_karyawan;
         this.name = name;
         this.password = password;
-        NoTlp = noTlp;
+        this.NoTlp = noTlp;
         this.email = email;
     }
 
@@ -74,5 +78,5 @@ public abstract class User {
     public void setListTiket(ArrayList<Transaction> listTiket) {
         this.listTiket = listTiket;
     }
-    
+
 }

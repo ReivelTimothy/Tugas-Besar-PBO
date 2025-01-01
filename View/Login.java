@@ -1,4 +1,5 @@
 package View;
+
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,14 +10,20 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import Controller.LoginCheck;
+
 public class Login {
     private Frame frame;
+
     public Login() {
         inputLogin();
     }
+
     public static void main(String[] args) {
         new Login().inputLogin();
     }
+
     public void inputLogin() {
         frame = new JFrame();
         frame.setBounds(50, 50, 400, 1000);
@@ -41,21 +48,15 @@ public class Login {
         JButton submitButton = new JButton("LOGIN");
         submitButton.setBounds(110, 210, 100, 30);
         frame.add(submitButton);
-        
+
         frame.setVisible(true);
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String username = usernameField.getText();
                 String password = String.valueOf(passwordField.getPassword());
 
-                boolean isValid = false;
-
-                if (isValid) {
-                    JOptionPane.showMessageDialog(null, "Selamat, Account anda sudah terdaftar");
-                    System.exit(0);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Email atau password salah!", "Login Gagal", JOptionPane.ERROR_MESSAGE);
-                }
+                LoginCheck check = new LoginCheck();
+                check.Login(username, password);
             }
         });
     }

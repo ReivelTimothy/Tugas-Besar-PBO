@@ -6,15 +6,35 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
+import Models.Classess.User;
+import Models.Classess.UserCustomer;
+import Models.Classess.UserSeller;
+import Models.Enumeration.Membership;
+import Models.Classess.UserAdmin;
+
 public class LoginCheck {
+    private static LoginCheck instance;
+    private User userLogin;
 
     static DatabaseHandler conn = new DatabaseHandler();
 
-    public LoginCheck(String email, String password) {
+    public LoginCheck() {
+        this.userLogin = null;
+    }
+
+    public static LoginCheck getInstance() {
+        if (instance == null) {
+            instance = new LoginCheck();
+        }
+        return instance;
+    }
+
+    public void Login(String email, String password) {
+
         cekCustomer(email, password);
     }
 
-    public static void cekCustomer(String email, String password) {
+    public void cekCustomer(String email, String password) {
         String emailLogin = "";
         String pass = "";
 
@@ -28,9 +48,20 @@ public class LoginCheck {
             while (rs.next()) {
                 emailLogin = rs.getString("email");
                 pass = rs.getString("password");
+                int id = rs.getInt("cust_id");
+                String name = rs.getString("cust_name");
+                String phone = rs.getString("phoneNum");
+                String cardNum = rs.getString("cardNumber");
+                Membership membership = Membership.valueOf(rs.getString("Membership"));
+                double balance = rs.getDouble("Balance");
+                System.out.println("Email: " + email + ", Password: " + password);
+
+                userLogin = new UserCustomer(id, name, password, phone, emailLogin,
+                        membership, cardNum, balance, null);
             }
 
             if (emailLogin.equals(email) && pass.equals(password)) {
+
                 JOptionPane.showMessageDialog(null, "Welcome Customer !");
             } else if (emailLogin.equals(email) && (!pass.equals(password))) {
                 JOptionPane.showMessageDialog(null, "Password salah.");
