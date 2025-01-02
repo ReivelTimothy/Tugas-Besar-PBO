@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 28, 2024 at 09:06 AM
+-- Generation Time: Jan 02, 2025 at 07:02 AM
 -- Server version: 11.1.2-MariaDB
 -- PHP Version: 8.2.12
 
@@ -100,13 +100,6 @@ CREATE TABLE `events` (
   `seller_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Dumping data for table `events`
---
-
-INSERT INTO `events` (`event_id`, `judul`, `Singer`, `Genre`, `SportType`, `Speaker`, `harga`, `description`, `kategori`, `capacity`, `Date`, `imagePath`, `seller_id`) VALUES
-(0, 'Hello, World', 'Alfons', 'Pop', NULL, NULL, 150000, '-', 'Music', 90, '2024-12-31', 'assets\\konser1.jpg', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -158,13 +151,6 @@ CREATE TABLE `seller` (
   `email` varchar(255) DEFAULT NULL,
   `phoneNum` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `seller`
---
-
-INSERT INTO `seller` (`seller_id`, `seller_name`, `password`, `email`, `phoneNum`) VALUES
-(0, 'REIVEL', '123', 'nagaituterbang@gmail.com', '082321534551');
 
 -- --------------------------------------------------------
 
@@ -261,62 +247,64 @@ ALTER TABLE `ticket`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `block`
+--
+ALTER TABLE `block`
+  MODIFY `block_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
   MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Constraints for dumped tables
---
-
---
--- Constraints for table `block`
---
-ALTER TABLE `block`
-  ADD CONSTRAINT `block_ibfk_1` FOREIGN KEY (`seller_id`) REFERENCES `seller` (`seller_id`),
-  ADD CONSTRAINT `block_ibfk_2` FOREIGN KEY (`cust_id`) REFERENCES `customer` (`cust_id`);
-
---
--- Constraints for table `cart`
---
-ALTER TABLE `cart`
-  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `events` (`event_id`),
-  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`ticket_id`) REFERENCES `ticket` (`ticket_id`),
-  ADD CONSTRAINT `cart_ibfk_3` FOREIGN KEY (`cust_id`) REFERENCES `customer` (`cust_id`);
-
---
--- Constraints for table `events`
---
-ALTER TABLE `events`
-  ADD CONSTRAINT `events_ibfk_1` FOREIGN KEY (`seller_id`) REFERENCES `seller` (`seller_id`);
-
---
--- Constraints for table `feedback`
+-- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  ADD CONSTRAINT `feedback_ibfk_1` FOREIGN KEY (`cust_id`) REFERENCES `customer` (`cust_id`),
-  ADD CONSTRAINT `feedback_ibfk_2` FOREIGN KEY (`event_id`) REFERENCES `events` (`event_id`);
+  MODIFY `feedback_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for table `history`
+-- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  ADD CONSTRAINT `history_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `events` (`event_id`);
+  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for table `report`
+-- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  ADD CONSTRAINT `report_ibfk_1` FOREIGN KEY (`seller_id`) REFERENCES `seller` (`seller_id`),
-  ADD CONSTRAINT `report_ibfk_2` FOREIGN KEY (`event_id`) REFERENCES `events` (`event_id`);
+  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for table `ticket`
+-- AUTO_INCREMENT for table `seller`
+--
+ALTER TABLE `seller`
+  MODIFY `seller_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `ticket`
 --
 ALTER TABLE `ticket`
-  ADD CONSTRAINT `ticket_ibfk_1` FOREIGN KEY (`cust_id`) REFERENCES `customer` (`cust_id`),
-  ADD CONSTRAINT `ticket_ibfk_2` FOREIGN KEY (`event_id`) REFERENCES `events` (`event_id`);
+  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
