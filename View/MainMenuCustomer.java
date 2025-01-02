@@ -10,10 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import Controller.ViewCart;
-import Controller.ViewStatusMembership;
-import Controller.ViewTransactionHistory;
-
 public class MainMenuCustomer {
 
     private JFrame frame;

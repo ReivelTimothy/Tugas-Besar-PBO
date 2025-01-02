@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Controller.LoginCheck;
-import Models.Classess.UserCustomer;
+import Models.Classess.User;
 
 public class TopupBalance {
 
@@ -27,7 +27,7 @@ public class TopupBalance {
 
     public void showTopUpBalance() {
         LoginCheck loginCheck = LoginCheck.getInstance();
-        UserCustomer user = loginCheck.getUserLogin();
+        User user = loginCheck.getUserLogin();
 
         if (user == null) {
             JOptionPane.showMessageDialog(null, "No user logged in. Please log in first.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -92,13 +92,11 @@ public class TopupBalance {
                     return;
                 }
 
-                // Update balance
                 double newBalance = user.getBalance() + amount;
                 user.setBalance(newBalance);
 
                 JOptionPane.showMessageDialog(frame, "Top-Up Berhasil! Balance: Rp. " + newBalance);
 
-                // Update the displayed balance
                 title.setText("Balance: Rp. " + newBalance);
                 inputSaldo.setText("");
             } catch (NumberFormatException ex) {
