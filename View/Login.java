@@ -21,7 +21,7 @@ public class Login {
     }
 
     public static void main(String[] args) {
-        new Login().inputLogin();
+        new Login();
     }
 
     public void inputLogin() {
@@ -32,7 +32,7 @@ public class Login {
         JLabel labelTitleLogin = new JLabel("==LOGIN==");
         labelTitleLogin.setBounds(150, 50, 70, 35);
         frame.add(labelTitleLogin);
-        JLabel labelUsername = new JLabel("Username : ");
+        JLabel labelUsername = new JLabel("Email : ");
         labelUsername.setBounds(25, 80, 90, 55);
         frame.add(labelUsername);
         JTextField usernameField = new JTextField();
@@ -52,11 +52,12 @@ public class Login {
         frame.setVisible(true);
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String username = usernameField.getText();
+                String email = usernameField.getText();
                 String password = String.valueOf(passwordField.getPassword());
 
                 LoginCheck check = new LoginCheck();
-                check.Login(username, password);
+                check.Login(email, password);
+
             }
         });
     }
