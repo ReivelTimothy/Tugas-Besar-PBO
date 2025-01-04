@@ -3,8 +3,6 @@ package Controller;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import Models.Classess.User;
-
 public class CheckBalanceController {
 
     static DatabaseHandler conn = new DatabaseHandler();
@@ -12,10 +10,8 @@ public class CheckBalanceController {
     public double getBalance() {
         double balance = 0.0;
 
-        LoginCheck loginCheck = LoginCheck.getInstance();
-        User user = loginCheck.getUserLogin();
+        int custId = LoginSingleton.getInstance().getID();
 
-        int custId = user.getUserId();
 
         String query = "SELECT balance FROM customer WHERE cust_id = " + custId;
         
@@ -34,5 +30,28 @@ public class CheckBalanceController {
         }
 
         return balance;
+    }
+
+    public String getName () {
+        String name = " ";
+        
+        int custId = LoginSingleton.getInstance().getID();
+
+        String query = "SELECT cust_name FROM customer WHERE cust_id = " + custId;
+
+        ResultSet result = null;
+        
+        try {
+            conn.connect();
+            Statement stmt = conn.con.createStatement();
+            result = stmt.executeQuery(query);
+
+            if (result.next()) {
+                name = result.getString("cust_name");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return name;
     }
 }
