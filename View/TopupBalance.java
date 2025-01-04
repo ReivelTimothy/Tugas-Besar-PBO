@@ -14,8 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Controller.LoginCheck;
-import Models.Classess.User;
+import Controller.Controller;
 
 public class TopupBalance {
 
@@ -26,13 +25,9 @@ public class TopupBalance {
     }
 
     public void showTopUpBalance() {
-        LoginCheck loginCheck = LoginCheck.getInstance();
-        User user = loginCheck.getUserLogin();
 
-        if (user == null) {
-            JOptionPane.showMessageDialog(null, "No user logged in. Please log in first.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        Controller controller = new Controller();
+        Double currentBalance = controller.getBalance();
 
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension screenSize = toolkit.getScreenSize();
@@ -60,7 +55,7 @@ public class TopupBalance {
         panel.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
 
         // Display current balance
-        JLabel title = new JLabel("Your Current Balance: Rp. " + user.getBalance());
+        JLabel title = new JLabel("Your Current Balance: Rp. " + currentBalance);
         title.setBounds(50, 50, 400, 30);
         title.setFont(new Font("SansSerif", Font.BOLD, 20));
         title.setForeground(Color.WHITE);
@@ -92,8 +87,8 @@ public class TopupBalance {
                     return;
                 }
 
-                double newBalance = user.getBalance() + amount;
-                user.setBalance(newBalance);
+                double newBalance = currentBalance + amount;
+                controller.setBalance(newBalance);
 
                 JOptionPane.showMessageDialog(frame, "Top-Up Berhasil! Balance: Rp. " + newBalance);
 
