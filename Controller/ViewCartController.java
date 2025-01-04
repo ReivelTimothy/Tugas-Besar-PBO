@@ -1,7 +1,10 @@
 package Controller;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -9,44 +12,51 @@ import javax.swing.table.DefaultTableModel;
 public class ViewCartController {
 
     public static void displayCart(JTable cartTable) {
-        ResultSet resultSet = getCartData();
+        List<Object[]> cartData = getCartData();
 
-        try {
+        if (cartData == null || cartData.isEmpty()) {
             String[] columnNames = {"Cart ID", "Event ID", "Ticket ID", "Customer ID"};
-
-            resultSet.last();
-            int rowCount = resultSet.getRow();
-            resultSet.beforeFirst();
-
-            Object[][] data = new Object[rowCount][4];
-            int i = 0;
-            while (resultSet.next()) {
-                data[i][0] = resultSet.getInt("cart_id");
-                data[i][1] = resultSet.getString("event_id");
-                data[i][2] = resultSet.getString("ticket_id");
-                data[i][3] = resultSet.getInt("cust_id");
-                i++;
-            }
-
-            cartTable.setModel(new DefaultTableModel(data, columnNames));
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+            cartTable.setModel(new DefaultTableModel(new Object[0][4], columnNames));
+            return;
         }
+
+        String[] columnNames = {"Cart ID", "Event ID", "Ticket ID", "Customer ID"};
+        Object[][] data = new Object[cartData.size()][4];
+
+        for (int i = 0; i < cartData.size(); i++) {
+            data[i] = cartData.get(i);
+        }
+
+        cartTable.setModel(new DefaultTableModel(data, columnNames));
     }
 
-    public static ResultSet getCartData() {
+    public static List<Object[]> getCartData() {
         DatabaseHandler conn = new DatabaseHandler();
-        ResultSet resultSet = null;
-        String query = "SELECT * FROM cart";
-        
+        List<Object[]> cartData = new ArrayList<>();
+
+        int cust_id = LoginSingleton.getInstance().getID();
+        String query = "SELECT * FROM cart WHERE cust_id = ?";
+
         try {
             conn.connect();
-            resultSet = conn.con.createStatement().executeQuery(query);
+            PreparedStatement stmt = conn.con.prepareStatement(query);
+
+            stmt.setInt(1, cust_id);
+
+            try (ResultSet resultSet = stmt.executeQuery()) {
+                while (resultSet.next()) {
+                    Object[] row = new Object[4];
+                    row[0] = resultSet.getInt("cart_id");
+                    row[1] = resultSet.getInt("event_id");
+                    row[2] = resultSet.getInt("ticket_id");
+                    row[3] = resultSet.getInt("cust_id");
+                    cartData.add(row);
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return resultSet;
+        return cartData;
     }
 }

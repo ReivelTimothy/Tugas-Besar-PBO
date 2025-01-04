@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 02, 2025 at 07:02 AM
+-- Generation Time: Jan 04, 2025 at 12:44 PM
 -- Server version: 11.1.2-MariaDB
 -- PHP Version: 8.2.12
 
@@ -34,6 +34,14 @@ CREATE TABLE `admin` (
   `email` varchar(255) DEFAULT NULL,
   `phoneNum` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`admin_id`, `admin_name`, `password`, `email`, `phoneNum`) VALUES
+(1, 'Admin1', 'admin123', 'admin1@example.com', '1234567890'),
+(2, 'Admin2', 'admin456', 'admin2@example.com', '0987654321');
 
 -- --------------------------------------------------------
 
@@ -74,9 +82,18 @@ CREATE TABLE `customer` (
   `email` varchar(255) DEFAULT NULL,
   `phoneNum` varchar(20) DEFAULT NULL,
   `cardNumber` varchar(50) DEFAULT NULL,
-  `Membership` enum('Standard','Premium','VIP') DEFAULT NULL,
-  `Balance` double DEFAULT NULL
+  `Membership` enum('Active','Inactive') DEFAULT NULL,
+  `Balance` double DEFAULT NULL,
+  `block` enum('Blocked','Unblock') DEFAULT 'Unblock'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`cust_id`, `cust_name`, `password`, `email`, `phoneNum`, `cardNumber`, `Membership`, `Balance`, `block`) VALUES
+(1, NULL, '123', 'mario', NULL, NULL, NULL, NULL, 'Unblock'),
+(2, 'mario', '456', 'mario@crypto.com', '081122334455', NULL, NULL, NULL, 'Unblock');
 
 -- --------------------------------------------------------
 
@@ -116,18 +133,6 @@ CREATE TABLE `feedback` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `history`
---
-
-CREATE TABLE `history` (
-  `history_id` int(11) NOT NULL,
-  `event_id` int(11) DEFAULT NULL,
-  `timeBuy` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `report`
 --
 
@@ -149,8 +154,18 @@ CREATE TABLE `seller` (
   `seller_name` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `phoneNum` varchar(20) DEFAULT NULL
+  `phoneNum` varchar(20) DEFAULT NULL,
+  `block` enum('Blocked','Unblock') DEFAULT 'Unblock'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `seller`
+--
+
+INSERT INTO `seller` (`seller_id`, `seller_name`, `password`, `email`, `phoneNum`, `block`) VALUES
+(1, 'Seller One', 'seller123', 'seller1@example.com', '6543210987', 'Unblock'),
+(2, 'Seller Two', 'seller456', 'seller2@example.com', '5432109876', 'Unblock'),
+(3, 'Seller Three', 'seller789', 'seller3@example.com', '4321098765', 'Unblock');
 
 -- --------------------------------------------------------
 
@@ -162,7 +177,8 @@ CREATE TABLE `ticket` (
   `ticket_id` int(11) NOT NULL,
   `ticket_desc` varchar(255) DEFAULT NULL,
   `cust_id` int(11) DEFAULT NULL,
-  `event_id` int(11) DEFAULT NULL
+  `event_id` int(11) DEFAULT NULL,
+  `timeBuy` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
@@ -214,13 +230,6 @@ ALTER TABLE `feedback`
   ADD KEY `event_id` (`event_id`);
 
 --
--- Indexes for table `history`
---
-ALTER TABLE `history`
-  ADD PRIMARY KEY (`history_id`),
-  ADD KEY `event_id` (`event_id`);
-
---
 -- Indexes for table `report`
 --
 ALTER TABLE `report`
@@ -250,7 +259,7 @@ ALTER TABLE `ticket`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `block`
@@ -268,7 +277,7 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -283,12 +292,6 @@ ALTER TABLE `feedback`
   MODIFY `feedback_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `history`
---
-ALTER TABLE `history`
-  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
@@ -298,7 +301,7 @@ ALTER TABLE `report`
 -- AUTO_INCREMENT for table `seller`
 --
 ALTER TABLE `seller`
-  MODIFY `seller_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `seller_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `ticket`
