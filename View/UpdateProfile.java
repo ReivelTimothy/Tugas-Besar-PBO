@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import Controller.Controller;
+import Controller.ControllerUser;
 import Controller.UpdateProfileController;
 
 public class UpdateProfile {
@@ -27,7 +27,7 @@ public class UpdateProfile {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
 
-        Controller controller = new Controller();
+        ControllerUser controller = new ControllerUser();
         
         String name = controller.getName();
         String password = controller.getPassword();

@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Controller.Controller;
+import Controller.ControllerUser;
 
 public class TopupBalance {
 
@@ -26,7 +26,7 @@ public class TopupBalance {
 
     public void showTopUpBalance() {
 
-        Controller controller = new Controller();
+        ControllerUser controller = new ControllerUser();
         Double currentBalance = controller.getBalance();
 
         Toolkit toolkit = Toolkit.getDefaultToolkit();
