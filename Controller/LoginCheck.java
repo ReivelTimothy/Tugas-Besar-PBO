@@ -29,8 +29,6 @@ public class LoginCheck {
                 pass = rs.getString("password");
                 id = rs.getInt("cust_id");
 
-                System.out.println(id);
-
                 if (emailLogin.equals(email) && pass.equals(password)) {
                     LoginSingleton.getInstance().setUser(id, 0);
                     JOptionPane.showMessageDialog(null, "Welcome Customer !");

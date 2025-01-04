@@ -37,7 +37,4 @@ public class DeleteEvent {
             conn.disconnect();
         }
     }
-    public void refund(){
-        
-    }
 }
