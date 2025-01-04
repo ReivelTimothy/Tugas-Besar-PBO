@@ -1,4 +1,4 @@
-package controller;
+package Controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,7 +16,7 @@ public class DatabaseHandler {
     private Connection logOn() {
         try {
             // Load JDBC Driver
-            Class.forName(driver).newInstance();
+            Class.forName(driver).getDeclaredConstructor().newInstance();
             // Buat Object Connection
             con = DriverManager.getConnection(url, username, password);
         } catch (Exception ex) {
@@ -27,11 +27,11 @@ public class DatabaseHandler {
         }
         return con;
     }
+
     private void logOff() {
         try {
             con.close();
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error Ocurred when login" + ex);
         }
     }
@@ -39,8 +39,7 @@ public class DatabaseHandler {
     public void connect() {
         try {
             con = logOn();
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println("Error occured when connecting to database");
         }
     }
@@ -48,8 +47,7 @@ public class DatabaseHandler {
     public void disconnect() {
         try {
             logOff();
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println("Error occured when connecting to database");
         }
     }

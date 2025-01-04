@@ -1,86 +1,103 @@
-// package view;
-// import java.awt.event.ActionEvent;
-// import java.awt.event.ActionListener;
+package View;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-// import javax.swing.JButton;
-// import javax.swing.JComboBox;
-// import javax.swing.JFrame;
-// import javax.swing.JLabel;
-// import javax.swing.JOptionPane;
-// import javax.swing.JPasswordField;
-// import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
-// import controller.DBController;
+import Controller.AddUserController;
 
-// public class Register {
-//     private JFrame frame;
+public class Register {
+    private JFrame frame;
 
-//     public Register() {
-//         inputRegister();
-//     }
-//     public static void main(String[] args) {
-//         new Register().inputRegister();
-//     }
+    public Register() {
+        inputRegister();
+    }
+    public static void main(String[] args) {
+        new Register();
+    }
 
-//     public void inputRegister() {
-//         frame = new JFrame();
-//         frame.setBounds(50, 50, 400, 1000);
-//         frame.setTitle("Register");
-//         frame.setLayout(null);
-//         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public void inputRegister() {
+        frame = new JFrame();
+        frame.setBounds(50, 50, 400, 350);
+        frame.setTitle("Register");
+        frame.setLayout(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-//         JLabel labelTitleLogin = new JLabel("==Register==");
-//         labelTitleLogin.setBounds(150, 50, 80, 35);
-//         frame.add(labelTitleLogin);
+        JLabel labelTitleLogin = new JLabel("==Register==");
+        labelTitleLogin.setBounds(150, 20, 100, 35);
+        frame.add(labelTitleLogin);
 
-//         JLabel labelUsername = new JLabel("Username : ");
-//         labelUsername.setBounds(25, 80, 90, 55);
-//         frame.add(labelUsername);
+        JLabel labelUsername = new JLabel("Username : ");
+        labelUsername.setBounds(25, 70, 90, 25);
+        frame.add(labelUsername);
 
-//         JTextField usernameField = new JTextField();
-//         usernameField.setBounds(110, 95, 120, 30);
-//         frame.add(usernameField);
+        JTextField usernameField = new JTextField();
+        usernameField.setBounds(110, 70, 200, 25);
+        frame.add(usernameField);
 
-//         JLabel labelPassword = new JLabel("Password : ");
-//         labelPassword.setBounds(25, 110, 90, 55);
-//         frame.add(labelPassword);
+        JLabel labelPassword = new JLabel("Password : ");
+        labelPassword.setBounds(25, 110, 90, 25);
+        frame.add(labelPassword);
 
-//         JPasswordField passwordField = new JPasswordField();
-//         passwordField.setBounds(110, 130, 120, 30);
-//         frame.add(passwordField);
+        JPasswordField passwordField = new JPasswordField();
+        passwordField.setBounds(110, 110, 200, 25);
+        frame.add(passwordField);
 
-//         JLabel labelRole = new JLabel("Registered as: ");
-//         labelRole.setBounds(25, 160, 90, 25);
-//         frame.add(labelRole);
+        JLabel labelEmail = new JLabel("Email : ");
+        labelEmail.setBounds(25, 150, 90, 25);
+        frame.add(labelEmail);
 
-//         String[] roles = {"Seller", "Customer"};
-//         JComboBox<String> roleBox = new JComboBox<>(roles);
-//         roleBox.setBounds(110, 160, 200, 25);
-//         frame.add(roleBox);
+        JTextField emailField = new JTextField();
+        emailField.setBounds(110, 150, 200, 25);
+        frame.add(emailField);
 
-//         JButton submitButton = new JButton("Register");
-//         submitButton.setBounds(110, 210, 100, 30);
-//         frame.add(submitButton);
-        
-//         frame.setVisible(true);
+        JLabel labelPhoneNum = new JLabel("PhoneNum : ");
+        labelPhoneNum.setBounds(25, 190, 90, 25);
+        frame.add(labelPhoneNum);
 
-//         submitButton.addActionListener(new ActionListener() {
-//             public void actionPerformed(ActionEvent e) {
-//                 String username = usernameField.getText();
-//                 String password = String.valueOf(passwordField.getPassword());
-//                 String role = (String) roleBox.getSelectedItem();
-        
-//                 boolean isSaved = DBController.addUser(role, username, password);
-        
-//                 if (isSaved) {
-//                     JOptionPane.showMessageDialog(null, "Selamat, Anda sudah selesai melakukan pendaftaran dan akan melanjutkan ke menu " + role);
-//                     frame.dispose();
-//                     new Login();
-//                 } else {
-//                     JOptionPane.showMessageDialog(null, "Account Anda gagal didaftarkan!", "Coba lagi", JOptionPane.ERROR_MESSAGE);
-//                 }
-//                 frame.dispose();
-//             }
-//         });
-//     }
-// }
+        JTextField phoneNumField = new JTextField();
+        phoneNumField.setBounds(110, 190, 200, 25);
+        frame.add(phoneNumField);
+
+        JLabel labelRole = new JLabel("Registered as: ");
+        labelRole.setBounds(25, 230, 90, 25);
+        frame.add(labelRole);
+
+        String[] roles = {"Seller", "Customer"};
+        JComboBox<String> roleBox = new JComboBox<>(roles);
+        roleBox.setBounds(110, 230, 200, 25);
+        frame.add(roleBox);
+
+        JButton submitButton = new JButton("Register");
+        submitButton.setBounds(150, 270, 100, 30);
+        frame.add(submitButton);
+
+        frame.setVisible(true);
+
+        submitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String username = usernameField.getText();
+                String password = String.valueOf(passwordField.getPassword());
+                String email = emailField.getText();
+                String phoneNum = phoneNumField.getText();
+                String role = (String) roleBox.getSelectedItem();
+
+                boolean isSaved = AddUserController.addUser(role, username, password, email, phoneNum);
+
+                if (isSaved) {
+                    JOptionPane.showMessageDialog(null, "Selamat, Anda sudah selesai melakukan pendaftaran dan akan melanjutkan ke menu " + role);
+                    frame.dispose();
+                    new Login();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Account Anda gagal didaftarkan!", "Coba lagi", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+    }
+}
