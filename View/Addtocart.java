@@ -13,7 +13,6 @@ import Controller.CartControllerAdd;
 
 public class Addtocart {
 
-    private JTextField cartIdField;
     private JTextField eventIdField;
     private JTextField ticketIdField;
     private JTextField custIdField;
