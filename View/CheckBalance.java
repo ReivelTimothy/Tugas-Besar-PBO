@@ -8,8 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import Controller.CheckBalanceController;
-import Controller.LoginCheck;
-import Models.Classess.User;
 
 public class CheckBalance {
 
@@ -25,10 +23,10 @@ public class CheckBalance {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
 
-        LoginCheck loginCheck = LoginCheck.getInstance();
-        User user = loginCheck.getUserLogin();
+        CheckBalanceController controller = new CheckBalanceController();
+        String name = controller.getName();
 
-        labelUsername = new JLabel("User: " + user.getName());
+        labelUsername = new JLabel("User: " + name);
         labelUsername.setBounds(10, 10, 200, 30);
         frame.add(labelUsername);
 
@@ -41,7 +39,6 @@ public class CheckBalance {
         checkBalanceButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CheckBalanceController controller = new CheckBalanceController();
                 double balance = controller.getBalance();
                 labelBalance.setText("Balance: $" + balance);
             }
