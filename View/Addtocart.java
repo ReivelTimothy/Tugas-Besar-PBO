@@ -62,23 +62,30 @@ public class Addtocart {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String cartId = cartIdField.getText();
                 String eventId = eventIdField.getText();
                 String ticketId = ticketIdField.getText();
                 String custId = custIdField.getText();
-
-                if (cartId.isEmpty() || eventId.isEmpty() || ticketId.isEmpty() || custId.isEmpty()) {
+        
+                if (eventId.isEmpty() || ticketId.isEmpty() || custId.isEmpty()) {
                     JOptionPane.showMessageDialog(frame, "All fields must be filled!", "Error", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    boolean success = CartControllerAdd.addToCart(eventId, ticketId, custId);
+                    return;
+                }
+        
+                try {
+                    int eventid = Integer.parseInt(eventId);
+        
+                    boolean success = CartControllerAdd.addToCart(eventid, ticketId, custId);
                     if (success) {
                         JOptionPane.showMessageDialog(frame, "Item added to cart successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(frame, "Failed to add item to cart!", "Error", JOptionPane.ERROR_MESSAGE);
                     }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(frame, "Event ID must be a valid number!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
+        
 
         cancelButton.addActionListener(new ActionListener() {
             @Override
