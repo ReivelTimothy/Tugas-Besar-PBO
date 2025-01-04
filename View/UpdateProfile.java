@@ -72,13 +72,13 @@ public class UpdateProfile {
         updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                UpdateProfileController controller = new UpdateProfileController();
+                UpdateProfileController profileController = new UpdateProfileController();
                 String newUsername = fieldUsername.getText();
                 String newPassword = new String(fieldPassword.getPassword());
                 String newPhone = fieldNoTlp.getText();
                 String newEmail = fieldEmail.getText();
                 
-                controller.updateProfile(newUsername, newPassword, newPhone, newEmail);
+                profileController.updateUserInDatabase(newUsername, newPassword, newPhone, newEmail);
             }
         });
         frame.add(updateButton);

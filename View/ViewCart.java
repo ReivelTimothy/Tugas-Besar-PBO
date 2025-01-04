@@ -1,3 +1,5 @@
+package View;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -7,9 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import Controller.LoginCheck;
+import Controller.ControllerUser;
 import Controller.ViewCartController;
-import Models.Classess.User;
 
 public class ViewCart {
 
@@ -26,10 +27,11 @@ public class ViewCart {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
 
-        LoginCheck loginCheck = LoginCheck.getInstance();
-        User user = loginCheck.getUserLogin();
+        ControllerUser controller = new ControllerUser();
+        
+        String name = controller.getName();
 
-        labelUsername = new JLabel("User: " + user.getName());
+        labelUsername = new JLabel("User: " + name);
         labelUsername.setBounds(10, 10, 200, 30);
         frame.add(labelUsername);
 
