@@ -15,6 +15,7 @@ public class DeleteEvent {
     }
 
     public void Delete(int eventId) {
+        System.out.println();
         String queryDeleteEvent = "DELETE FROM events WHERE event_id = ? ";
         String queryDeleteTicket = "DELETE FROM ticket WHERE event_id = ? ";
         
