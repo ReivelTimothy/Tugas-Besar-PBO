@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Controller {
+public class ControllerUser {
     static DatabaseHandler conn = new DatabaseHandler();
 
     public double getBalance() {
