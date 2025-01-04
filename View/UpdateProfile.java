@@ -9,9 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import Controller.LoginCheck;
+import Controller.Controller;
 import Controller.UpdateProfileController;
-import Models.Classess.User;
 
 public class UpdateProfile {
 
@@ -28,14 +27,19 @@ public class UpdateProfile {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
 
-        LoginCheck loginCheck = LoginCheck.getInstance();
-        User user = loginCheck.getUserLogin();
+        Controller controller = new Controller();
+        
+        String name = controller.getName();
+        String password = controller.getPassword();
+        String notlp = controller.getNoTlp();
+        String email = controller.getEmail();
+
 
         labelUsername = new JLabel("Username:");
         labelUsername.setBounds(10, 10, 150, 30);
         frame.add(labelUsername);
 
-        fieldUsername = new JTextField(user.getName());
+        fieldUsername = new JTextField(name);
         fieldUsername.setBounds(150, 10, 200, 30);
         frame.add(fieldUsername);
 
@@ -43,7 +47,7 @@ public class UpdateProfile {
         labelPassword.setBounds(10, 50, 150, 30);
         frame.add(labelPassword);
 
-        fieldPassword = new JPasswordField(user.getPassword());
+        fieldPassword = new JPasswordField(password);
         fieldPassword.setBounds(150, 50, 200, 30);
         frame.add(fieldPassword);
 
@@ -51,7 +55,7 @@ public class UpdateProfile {
         labelNoTlp.setBounds(10, 90, 150, 30);
         frame.add(labelNoTlp);
 
-        fieldNoTlp = new JTextField(user.getNoTlp());
+        fieldNoTlp = new JTextField(notlp);
         fieldNoTlp.setBounds(150, 90, 200, 30);
         frame.add(fieldNoTlp);
 
@@ -59,7 +63,7 @@ public class UpdateProfile {
         labelEmail.setBounds(10, 130, 150, 30);
         frame.add(labelEmail);
 
-        fieldEmail = new JTextField(user.getEmail());
+        fieldEmail = new JTextField(email);
         fieldEmail.setBounds(150, 130, 200, 30);
         frame.add(fieldEmail);
 

@@ -56,6 +56,76 @@ public class Controller {
         return name;
     }
 
+    public String getPassword () {
+        String password = " ";
+        
+        int custId = LoginSingleton.getInstance().getID();
+
+        String query = "SELECT password FROM customer WHERE cust_id = " + custId;
+
+        ResultSet result = null;
+        
+        try {
+            conn.connect();
+            Statement stmt = conn.con.createStatement();
+            result = stmt.executeQuery(query);
+
+            if (result.next()) {
+                password = result.getString("password");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return password;
+    }
+
+    public String getNoTlp () {
+        String noTlp = " ";
+        
+        int custId = LoginSingleton.getInstance().getID();
+
+        String query = "SELECT phoneNum FROM customer WHERE cust_id = " + custId;
+
+        ResultSet result = null;
+        
+        try {
+            conn.connect();
+            Statement stmt = conn.con.createStatement();
+            result = stmt.executeQuery(query);
+
+            if (result.next()) {
+                noTlp = result.getString("phoneNum");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return noTlp;
+    }
+
+    public String getEmail () {
+        String email = " ";
+        
+        int custId = LoginSingleton.getInstance().getID();
+
+        String query = "SELECT email FROM customer WHERE cust_id = " + custId;
+
+        ResultSet result = null;
+        
+        try {
+            conn.connect();
+            Statement stmt = conn.con.createStatement();
+            result = stmt.executeQuery(query);
+
+            if (result.next()) {
+                email = result.getString("email");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return email;
+    }
+
+
     public void setBalance(double newBalance) {
         int custId = LoginSingleton.getInstance().getID();
         String query = "UPDATE customer SET balance = ? WHERE cust_id = ?";
