@@ -1,17 +1,5 @@
-// import java.awt.event.ActionEvent;
-// import java.awt.event.ActionListener;
-
-// import javax.swing.JButton;
-// import javax.swing.JFrame;
-// import javax.swing.JLabel;
-// import javax.swing.JScrollPane;
-// import javax.swing.JTable;
-
-// import Controller.LoginCheck;
-// import Controller.StatusMembershipController;
-// import Models.Classess.User;
-
-// public class ViewStatusMembership {
+package View;
+public class ViewStatusMembership {
 
 //     private JFrame frame;
 //     private JLabel labelUsername;
@@ -48,4 +36,4 @@
 //         });
 //         frame.add(statusButton);
 //     }
-// }
+}
