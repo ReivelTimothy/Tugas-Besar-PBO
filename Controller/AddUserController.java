@@ -18,6 +18,7 @@ public class AddUserController {
     } else if (role.equals("CUSTOMER")) {
         query = "INSERT INTO customer (cust_name, password, email, phoneNum, cardNumber) VALUES (?, ?, ?, ?, ?)";
     } else {
+        JOptionPane.showMessageDialog(null, "Role salah", "Error", JOptionPane.ERROR_MESSAGE);
         return false;
     }
 
@@ -28,6 +29,10 @@ public class AddUserController {
         statement.setString(2, password);
         statement.setString(3, email);
         statement.setString(4, phoneNum);
+        
+        if (role.equalsIgnoreCase("CUSTOMER")) {
+            statement.setString(5, CardNum);
+        }
 
         int rowsInserted = statement.executeUpdate();
         return rowsInserted > 0;
