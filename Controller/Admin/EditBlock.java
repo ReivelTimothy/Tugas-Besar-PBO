@@ -7,11 +7,7 @@ import Controller.DatabaseHandler;
 import Models.Enumeration.statusBlocked;
 
 public class EditBlock {
-    static DatabaseHandler conn = new DatabaseHandler();
-
-    // public EditBlock(int userID, statusBlocked status, int role) {
-    // Edit(userID, status, role);
-    // }
+    static DatabaseHandler conn = new DatabaseHandler()
 
     public void Unblock(int userID, int role) {
 
