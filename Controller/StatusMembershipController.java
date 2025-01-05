@@ -1,52 +1,42 @@
-// package Controller;
+package Controller;
 
-// import java.sql.ResultSet;
-// import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-// import javax.swing.JTable;
-// import javax.swing.table.DefaultTableModel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
-// public class StatusMembershipController {
+public class StatusMembershipController {
 
-//     public static void displayCart(JTable cartTable) {
-//         ResultSet resultSet = getCartData();
+    static DatabaseHandler conn = new DatabaseHandler();
 
-//         try {
-//             String[] columnNames = {"Cart ID", "Event ID", "Ticket ID", "Customer ID"};
+    public static void displayMembership(JTable statusTable) {
+        String query = "SELECT id, Membership FROM customer WHERE id = ?";
+        int userId = LoginSingleton.getInstance().getID();
+        try {
+            conn.connect();
 
-//             resultSet.last();
-//             int rowCount = resultSet.getRow();
-//             resultSet.beforeFirst();
+            PreparedStatement statement = conn.con.prepareStatement(query);
+            statement.setInt(1, userId);
+            ResultSet resultSet = statement.executeQuery();
 
-//             Object[][] data = new Object[rowCount][4];
-//             int i = 0;
-//             while (resultSet.next()) {
-//                 data[i][0] = resultSet.getInt("cart_id");
-//                 data[i][1] = resultSet.getString("event_id");
-//                 data[i][2] = resultSet.getString("ticket_id");
-//                 data[i][3] = resultSet.getInt("cust_id");
-//                 i++;
-//             }
+            String[] columnNames = {"User ID", "Membership Status"};
+            DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
-//             cartTable.setModel(new DefaultTableModel(data, columnNames));
+            while (resultSet.next()) {
+                int id = resultSet.getInt("cust_id");
+                String membershipStatus = resultSet.getString("Membership");
 
-//         } catch (SQLException e) {
-//             e.printStackTrace();
-//         }
-//     }
+                model.addRow(new Object[]{id, membershipStatus});
+            }
 
-//     public static ResultSet getCartData() {
-//         DatabaseHandler conn = new DatabaseHandler();
-//         ResultSet resultSet = null;
-//         String query = "SELECT * FROM cart";
-        
-//         try {
-//             conn.connect();
-//             resultSet = conn.con.createStatement().executeQuery(query);
-//         } catch (SQLException e) {
-//             e.printStackTrace();
-//         }
+            statusTable.setModel(model);
 
-//         return resultSet;
-//     }
-// }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            conn.disconnect();
+        }
+    }
+}
