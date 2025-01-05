@@ -10,7 +10,7 @@ import Controller.DatabaseHandler;
 public class AdminEventIncome {
     static DatabaseHandler conn = new DatabaseHandler();
 
-    // 1000
+    // biaya admin 1000
     public double AllEventAdminIncome() {
         double totalIncome = 0;
 
