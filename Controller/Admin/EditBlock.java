@@ -1,7 +1,9 @@
 package Controller.Admin;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import Controller.DatabaseHandler;
 import Models.Enumeration.statusBlocked;
@@ -42,6 +44,45 @@ public class EditBlock {
         } finally {
             conn.disconnect();
         }
+    }
+
+    public boolean checkBlock(int userID, int role) {
+
+        try {
+            conn.connect();
+            String query = "";
+            Statement stmt = conn.con.createStatement();
+            if (role == 0) {
+                query = "SELECT cust_id FROM block";
+                ResultSet rs = stmt.executeQuery(query);
+                while (rs.next()) {
+
+                    int IDSearch = rs.getInt("cust_id");
+                    if (IDSearch == userID) {
+                        return false;
+                    }
+
+                }
+            } else {
+                query = "SELECT seller_id FROM block";
+                ResultSet rs = stmt.executeQuery(query);
+                while (rs.next()) {
+
+                    int IDSearch = rs.getInt("seller_id");
+                    if (IDSearch == userID) {
+                        return false;
+                    }
+
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            conn.disconnect();
+        }
+        return true;
     }
 
     public void Block(int userID, String reason, int role) {

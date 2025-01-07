@@ -51,7 +51,7 @@ public class MainMenuAdmin {
         deleteEventButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //new DeleteEventView();
+                new DeleteEventView();
             }
         });
 
@@ -94,7 +94,7 @@ public class MainMenuAdmin {
         blockUnblockSellerCustomerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-         
+                new BlockUserView();
             }
         });
 
