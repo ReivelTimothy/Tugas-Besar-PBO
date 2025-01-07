@@ -16,6 +16,10 @@ public class CheckBalance {
     private JLabel labelUsername;
     private JButton checkBalanceButton;
 
+    public static void main(String[] args) {
+        new CheckBalance();
+    }
+    
     public CheckBalance() {
         frame = new JFrame("Check Balance");
         frame.setSize(300, 200);
