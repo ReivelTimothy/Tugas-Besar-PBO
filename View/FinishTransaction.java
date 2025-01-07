@@ -1,100 +1,132 @@
 package View;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import Controller.ControllerCart;
+import Controller.ControllerUser;
+import Controller.FinishTransactionController;
+
 public class FinishTransaction {
 
-    // private JFrame frame;
-    // private ControllerCart controllerCart;
+    private JFrame frame;
+    private ControllerCart controllerCart;
+    private JTable cartTable;
+    private JButton finishButton;
+    private JButton exitButton;
 
-    // public FinishTransaction(ControllerCart controllerCart) {
-    //     this.controllerCart = controllerCart;
-    //     transaction();
-    // }
+    public void transaction() {
 
-    // public void transaction() {
+        FinishTransactionController transaction = new FinishTransactionController();
 
-    //     Toolkit toolkit = Toolkit.getDefaultToolkit();
-    //     Dimension screenSize = toolkit.getScreenSize();
+        controllerCart = new ControllerCart();
+        double totalAmount = controllerCart.getTotalAmount();
 
-    //     int screenWidth = screenSize.width;
-    //     int screenHeight = screenSize.height;
+        ControllerUser user = new ControllerUser();
+        double balance = user.getBalance();
 
-    //     final int FRAME_WIDTH = 500;
-    //     final int FRAME_HEIGHT = 400;
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = toolkit.getScreenSize();
 
-    //     int start_x = screenWidth / 2 - (FRAME_WIDTH / 2);
-    //     int start_y = screenHeight / 2 - (FRAME_HEIGHT / 2);
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
 
-    //     Font buttonFont = new Font("SansSerif", Font.BOLD, 18);
+        final int FRAME_WIDTH = 600;
+        final int FRAME_HEIGHT = 500;
 
-    //     frame = new JFrame("Finish Transaction");
-    //     frame.setUndecorated(true);
-    //     frame.setBounds(start_x, start_y, FRAME_WIDTH, FRAME_HEIGHT);
-    //     frame.setShape(new RoundRectangle2D.Double(0, 0, FRAME_WIDTH, FRAME_HEIGHT, 30, 30));
-    //     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        int start_x = screenWidth / 2 - (FRAME_WIDTH / 2);
+        int start_y = screenHeight / 2 - (FRAME_HEIGHT / 2);
 
-    //     JPanel panel = new JPanel();
-    //     panel.setLayout(null);
-    //     panel.setBackground(Color.getHSBColor(0.6f, 0.7f, 0.9f));
-    //     panel.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+        Font buttonFont = new Font("SansSerif", Font.BOLD, 16);
+        Font labelFont = new Font("SansSerif", Font.BOLD, 18);
 
-    //     double totalAmount = controllerCart.getTotalAmount();
-    //     JLabel title = new JLabel("Total Amount: Rp. " + totalAmount);
-    //     title.setBounds(50, 50, 400, 30);
-    //     title.setFont(new Font("SansSerif", Font.BOLD, 20));
-    //     title.setForeground(Color.WHITE);
-    //     panel.add(title);
+        frame = new JFrame("Finish Transaction");
+        frame.setUndecorated(true);
+        frame.setBounds(start_x, start_y, FRAME_WIDTH, FRAME_HEIGHT);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    //     JLabel paymentLabel = new JLabel("Enter Payment Amount:");
-    //     paymentLabel.setBounds(120, 120, 300, 30);
-    //     paymentLabel.setForeground(Color.WHITE);
-    //     panel.add(paymentLabel);
+        JPanel panel = new JPanel();
+        panel.setLayout(null);
+        panel.setBackground(new Color(45, 52, 54));
+        panel.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
 
-    //     JTextField inputPayment = new JTextField(16);
-    //     inputPayment.setHorizontalAlignment(JTextField.CENTER);
-    //     inputPayment.setBorder(BorderFactory.createEmptyBorder());
-    //     inputPayment.setBounds(120, 160, 260, 40);
-    //     panel.add(inputPayment);
+        JLabel title = new JLabel("Total Amount: Rp. " + totalAmount);
+        title.setBounds(50, 40, 500, 40);
+        title.setFont(new Font("SansSerif", Font.BOLD, 22));
+        title.setForeground(Color.WHITE);
+        panel.add(title);
 
-    //     JButton finishButton = new JButton("Finish Transaction");
-    //     finishButton.setBounds(120, 220, 260, 50);
-    //     finishButton.setFont(buttonFont);
-    //     finishButton.setBackground(new Color(3, 123, 252));
-    //     finishButton.setForeground(Color.WHITE);
-    //     finishButton.addActionListener(e -> {
-    //         try {
-    //             String paymentInput = inputPayment.getText();
-    //             double payment = Double.parseDouble(paymentInput);
+        JLabel balanceLabel = new JLabel("Current Balance: Rp. " + balance);
+        balanceLabel.setBounds(50, 100, 500, 30);
+        balanceLabel.setFont(labelFont);
+        balanceLabel.setForeground(Color.WHITE);
+        panel.add(balanceLabel);
 
-    //             if (controllerCart.processTransaction(payment)) {
-    //                 double change = payment - totalAmount;
+        Object[][] data = transaction.getCartItems();
+        String[] columnNames = {"Select", "Cart ID", "Event Name", "Price", "Quantity", "Total Price"};
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        cartTable = new JTable(model);
+        cartTable.setBounds(50, 140, 500, 150);
+        cartTable.setBackground(new Color(34, 40, 44));
+        cartTable.setForeground(Color.WHITE);
+        cartTable.setFont(new Font("SansSerif", Font.PLAIN, 14));
 
-    //                 JOptionPane.showMessageDialog(frame, "Transaction Successful! Change: Rp. " + change);
+        JScrollPane scrollPane = new JScrollPane(cartTable);
+        scrollPane.setBounds(50, 140, 500, 150);
+        panel.add(scrollPane);
 
-    //                 // Reset fields
-    //                 inputPayment.setText("");
-    //                 frame.dispose(); // Close frame after successful transaction
-    //                 new MainMenuCustomer(); // Redirect to main menu
-    //             } else {
-    //                 JOptionPane.showMessageDialog(frame, "Payment is insufficient.", "Error", JOptionPane.ERROR_MESSAGE);
-    //             }
-    //         } catch (NumberFormatException ex) {
-    //             JOptionPane.showMessageDialog(frame, "Please enter a valid amount.", "Error", JOptionPane.ERROR_MESSAGE);
-    //         }
-    //     });
-    //     panel.add(finishButton);
+        finishButton = new JButton("Finish Transaction");
+        finishButton.setBounds(150, 320, 300, 50);
+        finishButton.setFont(buttonFont);
+        finishButton.setBackground(new Color(0, 184, 148));
+        finishButton.setForeground(Color.WHITE);
+        finishButton.addActionListener(e -> {
+            int[] selectedRows = cartTable.getSelectedRows();
+            if (selectedRows.length > 0) {
+                List<Integer> selectedCartIds = new ArrayList<>();
+                for (int row : selectedRows) {
+                    int cartId = (int) cartTable.getValueAt(row, 1);
+                    selectedCartIds.add(cartId);
+                }
 
-    //     JButton exitButton = new JButton("Cancel Transaction");
-    //     exitButton.setBounds(120, 290, 260, 50);
-    //     exitButton.setFont(buttonFont);
-    //     exitButton.setBackground(new Color(255, 69, 58));
-    //     exitButton.setForeground(Color.WHITE);
-    //     exitButton.addActionListener(e -> {
-    //         frame.dispose();
-    //         new MainMenuCustomer(); // Redirect to main menu
-    //     });
-    //     panel.add(exitButton);
+                if (transaction.processTransaction(selectedCartIds, balance)) {
+                    JOptionPane.showMessageDialog(frame, "Transaction Successful! New Balance: Rp. " + user.getBalance());
+                    frame.dispose();
+                    new MainMenuCustomer();
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Insufficient Balance.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(frame, "Please select at least one item.", "Error", JOptionPane.WARNING_MESSAGE);
+            }
+        });
+        panel.add(finishButton);
 
-    //     frame.add(panel);
-    //     frame.setVisible(true);
-    // }
+        exitButton = new JButton("Cancel Transaction");
+        exitButton.setBounds(150, 380, 300, 50);
+        exitButton.setFont(buttonFont);
+        exitButton.setBackground(new Color(214, 48, 49));
+        exitButton.setForeground(Color.WHITE);
+        exitButton.addActionListener(e -> {
+            frame.dispose();
+            new MainMenuCustomer();
+        });
+        panel.add(exitButton);
+
+        frame.add(panel);
+        frame.setVisible(true);
+    }
 }
