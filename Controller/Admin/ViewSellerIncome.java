@@ -3,15 +3,18 @@ package Controller.Admin;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 import Controller.DatabaseHandler;
 
 public class ViewSellerIncome {
     static DatabaseHandler conn = new DatabaseHandler();
-
-    public ViewSellerIncome(int id) {
-        System.out.println(CountSellerIncome(id));
-    }
 
     public double CountSellerIncome(int seller_id) {
 
@@ -35,6 +38,4 @@ public class ViewSellerIncome {
         }
         return totalIncomeSeller;
     }
-
-    
 }

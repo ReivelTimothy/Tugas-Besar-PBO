@@ -10,6 +10,7 @@ import Controller.DatabaseHandler;
 public class DeleteEvent {
     static DatabaseHandler conn = new DatabaseHandler();
 
+    
     public DeleteEvent(int eventID) {
         Delete(eventID);
     }
