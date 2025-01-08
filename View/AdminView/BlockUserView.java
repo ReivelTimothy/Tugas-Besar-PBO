@@ -26,7 +26,6 @@ public class BlockUserView {
         JFrame frame = new JFrame();
         frame.setTitle("Block/Unblock User");
         frame.setSize(400, 350);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
         frame.getContentPane().setBackground(new Color(245, 245, 245));
 

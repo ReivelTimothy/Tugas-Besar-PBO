@@ -40,7 +40,7 @@ public class MainMenuAdmin {
         frame.add(refundFromUserButton);
         frame.add(blockUnblockSellerCustomerButton);
 
-        
+
         viewTicketButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -87,7 +87,7 @@ public class MainMenuAdmin {
         refundFromUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new RefundTicketApproveView();
             }
         });
 

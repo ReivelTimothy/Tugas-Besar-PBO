@@ -14,7 +14,6 @@ public class AdminEventIncomeView {
     public void init() {
 
         JFrame frame = new JFrame("Income Admin per Event");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 250);
         frame.setLayout(null); // Menggunakan null layout untuk setBounds
 
