@@ -9,13 +9,10 @@ public abstract class Event {
     int capacity;
     Date tanggal;
 
-    public Event(int eventId, String title, String location, String snk, String vendor, String desc,
+    public Event(int eventId, String title, String desc,
             String path, double price, int capacity, Date tanggal) {
         this.eventId = eventId;
         this.title = title;
-        this.location = location;
-        this.snk = snk;
-        this.vendor = vendor;
         this.desc = desc;
         this.price = price;
         this.capacity = capacity;

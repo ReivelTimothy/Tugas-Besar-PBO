@@ -5,10 +5,10 @@ import java.util.Date;
 public class EventConcert extends Event {
     String jenisKonser, singer;
 
-    public EventConcert(int eventId, String title, String location, String snk, String vendor,
+    public EventConcert(int eventId, String title,
             String desc, String path, double price, int capacity, Date tanggal, String jenisKonser,
             String singer) {
-        super(eventId, title, location, snk, vendor, desc, path, price, capacity, tanggal);
+        super(eventId, title, desc, path, price, capacity, tanggal);
         this.jenisKonser = jenisKonser;
         this.singer = singer;
     }
