@@ -40,11 +40,11 @@ public class MainMenuAdmin {
         frame.add(refundFromUserButton);
         frame.add(blockUnblockSellerCustomerButton);
 
-    
+        
         viewTicketButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-              //new viewTicket();
+                // new viewTicket();
             }
         });
 
@@ -59,35 +59,35 @@ public class MainMenuAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new SellerIncomeView();
-                
+
             }
         });
 
         editEventPriceButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               new EditEventPriceView();
+                new EditEventPriceView();
             }
         });
 
         adminIncomeAllEventsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-      
+
             }
         });
 
         adminEventIncomeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               
+                new AdminEventIncomeView();
             }
         });
 
         refundFromUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-           
+
             }
         });
 
@@ -101,5 +101,4 @@ public class MainMenuAdmin {
         frame.setVisible(true);
     }
 
-   
 }
