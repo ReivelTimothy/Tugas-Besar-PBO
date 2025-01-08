@@ -95,8 +95,6 @@ public class AddConcert {
         masterPanel.add(vendor);
         masterPanel.add(desc);
         masterPanel.add(tanggal);
-        masterPanel.add(jamMulai);
-        masterPanel.add(jamSelesai);
 
         masterPanel.add(gambar);
         masterPanel.add(button);
@@ -110,7 +108,7 @@ public class AddConcert {
         button.addActionListener(e -> {
             java.util.Date utilDate = (java.util.Date) date.getModel().getValue();
             java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-
+            String path = ((JTextField)gambar.getComponent(1)).getText();
             if (!cekInput()) {
                 JOptionPane.showMessageDialog(null, "Maaf Tolong masukan semua data yang diperlukan");
             } else {
@@ -122,15 +120,13 @@ public class AddConcert {
                             getText(snk),
                             getText(vendor),
                             getText(desc),
-                            getText(jamMulai),
-                            getText(jamSelesai),
+                            path,
                             getPrice(harga),
                             Integer.parseInt(getText(kapasitas)),
                             sqlDate,
                             getText(jenisKonser),
                             getText(penyanyi));
-
-                    concert.InsertConcertEvent(event, 0);
+                    concert.InsertConcertEvent(event, 0, path);
                 } else if (eventCat == EventCat.EDUCATION) {
                     EventEducation eventEducation = new EventEducation(
                             0,
@@ -139,8 +135,7 @@ public class AddConcert {
                             getText(snk),
                             getText(vendor),
                             getText(desc),
-                            getText(jamMulai),
-                            getText(jamSelesai),
+                            path,
                             getPrice(harga),
                             Integer.parseInt(getText(kapasitas)),
                             sqlDate,
@@ -148,17 +143,16 @@ public class AddConcert {
                     concert.InsertEduEvent(eventEducation, 0);
                 } else {
                     EventSport eventSport = new EventSport(
-                            0,
-                            getText(judul),
-                            getText(lokasi),
-                            getText(snk),
-                            getText(vendor),
-                            getText(desc),
-                            getText(jamMulai),
-                            getText(jamSelesai),
-                            getPrice(harga),
-                            Integer.parseInt(getText(kapasitas)),
-                            sqlDate,
+                        0,
+                        getText(judul),
+                        getText(lokasi),
+                        getText(snk),
+                        getText(vendor),
+                        getText(desc),
+                        path,
+                        getPrice(harga),
+                        Integer.parseInt(getText(kapasitas)),
+                        sqlDate,
                             getText(jenisOlahraga));
                     concert.InsertSportEvent(eventSport, 0);
                 }

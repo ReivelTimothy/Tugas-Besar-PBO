@@ -4,13 +4,13 @@ import java.util.Date;
 
 public abstract class Event {
     int eventId;
-    String title, location, snk, vendor, desc;
+    String title, location, snk, vendor, desc, path;
     double price;
     int capacity;
     Date tanggal;
 
     public Event(int eventId, String title, String location, String snk, String vendor, String desc,
-            double price, int capacity, Date tanggal) {
+            String path, double price, int capacity, Date tanggal) {
         this.eventId = eventId;
         this.title = title;
         this.location = location;
@@ -20,6 +20,7 @@ public abstract class Event {
         this.price = price;
         this.capacity = capacity;
         this.tanggal = tanggal;
+        this.path = path;
     }
 
     public int getEventId() {
@@ -92,6 +93,14 @@ public abstract class Event {
 
     public void setTanggal(Date tanggal) {
         this.tanggal = tanggal;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
 }
