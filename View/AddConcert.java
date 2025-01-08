@@ -32,6 +32,7 @@ public class AddConcert {
     static EventCat eventCat = EventCat.MUSIC;
     static Path selectedPath;
     static Path destinationPath;
+
     public static void main(String[] args) {
         new AddConcert();
     }
@@ -70,8 +71,6 @@ public class AddConcert {
         JPanel vendor = createInputText("Vendor");
         JPanel desc = createInputText("Descricption");
         JPanel tanggal = createDateInput(date, "Tanggal ");
-        JPanel jamMulai = createInputText("Jam Mulai");
-        JPanel jamSelesai = createInputText("Jam Selesai");
         JPanel discount = createInputText("Discount 4 member");
         JPanel kapasitas = createInputText("total Kapasitas ");
         JPanel genre = createInputText("genre");
@@ -91,11 +90,8 @@ public class AddConcert {
         masterPanel.add(jenisKonser);
         masterPanel.add(harga);
         masterPanel.add(discount);
-        masterPanel.add(lokasi);
         masterPanel.add(genre);
         masterPanel.add(kapasitas);
-        masterPanel.add(snk);
-        masterPanel.add(vendor);
         masterPanel.add(desc);
         masterPanel.add(tanggal);
 
@@ -111,7 +107,7 @@ public class AddConcert {
         button.addActionListener(e -> {
             java.util.Date utilDate = (java.util.Date) date.getModel().getValue();
             java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-            String path = ((JTextField)gambar.getComponent(1)).getText();
+            String path = ((JTextField) gambar.getComponent(1)).getText();
             if (!cekInput()) {
                 JOptionPane.showMessageDialog(null, "Maaf Tolong masukan semua data yang diperlukan");
             } else {
@@ -119,9 +115,6 @@ public class AddConcert {
                     EventConcert event = new EventConcert(
                             0,
                             getText(judul),
-                            getText(lokasi),
-                            getText(snk),
-                            getText(vendor),
                             getText(desc),
                             path,
                             getPrice(harga),
@@ -135,9 +128,6 @@ public class AddConcert {
                             0,
                             getText(judul),
                             getText(lokasi),
-                            getText(snk),
-                            getText(vendor),
-                            getText(desc),
                             path,
                             getPrice(harga),
                             Integer.parseInt(getText(kapasitas)),
@@ -148,9 +138,6 @@ public class AddConcert {
                     EventSport eventSport = new EventSport(
                             0,
                             getText(judul),
-                            getText(lokasi),
-                            getText(snk),
-                            getText(vendor),
                             getText(desc),
                             path,
                             getPrice(harga),
@@ -264,16 +251,18 @@ public class AddConcert {
                 try {
                     // File yang dipilih oleh pengguna
                     File selectedFile = fileChooser.getSelectedFile();
-            
+
                     // Tentukan path relatif
-                    String relativePath = "images" + File.separator + selectedFile.getName();
-            
+                    String relativePath = "assets" + File.separator + selectedFile.getName();
+
                     // Set nilai pada variabel path
                     selectedPath = selectedFile.toPath();
-                    destinationPath = new File("assets", selectedFile.getName()).toPath(); // Hanya untuk referensi, tidak memindahkan
+                    destinationPath = new File("assets", selectedFile.getName()).toPath(); // Hanya untuk referensi,
+                                                                                           // tidak memindahkan
                     path.setText(relativePath);
+                    System.out.println(path.getText());
                     path.setVisible(false);
-            
+
                     System.out.println("File dipilih: " + selectedFile.getPath());
                     System.out.println("Path relatif: " + relativePath);
                     JOptionPane.showMessageDialog(null, "file yang dipilih : " + relativePath);
@@ -284,7 +273,7 @@ public class AddConcert {
             } else {
                 System.out.println("Tidak ada file yang dipilih.");
             }
-            
+
         });
 
         subContainer.setLayout(new BorderLayout());
