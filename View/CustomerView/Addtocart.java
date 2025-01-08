@@ -1,4 +1,4 @@
-package View;
+package View.CustomerView;
   
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,13 +9,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import Controller.CartControllerAdd;
+import Controller.Customer.CartControllerAdd;
 
 public class Addtocart {
 
     private JTextField eventIdField;
     private JTextField ticketIdField;
-    private JTextField custIdField;
     private JButton addButton;
     private JButton cancelButton;
 

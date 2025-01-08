@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Customer;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import Controller.DatabaseHandler;
+import Controller.LoginSingleton;
 
 public class TransactionHistoryController {
     static DatabaseHandler conn = new DatabaseHandler();

@@ -1,7 +1,10 @@
-package Controller;
+package Controller.Customer;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
+
+import Controller.DatabaseHandler;
+import Controller.LoginSingleton;
 
 public class CheckBalanceController {
 
