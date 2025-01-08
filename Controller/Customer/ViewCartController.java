@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Customer;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +8,9 @@ import java.util.List;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import Controller.DatabaseHandler;
+import Controller.LoginSingleton;
 
 public class ViewCartController {
 

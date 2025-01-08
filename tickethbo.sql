@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Jan 2025 pada 11.03
+-- Waktu pembuatan: 08 Jan 2025 pada 14.04
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.0.30
 
@@ -159,6 +159,29 @@ CREATE TABLE `feedback` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `refund`
+--
+
+CREATE TABLE `refund` (
+  `refund_id` int(11) NOT NULL,
+  `event_id` int(11) NOT NULL,
+  `cust_id` int(11) NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `status_refund` varchar(50) DEFAULT 'Pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `refund`
+--
+
+INSERT INTO `refund` (`refund_id`, `event_id`, `cust_id`, `amount`, `status_refund`) VALUES
+(1, 1, 1, 150000.00, 'Pending'),
+(2, 7, 3, 100000.00, 'Approved'),
+(3, 3, 3, 300000.00, 'Rejected');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `report`
 --
 
@@ -271,6 +294,14 @@ ALTER TABLE `feedback`
   ADD KEY `event_id` (`event_id`);
 
 --
+-- Indeks untuk tabel `refund`
+--
+ALTER TABLE `refund`
+  ADD PRIMARY KEY (`refund_id`),
+  ADD KEY `event_id` (`event_id`),
+  ADD KEY `cust_id` (`cust_id`);
+
+--
 -- Indeks untuk tabel `report`
 --
 ALTER TABLE `report`
@@ -306,7 +337,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `block`
 --
 ALTER TABLE `block`
-  MODIFY `block_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `block_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `cart`
@@ -333,6 +364,12 @@ ALTER TABLE `feedback`
   MODIFY `feedback_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `refund`
+--
+ALTER TABLE `refund`
+  MODIFY `refund_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT untuk tabel `report`
 --
 ALTER TABLE `report`
@@ -349,6 +386,17 @@ ALTER TABLE `seller`
 --
 ALTER TABLE `ticket`
   MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `refund`
+--
+ALTER TABLE `refund`
+  ADD CONSTRAINT `refund_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `events` (`event_id`),
+  ADD CONSTRAINT `refund_ibfk_2` FOREIGN KEY (`cust_id`) REFERENCES `customer` (`cust_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

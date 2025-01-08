@@ -1,4 +1,4 @@
-package View;
+package View.CustomerView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,8 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import Controller.ControllerUser;
-import Controller.ViewCartController;
+import Controller.Customer.ControllerUser;
+import Controller.Customer.ViewCartController;
 
 public class ViewCart {
 

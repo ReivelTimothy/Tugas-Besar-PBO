@@ -1,4 +1,4 @@
-package View;
+package View.CustomerView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,8 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import Controller.ControllerUser;
-import Controller.UpdateProfileController;
+import Controller.Customer.ControllerUser;
+import Controller.Customer.UpdateProfileController;
 
 public class UpdateProfile {
 

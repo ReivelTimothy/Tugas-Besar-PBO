@@ -1,4 +1,4 @@
-package View;
+package View.CustomerView;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -16,9 +16,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import Controller.ControllerCart;
-import Controller.ControllerUser;
-import Controller.FinishTransactionController;
+import Controller.Customer.ControllerCart;
+import Controller.Customer.ControllerUser;
+import Controller.Customer.FinishTransactionController;
 
 public class FinishTransaction {
 
