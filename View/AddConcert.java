@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.Properties;
 
@@ -29,6 +30,8 @@ import Models.Enumeration.EventCat;
 
 public class AddConcert {
     static EventCat eventCat = EventCat.MUSIC;
+    static Path selectedPath;
+    static Path destinationPath;
     public static void main(String[] args) {
         new AddConcert();
     }
@@ -143,18 +146,24 @@ public class AddConcert {
                     concert.InsertEduEvent(eventEducation, 0);
                 } else {
                     EventSport eventSport = new EventSport(
-                        0,
-                        getText(judul),
-                        getText(lokasi),
-                        getText(snk),
-                        getText(vendor),
-                        getText(desc),
-                        path,
-                        getPrice(harga),
-                        Integer.parseInt(getText(kapasitas)),
-                        sqlDate,
+                            0,
+                            getText(judul),
+                            getText(lokasi),
+                            getText(snk),
+                            getText(vendor),
+                            getText(desc),
+                            path,
+                            getPrice(harga),
+                            Integer.parseInt(getText(kapasitas)),
+                            sqlDate,
                             getText(jenisOlahraga));
                     concert.InsertSportEvent(eventSport, 0);
+                }
+                try {
+                    // Pindahkan file ke folder tujuan
+                    Files.move(selectedPath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException re) {
+                    System.err.println("Terjadi kesalahan saat memindahkan file: " + re.getMessage());
                 }
             }
         });
@@ -252,29 +261,30 @@ public class AddConcert {
             int userSelection = fileChooser.showOpenDialog(null);
 
             if (userSelection == JFileChooser.APPROVE_OPTION) {
-                // File yang dipilih oleh pengguna
-                File selectedFile = fileChooser.getSelectedFile();
-
-                // Tentukan direktori tujuan
-                File destinationFolder = new File("assets"); // Direktori relatif dalam folder proyek
-
-                // Tentukan lokasi file tujuan
-                File destinationFile = new File(destinationFolder, selectedFile.getName());
-
                 try {
-                    // Pindahkan file ke folder tujuan
-                    Files.move(selectedFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    // File yang dipilih oleh pengguna
+                    File selectedFile = fileChooser.getSelectedFile();
+            
+                    // Tentukan path relatif
                     String relativePath = "images" + File.separator + selectedFile.getName();
+            
+                    // Set nilai pada variabel path
+                    selectedPath = selectedFile.toPath();
+                    destinationPath = new File("assets", selectedFile.getName()).toPath(); // Hanya untuk referensi, tidak memindahkan
                     path.setText(relativePath);
                     path.setVisible(false);
-                    openButton.setEnabled(false);
-                    System.out.println("File berhasil dipindahkan ke: " + destinationFile.getPath());
-                } catch (IOException re) {
-                    System.err.println("Terjadi kesalahan saat memindahkan file: " + re.getMessage());
+            
+                    System.out.println("File dipilih: " + selectedFile.getPath());
+                    System.out.println("Path relatif: " + relativePath);
+                    JOptionPane.showMessageDialog(null, "file yang dipilih : " + relativePath);
+                } catch (Exception ex) {
+                    System.err.println("Kesalahan: " + ex.getMessage());
+                    ex.printStackTrace();
                 }
             } else {
                 System.out.println("Tidak ada file yang dipilih.");
             }
+            
         });
 
         subContainer.setLayout(new BorderLayout());
