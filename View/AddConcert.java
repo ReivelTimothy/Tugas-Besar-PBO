@@ -19,12 +19,9 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
 import Controller.DBController;
-import Controller.sellerController.InsertConcert;
-import models.classes.EventConcert;
-import models.classes.EventEducation;
-import models.classes.EventSport;
-import view.DateLabelFormatter;
-import models.enumaration.*;
+import Controller.Seller.InsertConcert;
+import Models.Classess.*;
+import Models.Enumeration.EventCat;
 
 public class AddConcert {
     static EventCat eventCat = EventCat.MUSIC;
