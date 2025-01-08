@@ -1,9 +1,12 @@
-package Controller;
+package Controller.Customer;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import Controller.DatabaseHandler;
+import Controller.LoginSingleton;
 
 public class FinishTransactionController {
 

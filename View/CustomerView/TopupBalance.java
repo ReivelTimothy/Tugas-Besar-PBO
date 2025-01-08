@@ -1,4 +1,4 @@
-package View;
+package View.CustomerView;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Controller.ControllerUser;
+import Controller.Customer.ControllerUser;
 
 public class TopupBalance {
 

@@ -1,4 +1,4 @@
-package View;
+package View.CustomerView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import Controller.MembershipController;
+import Controller.Customer.MembershipController;
 
 public class BuyMembership {
     private JFrame frame;

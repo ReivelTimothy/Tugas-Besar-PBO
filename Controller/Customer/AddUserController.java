@@ -1,9 +1,11 @@
-package Controller;
+package Controller.Customer;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
+
+import Controller.DatabaseHandler;
 
 public class AddUserController {
     static DatabaseHandler conn = new DatabaseHandler();

@@ -1,7 +1,9 @@
-package Controller;
+package Controller.Customer;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
+import Controller.DatabaseHandler;
 
 public class ControllerCart {
 
