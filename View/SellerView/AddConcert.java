@@ -240,7 +240,7 @@ public class AddConcert {
             fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
             fileChooser.setAcceptAllFileFilterUsed(false);
             fileChooser.addChoosableFileFilter(new javax.swing.filechooser.FileNameExtensionFilter(
-                    "Image Files", "jpg", "jpeg", "png", "gif", "bmp"));
+                    "Image Files", "jpg"));
 
             // Tampilkan JFileChooser
             int userSelection = fileChooser.showOpenDialog(null);
