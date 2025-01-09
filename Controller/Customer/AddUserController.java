@@ -10,7 +10,7 @@ import Controller.DatabaseHandler;
 public class AddUserController {
     static DatabaseHandler conn = new DatabaseHandler();
 
-    public static boolean addUser(String role, String username, String password, String email, String phoneNum, String CardNum) {
+    public static boolean addUser(String role, String username, String password, String email, String phoneNum, String CardNum) { //tambahin para baru
     String query = "";
 
     role = role.toUpperCase();
