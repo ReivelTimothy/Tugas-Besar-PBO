@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 public class LoginCheck {
     static DatabaseHandler conn = new DatabaseHandler();
 
-    public void Login(String email, String password) {
+    public LoginCheck(String email, String password){
         cekCustomer(email, password);
     }
 
@@ -51,10 +51,11 @@ public class LoginCheck {
 
     }
 
-    public static void cekSeller(String email, String password) {
+    public void cekSeller(String email, String password) {
         String emailLogin = "";
         String pass = "";
         int id = 0;
+        System.out.println("haha");
 
         try {
             conn.connect();
@@ -88,7 +89,7 @@ public class LoginCheck {
         }
     }
 
-    public static void cekAdmin(String email, String password) {
+    public void cekAdmin(String email, String password) {
         String emailLogin = "";
         String pass = "";
         int id = 0;
@@ -116,7 +117,6 @@ public class LoginCheck {
                             JOptionPane.ERROR_MESSAGE);
                 }
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Database error: " + e.getMessage(), "Error",
