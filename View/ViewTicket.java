@@ -1,38 +1,51 @@
 package View;
 import javax.swing.*;
+
+import Controller.Seller.GetEventData;
+
 import java.awt.*;
+import Models.Classess.Event;
 import java.io.File;
 
 public class ViewTicket {
     public static void main(String[] args) {
         // Membuat frame utama
-        JFrame frame = new JFrame("Concert Showcase");
+        JFrame frame = new JFrame("VIEW EVENT TICKET");
         frame.setSize(800, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
-        // Membuat panel untuk tombol menu di kanan atas
-        JPanel topPanel = new JPanel();
-        topPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        // Membuat panel untuk header
+        JPanel headerPanel = new JPanel(new BorderLayout());
+        headerPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+        // Title pada header
+        JLabel titleLabel = new JLabel("Welcome to Event Ticketing System", JLabel.CENTER);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        headerPanel.add(titleLabel, BorderLayout.CENTER);
+
+        // Tombol menu di kanan atas
+        JPanel menuPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         JButton loginButton = new JButton("Login");
         JButton registerButton = new JButton("Register");
         JButton addConcertButton = new JButton("Add Concert");
         JButton viewIncomeButton = new JButton("View Income");
 
-        topPanel.add(loginButton);
-        topPanel.add(registerButton);
-        topPanel.add(addConcertButton);
-        topPanel.add(viewIncomeButton);
+        menuPanel.add(loginButton);
+        menuPanel.add(registerButton);
+        menuPanel.add(addConcertButton);
+        menuPanel.add(viewIncomeButton);
 
-        frame.add(topPanel, BorderLayout.NORTH);
+        headerPanel.add(menuPanel, BorderLayout.EAST);
 
-        // Membuat panel untuk konten
+        frame.add(headerPanel, BorderLayout.NORTH);
+
+        // Panel konten utama
         JPanel contentPanel = new JPanel();
-        contentPanel.setLayout(new GridLayout(0, 2, 10, 10)); // Grid dengan 2 kolom dan jarak antar item
+        contentPanel.setLayout(new GridLayout(0, 2, 10, 10));
         frame.add(new JScrollPane(contentPanel), BorderLayout.CENTER);
 
-        // Folder gambar
         File imageFolder = new File("assets");
         if (imageFolder.exists() && imageFolder.isDirectory()) {
             // Ambil semua file gambar di folder
@@ -41,33 +54,31 @@ public class ViewTicket {
             if (imageFiles != null) {
                 for (File imageFile : imageFiles) {
                     String fileName = imageFile.getName();
-                    String title = fileName.substring(0, fileName.lastIndexOf('.')); // Menghapus ekstensi file
 
-                    // Panel untuk setiap item
                     JPanel itemPanel = new JPanel();
-                    itemPanel.setLayout(new BoxLayout(itemPanel, BoxLayout.Y_AXIS));
-                    itemPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+                    itemPanel.setLayout(new BorderLayout());
+                    itemPanel.setBorder(BorderFactory.createCompoundBorder(
+                        BorderFactory.createLineBorder(Color.GRAY, 1),
+                        BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
-                    // Menambahkan judul
-                    JLabel titleLabel = new JLabel(title, SwingConstants.CENTER);
-                    titleLabel.setFont(new Font("Arial", Font.BOLD, 16));
-                    itemPanel.add(titleLabel);
-
-                    // Menambahkan gambar dengan ukuran tetap
                     ImageIcon originalIcon = new ImageIcon(imageFile.getPath());
-                    Image scaledImage = originalIcon.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+                    Image scaledImage = originalIcon.getImage().getScaledInstance(200, 250, Image.SCALE_SMOOTH);
                     ImageIcon scaledIcon = new ImageIcon(scaledImage);
                     JLabel imageLabel = new JLabel(scaledIcon);
-                    imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-                    itemPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer
-                    itemPanel.add(imageLabel);
+                    imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                    itemPanel.add(imageLabel, BorderLayout.CENTER);
 
-                    // Menambahkan tombol "Buy Now"
+                    JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
                     JButton buyNowButton = new JButton("Buy Now");
-                    buyNowButton.setFont(new Font("Arial", Font.PLAIN, 14));
-                    buyNowButton.addActionListener(e -> JOptionPane.showMessageDialog(frame, "You clicked Buy Now for " + title));
-                    itemPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer
-                    itemPanel.add(buyNowButton);
+                    buyNowButton.setFont(new Font("Arial", Font.BOLD, 14));
+                    buyNowButton.setPreferredSize(new Dimension(100, 30));
+                    buyNowButton.addActionListener(e -> {
+                        Event event = GetEventData.getData("assets\\" + fileName);
+                        new ViewDetailTicket(event);
+                    });
+                    buttonPanel.add(buyNowButton);
+
+                    itemPanel.add(buttonPanel, BorderLayout.SOUTH);
 
                     contentPanel.add(itemPanel);
                 }
@@ -82,8 +93,15 @@ public class ViewTicket {
             contentPanel.add(errorLabel);
         }
 
+        // Menambahkan footer
+        JPanel footerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        footerPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        JLabel footerLabel = new JLabel("Thank you for choosing our service!");
+        footerLabel.setFont(new Font("Arial", Font.ITALIC, 12));
+        footerPanel.add(footerLabel);
+        frame.add(footerPanel, BorderLayout.SOUTH);
+
         // Menampilkan frame
         frame.setVisible(true);
     }
 }
-
