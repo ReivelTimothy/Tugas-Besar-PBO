@@ -1,4 +1,4 @@
-package View;
+package View.SellerView;
 
 import java.awt.Dimension;
 import java.awt.Font;

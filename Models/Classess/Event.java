@@ -4,24 +4,20 @@ import java.util.Date;
 
 public abstract class Event {
     int eventId;
-    String title, location, snk, vendor, desc, timeStart, timeEnd;
+    String title, location, snk, vendor, desc, path;
     double price;
     int capacity;
     Date tanggal;
 
-    public Event(int eventId, String title, String location, String snk, String vendor, String desc,
-            String timeStart, String timeEnd, double price, int capacity, Date tanggal) {
+    public Event(int eventId, String title, String desc,
+            String path, double price, int capacity, Date tanggal) {
         this.eventId = eventId;
         this.title = title;
-        this.location = location;
-        this.snk = snk;
-        this.vendor = vendor;
         this.desc = desc;
-        this.timeStart = timeStart;
-        this.timeEnd = timeEnd;
         this.price = price;
         this.capacity = capacity;
         this.tanggal = tanggal;
+        this.path = path;
     }
 
     public int getEventId() {
@@ -72,22 +68,6 @@ public abstract class Event {
         this.desc = desc;
     }
 
-    public String getTimeStart() {
-        return timeStart;
-    }
-
-    public void setTimeStart(String timeStart) {
-        this.timeStart = timeStart;
-    }
-
-    public String getTimeEnd() {
-        return timeEnd;
-    }
-
-    public void setTimeEnd(String timeEnd) {
-        this.timeEnd = timeEnd;
-    }
-
     public double getPrice() {
         return price;
     }
@@ -110,6 +90,14 @@ public abstract class Event {
 
     public void setTanggal(Date tanggal) {
         this.tanggal = tanggal;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
 }
