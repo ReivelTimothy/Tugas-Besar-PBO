@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 public class LoginCheck {
     static DatabaseHandler conn = new DatabaseHandler();
 
-    public LoginCheck(String email, String password){
+    public LoginCheck(String email, String password) {
         cekCustomer(email, password);
     }
 
@@ -72,7 +72,7 @@ public class LoginCheck {
                 if (emailLogin.equals(email) && pass.equals(password)) {
                     LoginSingleton.getInstance().setUser(id, 1);
                     JOptionPane.showMessageDialog(null, "Welcome Seller!");
-                    
+
                 } else if (emailLogin.equals(email) && (!pass.equals(password))) {
                     JOptionPane.showMessageDialog(null, "Cek password nya lagi.");
                 }
@@ -109,7 +109,7 @@ public class LoginCheck {
                 if (emailLogin.equals(email) && pass.equals(password)) {
                     JOptionPane.showMessageDialog(null, "Welcome Admin!");
                     LoginSingleton.getInstance().setUser(id, 2);
-                    
+
                 } else if (emailLogin.equals(email) && (!pass.equals(password))) {
                     JOptionPane.showMessageDialog(null, "Cek password nya lagi.");
                 } else {
