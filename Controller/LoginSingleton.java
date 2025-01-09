@@ -3,7 +3,7 @@ package Controller;
 public class LoginSingleton {
     private static LoginSingleton instance;
     private int userID;
-    private int roleID;// 0=customer, 1=seller, 2=admin, 3=antonJonatan
+    private int roleID; // 0=customer, 1=seller, 2=admin, 3=antonJonatan
 
     public static LoginSingleton getInstance() {
         if (instance == null) {
@@ -14,6 +14,10 @@ public class LoginSingleton {
             }
         }
         return instance;
+    }
+
+    public static boolean checkInstance(){
+        return instance == null;
     }
 
     public void setUser(int id, int role) {
@@ -27,5 +31,9 @@ public class LoginSingleton {
 
     public int getRole() {
         return roleID;
+    }
+
+    public void setNullInstance(){
+        instance = null;
     }
 }
