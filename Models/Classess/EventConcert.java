@@ -2,13 +2,15 @@ package Models.Classess;
 
 import java.util.Date;
 
+import Models.Enumeration.EventCat;
+
 public class EventConcert extends Event {
     String jenisKonser, singer;
 
     public EventConcert(int eventId, String title,
             String desc, String path, double price, int capacity, Date tanggal, String jenisKonser,
             String singer) {
-        super(eventId, title, desc, path, price, capacity, tanggal);
+        super(eventId, title, desc, path, price, capacity, tanggal, EventCat.MUSIC);
         this.jenisKonser = jenisKonser;
         this.singer = singer;
     }

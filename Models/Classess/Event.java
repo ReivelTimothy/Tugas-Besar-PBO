@@ -2,15 +2,18 @@ package Models.Classess;
 
 import java.util.Date;
 
+import Models.Enumeration.EventCat;
+
 public abstract class Event {
     int eventId;
-    String title, location, snk, vendor, desc, path;
+    String title, location,desc, path;
     double price;
     int capacity;
     Date tanggal;
+    EventCat category;
 
     public Event(int eventId, String title, String desc,
-            String path, double price, int capacity, Date tanggal) {
+            String path, double price, int capacity, Date tanggal, EventCat cat) {
         this.eventId = eventId;
         this.title = title;
         this.desc = desc;
@@ -18,7 +21,9 @@ public abstract class Event {
         this.capacity = capacity;
         this.tanggal = tanggal;
         this.path = path;
+        this.category = cat;
     }
+    
 
     public int getEventId() {
         return eventId;
@@ -42,22 +47,6 @@ public abstract class Event {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public String getSnk() {
-        return snk;
-    }
-
-    public void setSnk(String snk) {
-        this.snk = snk;
-    }
-
-    public String getVendor() {
-        return vendor;
-    }
-
-    public void setVendor(String vendor) {
-        this.vendor = vendor;
     }
 
     public String getDesc() {
@@ -98,6 +87,16 @@ public abstract class Event {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+
+    public EventCat getCategory() {
+        return category;
+    }
+
+
+    public void setCategory(EventCat category) {
+        this.category = category;
     }
 
 }
