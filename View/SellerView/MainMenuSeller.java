@@ -1,4 +1,4 @@
-package View;
+package View.SellerView;
 
 import java.awt.Font;
 
@@ -6,6 +6,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import View.Create;
 
 public class MainMenuSeller {
     private JFrame frame;

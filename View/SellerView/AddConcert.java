@@ -1,4 +1,4 @@
-package View;
+package View.SellerView;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -27,6 +27,7 @@ import org.jdatepicker.impl.UtilDateModel;
 import Controller.Seller.*;
 import Models.Classess.*;
 import Models.Enumeration.EventCat;
+import View.DateLabelFormatter;
 
 public class AddConcert {
     static EventCat eventCat = EventCat.MUSIC;
