@@ -10,7 +10,7 @@ import Controller.DatabaseHandler;
 public class AddUserController {
     static DatabaseHandler conn = new DatabaseHandler();
 
-    public static boolean addUser(String role, String username, String password, String email, String phoneNum) {
+    public static boolean addUser(String role, String username, String password, String email, String phoneNum, String CardNum) { //tambahin para baru
     String query = "";
 
     role = role.toUpperCase();
@@ -18,7 +18,7 @@ public class AddUserController {
     if (role.equals("SELLER")) {
         query = "INSERT INTO seller (seller_name, password, email, phoneNum) VALUES (?, ?, ?, ?)";
     } else if (role.equals("CUSTOMER")) {
-        query = "INSERT INTO customer (cust_name, password, email, phoneNum) VALUES (?, ?, ?, ?)";
+        query = "INSERT INTO customer (cust_name, password, email, phoneNum, cardNumber) VALUES (?, ?, ?, ?, ?)";
     } else {
         JOptionPane.showMessageDialog(null, "Role salah", "Error", JOptionPane.ERROR_MESSAGE);
         return false;

@@ -1,4 +1,5 @@
 package View;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,77 +20,102 @@ public class Register {
     public Register() {
         inputRegister();
     }
+
     public static void main(String[] args) {
         new Register();
     }
 
     public void inputRegister() {
         frame = new JFrame();
-        frame.setBounds(50, 50, 400, 350);
+        frame.setBounds(100, 100, 450, 550);
         frame.setTitle("Register");
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JLabel labelTitleLogin = new JLabel("==Register==");
-        labelTitleLogin.setBounds(150, 20, 100, 35);
+        JLabel labelTitleLogin = new JLabel("== Register ==");
+        labelTitleLogin.setBounds(175, 20, 100, 35);
         frame.add(labelTitleLogin);
 
-        JLabel labelUsername = new JLabel("Username : ");
-        labelUsername.setBounds(25, 70, 90, 25);
+        JLabel labelUsername = new JLabel("Username:");
+        labelUsername.setBounds(50, 70, 100, 25);
         frame.add(labelUsername);
 
         JTextField usernameField = new JTextField();
-        usernameField.setBounds(110, 70, 200, 25);
+        usernameField.setBounds(150, 70, 200, 25);
         frame.add(usernameField);
 
-        JLabel labelPassword = new JLabel("Password : ");
-        labelPassword.setBounds(25, 110, 90, 25);
+        JLabel labelPassword = new JLabel("Password:");
+        labelPassword.setBounds(50, 110, 100, 25);
         frame.add(labelPassword);
 
         JPasswordField passwordField = new JPasswordField();
-        passwordField.setBounds(110, 110, 200, 25);
+        passwordField.setBounds(150, 110, 200, 25);
         frame.add(passwordField);
 
-        JLabel labelEmail = new JLabel("Email : ");
-        labelEmail.setBounds(25, 150, 90, 25);
+        JLabel labelEmail = new JLabel("Email:");
+        labelEmail.setBounds(50, 150, 100, 25);
         frame.add(labelEmail);
 
         JTextField emailField = new JTextField();
-        emailField.setBounds(110, 150, 200, 25);
+        emailField.setBounds(150, 150, 200, 25);
         frame.add(emailField);
 
-        JLabel labelPhoneNum = new JLabel("PhoneNum : ");
-        labelPhoneNum.setBounds(25, 190, 90, 25);
+        JLabel labelPhoneNum = new JLabel("Phone Number:");
+        labelPhoneNum.setBounds(50, 190, 100, 25);
         frame.add(labelPhoneNum);
 
         JTextField phoneNumField = new JTextField();
-        phoneNumField.setBounds(110, 190, 200, 25);
+        phoneNumField.setBounds(150, 190, 200, 25);
         frame.add(phoneNumField);
 
-        JLabel labelRole = new JLabel("Registered as: ");
-        labelRole.setBounds(25, 230, 90, 25);
+        JLabel labelCardNum = new JLabel("Card Number:");
+        labelCardNum.setBounds(50, 230, 100, 25);
+        frame.add(labelCardNum);
+
+        JTextField cardNumField = new JTextField();
+        cardNumField.setBounds(150, 230, 200, 25);
+        frame.add(cardNumField);
+
+        JLabel labelMembership = new JLabel("Buy Membership:");
+        labelMembership.setBounds(50, 270, 120, 25);
+        frame.add(labelMembership);
+
+        JButton membershipButton = new JButton("Buy Membership");
+        membershipButton.setBounds(150, 270, 200, 25);
+        frame.add(membershipButton);
+
+        JLabel labelRole = new JLabel("Registered as:");
+        labelRole.setBounds(50, 310, 100, 25);
         frame.add(labelRole);
 
-        String[] roles = {"Seller", "Customer"};
+        String[] roles = { "Seller", "Customer" };
         JComboBox<String> roleBox = new JComboBox<>(roles);
-        roleBox.setBounds(110, 230, 200, 25);
+        roleBox.setBounds(150, 310, 200, 25);
         frame.add(roleBox);
 
         JButton submitButton = new JButton("Register");
-        submitButton.setBounds(150, 270, 100, 30);
+        submitButton.setBounds(150, 360, 100, 30);
         frame.add(submitButton);
 
         frame.setVisible(true);
 
+        membershipButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new BuyMembership();
+            }
+        });
+        //tambahan cardNum buat input register
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String username = usernameField.getText();
                 String password = String.valueOf(passwordField.getPassword());
                 String email = emailField.getText();
                 String phoneNum = phoneNumField.getText();
+                String cardNum = cardNumField.getText();
                 String role = (String) roleBox.getSelectedItem();
 
-                boolean isSaved = AddUserController.addUser(role, username, password, email, phoneNum);
+                boolean isSaved = AddUserController.addUser(role, username, password, email, phoneNum, cardNum);
 
                 if (isSaved) {
                     JOptionPane.showMessageDialog(null, "Selamat, Anda sudah selesai melakukan pendaftaran dan akan melanjutkan ke menu " + role);
