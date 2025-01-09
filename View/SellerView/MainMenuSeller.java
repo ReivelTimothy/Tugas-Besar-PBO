@@ -7,8 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import View.Create;
-
 public class MainMenuSeller {
     private JFrame frame;
 
@@ -35,12 +33,6 @@ public class MainMenuSeller {
         JButton createBtn = new JButton("Create Event");
         createBtn.setBounds(95, 150, 260, 50);
         panel.add(createBtn);
-
-        createBtn.addActionListener(e -> {
-            new Create();
-        });
-
-
 
         JButton reqEditBtn = new JButton("Request Edit Price Event");
         reqEditBtn.setBounds(95, 230, 260, 50);
