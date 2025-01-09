@@ -1,4 +1,4 @@
-package View;
+package View.CustomerView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import Controller.CheckBalanceController;
+import Controller.Customer.CheckBalanceController;
 
 public class CheckBalance {
 
@@ -16,6 +16,10 @@ public class CheckBalance {
     private JLabel labelUsername;
     private JButton checkBalanceButton;
 
+    public static void main(String[] args) {
+        new CheckBalance();
+    }
+    
     public CheckBalance() {
         frame = new JFrame("Check Balance");
         frame.setSize(300, 200);

@@ -1,7 +1,10 @@
-package Controller;
+package Controller.Customer;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import Controller.DatabaseHandler;
+import Controller.LoginSingleton;
 
 public class UpdateProfileController {
 

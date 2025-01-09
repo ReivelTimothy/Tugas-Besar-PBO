@@ -1,5 +1,5 @@
 package Models.Enumeration;
 
 public enum statusBlocked {
-    BLOCK, OPENBLOCK;
+    BLOCKED, UNBLOCK;
 }

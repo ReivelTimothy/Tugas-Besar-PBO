@@ -10,7 +10,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import Controller.AddUserController;
+import Controller.Customer.AddUserController;
+import View.CustomerView.BuyMembership;
 
 public class Register {
     private JFrame frame;

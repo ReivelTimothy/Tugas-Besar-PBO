@@ -1,4 +1,4 @@
-package View;
+package View.CustomerView;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -62,7 +62,7 @@ public class EditCart {
                     return;
                 }
         
-                boolean success = Controller.EditedCart.editCart(cartId, eventId, ticketId, customerId);
+                boolean success = Controller.Customer.EditedCart.editCart(cartId, eventId, ticketId, customerId);
         
                 if (success) {
                     JOptionPane.showMessageDialog(frame, "Cart updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);

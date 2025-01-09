@@ -1,4 +1,4 @@
-package View;
+package View.CustomerView;
   
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,13 +9,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import Controller.CartControllerAdd;
+import Controller.Customer.CartControllerAdd;
 
 public class Addtocart {
 
     private JTextField eventIdField;
     private JTextField ticketIdField;
-    private JTextField custIdField;
     private JButton addButton;
     private JButton cancelButton;
 
@@ -42,14 +41,6 @@ public class Addtocart {
         ticketIdField.setBounds(150, 100, 200, 25);
         frame.add(ticketIdField);
 
-        JLabel custIdLabel = new JLabel("Customer ID:");
-        custIdLabel.setBounds(50, 140, 100, 25);
-        frame.add(custIdLabel);
-
-        custIdField = new JTextField();
-        custIdField.setBounds(150, 140, 200, 25);
-        frame.add(custIdField);
-
         addButton = new JButton("Add to Cart");
         addButton.setBounds(50, 200, 120, 30);
         frame.add(addButton);
@@ -63,9 +54,8 @@ public class Addtocart {
             public void actionPerformed(ActionEvent e) {
                 String eventId = eventIdField.getText();
                 String ticketId = ticketIdField.getText();
-                String custId = custIdField.getText();
         
-                if (eventId.isEmpty() || ticketId.isEmpty() || custId.isEmpty()) {
+                if (eventId.isEmpty() || ticketId.isEmpty()) {
                     JOptionPane.showMessageDialog(frame, "All fields must be filled!", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
@@ -73,7 +63,7 @@ public class Addtocart {
                 try {
                     int eventid = Integer.parseInt(eventId);
         
-                    boolean success = CartControllerAdd.addToCart(eventid, ticketId, custId);
+                    boolean success = CartControllerAdd.addToCart(eventid, ticketId);
                     if (success) {
                         JOptionPane.showMessageDialog(frame, "Item added to cart successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     } else {
@@ -95,5 +85,9 @@ public class Addtocart {
         });
 
         frame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new Addtocart();
     }
 }
