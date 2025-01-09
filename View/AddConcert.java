@@ -67,8 +67,6 @@ public class AddConcert {
         JPanel jenisKonser = createInputText("jenis Konser");
         JPanel harga = createInputText("Harga ");
         JPanel lokasi = createInputText("Lokasi ");
-        JPanel snk = createInputText("S&K ");
-        JPanel vendor = createInputText("Vendor");
         JPanel desc = createInputText("Descricption");
         JPanel tanggal = createDateInput(date, "Tanggal ");
         JPanel discount = createInputText("Discount 4 member");
@@ -147,7 +145,6 @@ public class AddConcert {
                     concert.InsertSportEvent(eventSport, 0);
                 }
                 try {
-                    // Pindahkan file ke folder tujuan
                     Files.move(selectedPath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
                 } catch (IOException re) {
                     System.err.println("Terjadi kesalahan saat memindahkan file: " + re.getMessage());

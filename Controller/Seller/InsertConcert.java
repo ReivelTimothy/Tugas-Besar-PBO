@@ -2,8 +2,6 @@ package Controller.Seller;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Date;
-
 import javax.swing.JOptionPane;
 
 import Controller.DatabaseHandler;
@@ -56,7 +54,7 @@ public class InsertConcert {
 
         try {
             conn.connect();
-            String query = "INSERT INTO events (judul, speaker,  harga, eventStart, eventEnd, description, kategori, capacity, Date, seller_id) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO events (judul, speaker,  harga, description, kategori, capacity, Date, seller_id) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)";
             
             
             java.sql.Date sqlDate = new java.sql.Date(eventEducation.getTanggal().getTime());     
@@ -65,11 +63,11 @@ public class InsertConcert {
             stmt.setString(1, eventEducation.getTitle());
             stmt.setString(2, eventEducation.getNamaPembicara());
             stmt.setDouble(3, eventEducation.getPrice());
-            stmt.setString(6, eventEducation.getDesc());
-            stmt.setString(7, EventCat.EDUCATION.name());
-            stmt.setInt(8, eventEducation.getCapacity());
-            stmt.setDate(9, sqlDate);
-            stmt.setInt(10, sellerId);
+            stmt.setString(4, eventEducation.getDesc());
+            stmt.setString(5, EventCat.EDUCATION.name());
+            stmt.setInt(6, eventEducation.getCapacity());
+            stmt.setDate(7, sqlDate);
+            stmt.setInt(8, sellerId);
 
 
             int rows = stmt.executeUpdate();
@@ -91,7 +89,7 @@ public class InsertConcert {
 
         try {
             conn.connect();
-            String query = "INSERT INTO events (judul, SportType, harga, eventStart, eventEnd, description, kategori, capacity, Date, seller_id) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO events (judul, SportType, harga, description, kategori, capacity, Date, seller_id) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)";
             
             
             java.sql.Date sqlDate = new java.sql.Date(eventSport.getTanggal().getTime());     
@@ -100,11 +98,11 @@ public class InsertConcert {
             stmt.setString(1, eventSport.getTitle());
             stmt.setString(2, eventSport.getJenisSport());
             stmt.setDouble(3, eventSport.getPrice());
-            stmt.setString(6, eventSport.getDesc());
-            stmt.setString(7, EventCat.SPORT.name());
-            stmt.setInt(8, eventSport.getCapacity());
-            stmt.setDate(9, sqlDate);
-            stmt.setInt(10, sellerId);
+            stmt.setString(4, eventSport.getDesc());
+            stmt.setString(5, EventCat.SPORT.name());
+            stmt.setInt(7, eventSport.getCapacity());
+            stmt.setDate(8, sqlDate);
+            stmt.setInt(9, sellerId);
 
 
             int rows = stmt.executeUpdate();
