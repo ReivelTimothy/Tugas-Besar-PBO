@@ -105,7 +105,7 @@ public class Register {
                 new BuyMembership();
             }
         });
-
+        //tambahan cardNum buat input register
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String username = usernameField.getText();
