@@ -12,16 +12,13 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import Controller.LoginCheck;
+import Controller.LoginSingleton;
 
 public class Login {
     private Frame frame;
 
     public Login() {
         inputLogin();
-    }
-
-    public static void main(String[] args) {
-        new Login();
     }
 
     public void inputLogin() {
@@ -54,10 +51,13 @@ public class Login {
             public void actionPerformed(ActionEvent e) {
                 String email = usernameField.getText();
                 String password = String.valueOf(passwordField.getPassword());
-
-                LoginCheck check = new LoginCheck();
-                check.Login(email, password);
-
+                new LoginCheck(email, password);
+                if (LoginSingleton.getInstance().getID() == 0) {
+                    JOptionPane.showMessageDialog(null, "Maaf data anda tidak ditemukan silahkan coba lagi");
+                } else {
+                    frame.dispose();
+                    new ViewTicket();
+                }
             }
         });
     }
