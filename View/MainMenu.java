@@ -9,9 +9,8 @@ import javax.swing.JPanel;
 
 public class MainMenu {
     private JFrame frame;
-
-    public MainMenu() {
-        showMainMenu();
+    public static void main(String[] args) {
+        new MainMenu().showMainMenu();
     }
     
     public void showMainMenu() {

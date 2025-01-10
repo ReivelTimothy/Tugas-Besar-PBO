@@ -6,7 +6,7 @@ import Models.Enumeration.EventCat;
 
 public abstract class Event {
     int eventId;
-    String title, location,desc, path;
+    String title, location, desc, path;
     double price;
     int capacity;
     Date tanggal;

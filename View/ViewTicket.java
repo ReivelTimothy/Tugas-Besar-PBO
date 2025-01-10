@@ -37,7 +37,7 @@ public class ViewTicket {
         JButton viewIncomeButtonSeller = new JButton("View Income");
         JButton viewIncomeButtonAdmin = new JButton("View Income");
 
-        if (LoginSingleton.checkInstance()) {
+        if (LoginSingleton.getInstance().getID() == 0) {
             loginButton.setVisible(true);
             registerButton.setVisible(true);
             addConcertButton.setVisible(false);
@@ -126,6 +126,7 @@ public class ViewTicket {
 
                     JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
                     JButton buyNowButton = new JButton("Buy Now");
+                    
                     buyNowButton.setFont(new Font("Arial", Font.BOLD, 14));
                     buyNowButton.setPreferredSize(new Dimension(100, 30));
                     buyNowButton.addActionListener(e -> {
