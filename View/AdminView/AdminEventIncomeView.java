@@ -1,6 +1,8 @@
 package View.AdminView;
 
 import javax.swing.*;
+
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Controller.Admin.AdminEventIncome;
@@ -27,6 +29,10 @@ public class AdminEventIncomeView {
         specificEventButton.setBounds(200, 30, 150, 30);
         frame.add(specificEventButton);
 
+        specificEventButton.setBackground(new Color(0x2d5aed));
+        specificEventButton.setForeground(Color.WHITE);
+        specificEventButton.setFocusPainted(false);
+        specificEventButton.setBorderPainted(false);
         // Membuat label dan text field untuk input event ID
         JLabel eventIdLabel = new JLabel("Event ID:");
         eventIdLabel.setBounds(30, 80, 80, 30);
@@ -42,10 +48,19 @@ public class AdminEventIncomeView {
         frame.add(calculateButton);
         calculateButton.setVisible(false);
 
+        calculateButton.setBackground(new Color(0x2d5aed));
+        calculateButton.setForeground(Color.WHITE);
+        calculateButton.setFocusPainted(false);
+        calculateButton.setBorderPainted(false);
         // Label untuk menampilkan hasil
         JLabel resultLabel = new JLabel("Hasil akan ditampilkan di sini.");
         resultLabel.setBounds(30, 180, 300, 30);
         frame.add(resultLabel);
+
+        allEventsButton.setBackground(new Color(0x2d5aed));
+        allEventsButton.setForeground(Color.WHITE);
+        allEventsButton.setFocusPainted(false);
+        allEventsButton.setBorderPainted(false);
 
         allEventsButton.addActionListener(new ActionListener() {
             @Override
@@ -86,7 +101,8 @@ public class AdminEventIncomeView {
         // Menyembunyikan input event ID secara default
         eventIdLabel.setVisible(false);
         eventIdField.setVisible(false);
-
+        frame.getContentPane() .setBackground(new Color(0x567af0));
+       
         // Menampilkan frame di tengah layar
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

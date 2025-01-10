@@ -73,6 +73,11 @@ public class EditEventPriceView {
                 }
             }
         });
+        frame.getContentPane().setBackground(new Color(0x567af0));
+        updateButton.setBackground(new Color(0x2d5aed));
+        updateButton.setForeground(Color.WHITE);
+        updateButton.setFocusPainted(false);
+        updateButton.setBorderPainted(false);
 
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
