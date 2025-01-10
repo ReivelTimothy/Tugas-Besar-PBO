@@ -28,6 +28,7 @@ import Controller.Seller.*;
 import Models.Classess.*;
 import Models.Enumeration.EventCat;
 import View.DateLabelFormatter;
+import View.ViewTicket;
 
 public class AddConcert {
     static EventCat eventCat = EventCat.MUSIC;
@@ -72,7 +73,6 @@ public class AddConcert {
         JPanel tanggal = createDateInput(date, "Tanggal ");
         JPanel discount = createInputText("Discount 4 member");
         JPanel kapasitas = createInputText("total Kapasitas ");
-        JPanel genre = createInputText("genre");
         JPanel gambar = createInputFileChooser("Masukan Gambar Anda", frame);
 
         // variabel hanya ada didalam event tertentu
@@ -89,7 +89,6 @@ public class AddConcert {
         masterPanel.add(jenisKonser);
         masterPanel.add(harga);
         masterPanel.add(discount);
-        masterPanel.add(genre);
         masterPanel.add(kapasitas);
         masterPanel.add(desc);
         masterPanel.add(tanggal);
@@ -151,6 +150,8 @@ public class AddConcert {
                     System.err.println("Terjadi kesalahan saat memindahkan file: " + re.getMessage());
                 }
             }
+            new ViewTicket();
+            frame.dispose();
         });
 
         concertButton.addActionListener(e -> {
@@ -193,6 +194,8 @@ public class AddConcert {
     public static JDatePickerImpl createJDatePicker() {
         JPanel container = new JPanel();
         JPanel subContainer = new JPanel();
+
+        
 
         UtilDateModel model = new UtilDateModel();
         Properties p = new Properties();

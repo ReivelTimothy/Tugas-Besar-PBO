@@ -1,14 +1,17 @@
 package View;
 import javax.swing.*;
 
+import Controller.LoginSingleton;
 import Controller.Seller.GetEventData;
 
 import java.awt.*;
 import Models.Classess.Event;
+import View.SellerView.AddConcert;
+
 import java.io.File;
 
 public class ViewTicket {
-    public static void main(String[] args) {
+    public ViewTicket() {
         // Membuat frame utama
         JFrame frame = new JFrame("VIEW EVENT TICKET");
         frame.setSize(800, 600);
@@ -27,15 +30,68 @@ public class ViewTicket {
 
         // Tombol menu di kanan atas
         JPanel menuPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        JButton logout = new JButton("Logout");
         JButton loginButton = new JButton("Login");
         JButton registerButton = new JButton("Register");
         JButton addConcertButton = new JButton("Add Concert");
-        JButton viewIncomeButton = new JButton("View Income");
+        JButton viewIncomeButtonSeller = new JButton("View Income");
+        JButton viewIncomeButtonAdmin = new JButton("View Income");
 
+        if (LoginSingleton.getInstance().getID() == 0) {
+            loginButton.setVisible(true);
+            registerButton.setVisible(true);
+            addConcertButton.setVisible(false);
+            viewIncomeButtonSeller.setVisible(false);
+            viewIncomeButtonAdmin.setVisible(false);
+            logout.setVisible(false);
+        } else {
+            logout.setVisible(true);
+            loginButton.setVisible(false);
+            registerButton.setVisible(false);
+            if (LoginSingleton.getInstance().getRole() == 0) { // customer
+                addConcertButton.setVisible(false);
+                viewIncomeButtonSeller.setVisible(false);
+                viewIncomeButtonAdmin.setVisible(false);
+            } else if (LoginSingleton.getInstance().getRole() == 1) { // seller
+                addConcertButton.setVisible(true);
+                viewIncomeButtonSeller.setVisible(true);
+                viewIncomeButtonAdmin.setVisible(false);
+            } else { // admin
+                addConcertButton.setVisible(false);
+                viewIncomeButtonSeller.setVisible(false);
+                viewIncomeButtonAdmin.setVisible(true);
+            }
+        }
+        logout.addActionListener(e ->{
+            JOptionPane.showMessageDialog(null, "Terima Kasih Selamat Tinggal ");
+            LoginSingleton.getInstance().setNullInstance();
+            new ViewTicket();
+            frame.dispose();
+        });
+        loginButton.addActionListener(e->{
+           new Login();
+           frame.dispose(); 
+        });
+        registerButton.addActionListener(e->{
+            new Register();
+            frame.dispose();
+        });
+        addConcertButton.addActionListener(e ->{
+            new AddConcert();
+            frame.dispose();
+        });
+
+
+
+
+
+
+        menuPanel.add(logout);
         menuPanel.add(loginButton);
         menuPanel.add(registerButton);
         menuPanel.add(addConcertButton);
-        menuPanel.add(viewIncomeButton);
+        menuPanel.add(viewIncomeButtonSeller);
+        menuPanel.add(viewIncomeButtonAdmin);
 
         headerPanel.add(menuPanel, BorderLayout.EAST);
 
@@ -70,6 +126,7 @@ public class ViewTicket {
 
                     JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
                     JButton buyNowButton = new JButton("Buy Now");
+                    
                     buyNowButton.setFont(new Font("Arial", Font.BOLD, 14));
                     buyNowButton.setPreferredSize(new Dimension(100, 30));
                     buyNowButton.addActionListener(e -> {
