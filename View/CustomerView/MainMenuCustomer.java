@@ -36,7 +36,6 @@ public class MainMenuCustomer {
 
         frame = new JFrame("Main Menu - Customer");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setBackground(Color.getHSBColor(0.6f, 0.7f, 0.9f));
         frame.setBounds(start_x, start_y, FRAME_WIDTH + 250, FRAME_HEIGHT);
 
         JPanel panel = new JPanel();
@@ -60,6 +59,7 @@ public class MainMenuCustomer {
         JButton refundButton = new JButton("Request Refund");
         refundButton.setBounds(500, 100, 250, 50);
         refundButton.setFont(buttonFont);
+        refundButton.setBackground(new Color(0x2d5aed));
         refundButton.setForeground(Color.WHITE);
         refundButton.setFocusPainted(false);
         refundButton.setBorderPainted(false);
