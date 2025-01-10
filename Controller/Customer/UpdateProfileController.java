@@ -7,9 +7,9 @@ import Controller.DatabaseHandler;
 import Controller.LoginSingleton;
 
 public class UpdateProfileController {
+    static DatabaseHandler conn = new DatabaseHandler();
 
-    public void updateUserInDatabase(String newUsername, String newPassword, String newPhone, String newEmail) {
-        DatabaseHandler conn = new DatabaseHandler();
+    public boolean updateUserInDatabase(String newUsername, String newPassword, String newPhone, String newEmail) {
 
         int cust_id = LoginSingleton.getInstance().getID();
 
@@ -28,14 +28,16 @@ public class UpdateProfileController {
             int rowsUpdated = statement.executeUpdate();
 
             if (rowsUpdated > 0) {
-                System.out.println("User profile updated successfully.");
+                return true;
             } else {
-                System.out.println("Failed to update profile.");
+                return false;
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         } finally {
             conn.disconnect();
         }
+        
     }
 }

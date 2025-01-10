@@ -42,6 +42,10 @@ public class ViewStatusMembership {
 
         statusButton = new JButton("View Status Membership");
         statusButton.setBounds(10, 60, 200, 30);
+
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(30, 150, 200, 35);
+        frame.add(backButton);
         statusButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -49,6 +53,13 @@ public class ViewStatusMembership {
             }
         });
         frame.add(statusButton);
+
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new MainMenuCustomer();
+            }
+        });
     }
     public static void main(String[] args) {
         new ViewStatusMembership();

@@ -60,6 +60,8 @@ public class Feedback {
                 String feedback = feedbackText.getText();
                 if (check.insertFeedback(feedback)) {
                     JOptionPane.showMessageDialog(frame, "Thank you for your feedback!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    frame.dispose();
+                    new MainMenuCustomer();
                 } else {
                     JOptionPane.showMessageDialog(frame, "Feedback cannot be empty!", "Error", JOptionPane.ERROR_MESSAGE);
                     feedbackText.setText("");

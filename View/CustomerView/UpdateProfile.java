@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -71,6 +72,11 @@ public class UpdateProfile {
 
         updateButton = new JButton("Update Profile");
         updateButton.setBounds(10, 180, 150, 30);
+
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(30, 150, 200, 35);
+        frame.add(backButton);
+        
         updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -80,10 +86,23 @@ public class UpdateProfile {
                 String newPhone = fieldNoTlp.getText();
                 String newEmail = fieldEmail.getText();
                 
-                profileController.updateUserInDatabase(newUsername, newPassword, newPhone, newEmail);
+                if (profileController.updateUserInDatabase(newUsername, newPassword, newPhone, newEmail)) {
+                    JOptionPane.showMessageDialog(frame, "Update Profile berhasil!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    frame.dispose();
+                    new MainMenuCustomer();
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Update gagal.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         frame.add(updateButton);
+
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new MainMenuCustomer();
+            }
+        });
     }
     public static void main(String[] args) {
         new UpdateProfile();

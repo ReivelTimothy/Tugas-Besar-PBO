@@ -44,6 +44,11 @@ public class ViewCart {
 
         viewButton = new JButton("View Cart");
         viewButton.setBounds(10, 60, 100, 30);
+
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(30, 150, 200, 35);
+        frame.add(backButton);
+
         viewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -51,6 +56,15 @@ public class ViewCart {
             }
         });
         frame.add(viewButton);
+
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new MainMenuCustomer();
+            }
+        });
+
+        frame.add(backButton);
     }
     public static void main(String[] args) {
         new ViewCart();
