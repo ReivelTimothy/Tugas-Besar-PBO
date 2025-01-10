@@ -1,11 +1,13 @@
 package View.CustomerView;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -24,6 +26,7 @@ public class UpdateProfile {
         frame = new JFrame("Update Profile");
         frame.setVisible(true);
         frame.setSize(400, 300);
+        frame.getContentPane().setBackground(Color.getHSBColor(0.6f, 0.7f, 0.9f));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
 
@@ -69,6 +72,11 @@ public class UpdateProfile {
 
         updateButton = new JButton("Update Profile");
         updateButton.setBounds(10, 180, 150, 30);
+
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(30, 150, 200, 35);
+        frame.add(backButton);
+        
         updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -78,10 +86,23 @@ public class UpdateProfile {
                 String newPhone = fieldNoTlp.getText();
                 String newEmail = fieldEmail.getText();
                 
-                profileController.updateUserInDatabase(newUsername, newPassword, newPhone, newEmail);
+                if (profileController.updateUserInDatabase(newUsername, newPassword, newPhone, newEmail)) {
+                    JOptionPane.showMessageDialog(frame, "Update Profile berhasil!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    frame.dispose();
+                    new MainMenuCustomer();
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Update gagal.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         frame.add(updateButton);
+
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new MainMenuCustomer();
+            }
+        });
     }
     public static void main(String[] args) {
         new UpdateProfile();

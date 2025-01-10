@@ -1,6 +1,7 @@
 package View.CustomerView;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,6 +28,8 @@ public class Feedback {
         frame = new JFrame("Customer Feedback");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        frame.getContentPane().setBackground(Color.getHSBColor(0.6f, 0.7f, 0.9f));
+        frame.setLocationRelativeTo(null);
         frame.setSize(400, 300);
         frame.setLayout(new BorderLayout());
 
@@ -57,6 +60,8 @@ public class Feedback {
                 String feedback = feedbackText.getText();
                 if (check.insertFeedback(feedback)) {
                     JOptionPane.showMessageDialog(frame, "Thank you for your feedback!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    frame.dispose();
+                    new MainMenuCustomer();
                 } else {
                     JOptionPane.showMessageDialog(frame, "Feedback cannot be empty!", "Error", JOptionPane.ERROR_MESSAGE);
                     feedbackText.setText("");
@@ -68,6 +73,7 @@ public class Feedback {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
+                new MainMenuCustomer();
             }
         });
 

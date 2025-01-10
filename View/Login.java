@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import Controller.LoginCheck;
 import Controller.LoginSingleton;
 import View.AdminView.MainMenuAdmin;
 import View.CustomerView.MainMenuCustomer;
@@ -26,7 +25,7 @@ public class Login {
 
     public void inputLogin() {
         frame = new JFrame();
-        frame.setBounds(50, 50, 400, 1000);
+        frame.setBounds(100, 100, 350, 350);
         frame.setTitle("LOGIN");
         frame.setLayout(null);
         JLabel labelTitleLogin = new JLabel("==LOGIN==");
