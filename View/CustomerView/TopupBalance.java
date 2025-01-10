@@ -114,4 +114,8 @@ public class TopupBalance {
         frame.add(panel);
         frame.setVisible(true);
     }
+
+    public static void main(String[] args) {
+        new TopupBalance();
+    }
 }

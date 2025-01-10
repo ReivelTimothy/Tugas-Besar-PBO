@@ -20,6 +20,7 @@ public class TransactionHistoryController {
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
 
         try {
+            conn.connect();
             String query = "SELECT ticket_id, ticket_desc, cust_id, event_id, timeBuy FROM ticket WHERE cust_id = ?";
             PreparedStatement preparedStatement = conn.con.prepareStatement(query);
             preparedStatement.setInt(1, custId);

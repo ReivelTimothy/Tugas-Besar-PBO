@@ -15,7 +15,7 @@ public class StatusMembershipController {
     static DatabaseHandler conn = new DatabaseHandler();
 
     public static void displayMembership(JTable statusTable) {
-        String query = "SELECT id, Membership FROM customer WHERE id = ?";
+        String query = "SELECT cust_id, Membership FROM customer WHERE cust_id = ?";
         int userId = LoginSingleton.getInstance().getID();
         try {
             conn.connect();

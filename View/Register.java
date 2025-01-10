@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import Controller.Customer.AddUserController;
+import Controller.AddUserController;
 import View.CustomerView.BuyMembership;
 
 public class Register {

@@ -76,6 +76,8 @@ public class Feedback {
 
         frame.add(buttonPanel, BorderLayout.SOUTH);
 
-        
+    }
+    public static void main(String[] args) {
+        new Feedback();
     }
 }
