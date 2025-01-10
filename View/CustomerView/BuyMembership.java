@@ -1,5 +1,6 @@
 package View.CustomerView;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -24,7 +25,9 @@ public class BuyMembership {
     private void membershipBuy() {
         frame = new JFrame();
         frame.setBounds(100, 100, 400, 200);
+        frame.setLocationRelativeTo(null);
         frame.setTitle("Buy Membership");
+        frame.getContentPane().setBackground(Color.getHSBColor(0.6f, 0.7f, 0.9f));
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -35,7 +38,10 @@ public class BuyMembership {
         JButton buyButton = new JButton("Buy Membership");
         buyButton.setBounds(100, 80, 200, 30);
         frame.add(buyButton);
-
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(100, 140, 200, 35);
+        frame.add(backButton);
+        
         frame.setVisible(true);
 
         buyButton.addActionListener(new ActionListener() {
@@ -47,6 +53,13 @@ public class BuyMembership {
                 } else {
                     JOptionPane.showMessageDialog(frame, "Insufficient balance to activate membership.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
+            }
+        });
+        
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new MainMenuCustomer();
             }
         });
     }

@@ -1,5 +1,6 @@
 package View.CustomerView;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,6 +24,7 @@ public class EditCart {
     public EditCart() {
         JFrame frame = new JFrame("Edit Cart");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setBackground(Color.getHSBColor(0.6f, 0.7f, 0.9f));
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(5, 2, 10, 10));

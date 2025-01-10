@@ -1,5 +1,6 @@
 package View.CustomerView;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -24,6 +25,7 @@ public class ViewCart {
         frame = new JFrame("View Cart");
         frame.setVisible(true);
         frame.setSize(600, 400);
+        frame.getContentPane().setBackground(Color.getHSBColor(0.6f, 0.7f, 0.9f));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
 
