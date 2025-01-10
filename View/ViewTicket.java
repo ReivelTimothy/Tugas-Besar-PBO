@@ -81,11 +81,6 @@ public class ViewTicket {
             frame.dispose();
         });
 
-
-
-
-
-
         menuPanel.add(logout);
         menuPanel.add(loginButton);
         menuPanel.add(registerButton);
