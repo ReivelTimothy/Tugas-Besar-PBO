@@ -1,19 +1,11 @@
 package View.CustomerView;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-
-import Controller.Customer.ControllerUser;
-import Controller.Customer.StatusMembershipController;
-import Controller.Customer.getRefundData;
 
 public class RefundView {
     public static void main(String[] args) {

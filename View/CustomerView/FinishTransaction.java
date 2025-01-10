@@ -59,6 +59,8 @@ public class FinishTransaction {
         frame = new JFrame("Finish Transaction");
         frame.setUndecorated(true);
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
+        frame.getContentPane().setBackground(Color.getHSBColor(0.6f, 0.7f, 0.9f));
         frame.setBounds(start_x, start_y, FRAME_WIDTH, FRAME_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

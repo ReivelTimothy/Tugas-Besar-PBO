@@ -46,6 +46,7 @@ public class TopupBalance {
         frame = new JFrame("Top-Up Balance");
         frame.setUndecorated(true);
         frame.setBounds(start_x, start_y, FRAME_WIDTH, FRAME_HEIGHT);
+        frame.getContentPane().setBackground(Color.getHSBColor(0.6f, 0.7f, 0.9f));
         frame.setShape(new RoundRectangle2D.Double(0, 0, FRAME_WIDTH, FRAME_HEIGHT, 30, 30));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
