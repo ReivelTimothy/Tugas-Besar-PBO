@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,29 +18,36 @@ import View.CustomerView.MainMenuCustomer;
 import View.SellerView.MainMenuSeller;
 
 public class Login {
-    private Frame frame;
-
+   
     public Login() {
         inputLogin();
     }
 
     public void inputLogin() {
-        frame = new JFrame();
+        JFrame frame = new JFrame();
         frame.setBounds(100, 100, 350, 350);
         frame.setTitle("LOGIN");
         frame.setLayout(null);
+        frame.setLocationRelativeTo(null);
+
         JLabel labelTitleLogin = new JLabel("==LOGIN==");
-        labelTitleLogin.setBounds(150, 50, 70, 35);
+        labelTitleLogin.setBounds(130, 30, 70, 35);
         frame.add(labelTitleLogin);
+        labelTitleLogin.setForeground(Color.WHITE);
+        
         JLabel labelUsername = new JLabel("Email : ");
         labelUsername.setBounds(25, 80, 90, 55);
         frame.add(labelUsername);
+        labelUsername.setForeground(Color.WHITE);
+        
         JTextField usernameField = new JTextField();
         usernameField.setBounds(110, 95, 120, 30);
         frame.add(usernameField);
+
         JLabel labelPassword = new JLabel("Password : ");
         labelPassword.setBounds(25, 110, 90, 55);
         frame.add(labelPassword);
+        labelPassword.setForeground(Color.WHITE);
         JPasswordField passwordField = new JPasswordField();
         passwordField.setBounds(110, 130, 120, 30);
         frame.add(passwordField);
@@ -48,6 +56,12 @@ public class Login {
         submitButton.setBounds(110, 210, 100, 30);
         frame.add(submitButton);
 
+        submitButton.setBackground(new Color(0x2d5aed));
+        submitButton.setForeground(Color.WHITE);
+        submitButton.setFocusPainted(false);
+        submitButton.setBorderPainted(false);
+        frame.getContentPane().setBackground(new Color(0x567af0));
+       
         frame.setVisible(true);
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -72,5 +86,6 @@ public class Login {
                 }
             }
         });
+     
     }
 }
