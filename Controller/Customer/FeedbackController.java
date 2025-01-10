@@ -14,7 +14,9 @@ public class FeedbackController {
     
         String query = "INSERT INTO feedback (FeedbackText, cust_id) VALUES (?, ?)";
     
-        try (PreparedStatement stmt = conn.con.prepareStatement(query)) {
+        try {
+            conn.connect();
+            PreparedStatement stmt = conn.con.prepareStatement(query);
             stmt.setString(1, feedback);
             stmt.setInt(2, cust_id);
     

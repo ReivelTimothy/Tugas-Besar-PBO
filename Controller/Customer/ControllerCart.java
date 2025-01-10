@@ -13,7 +13,8 @@ public class ControllerCart {
         double totalAmount = 0;
 
         try {
-            String query = "SELECT SUM(e.harga * COUNT(c.card_id)) AS Amount "
+            conn.connect();
+            String query = "SELECT SUM(e.harga * COUNT(c.cart_id)) AS Amount "
                          + "FROM cart c "
                          + "JOIN events e ON c.event_id = e.event_id "
                          + "GROUP BY c.event_id";
@@ -39,6 +40,7 @@ public class ControllerCart {
         if (payment >= totalAmount) {
 
             try {
+                conn.connect();
                 String query = "DELETE FROM Cart";
                 PreparedStatement statement = conn.con.prepareStatement(query);
                 statement.executeUpdate();

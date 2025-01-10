@@ -28,6 +28,9 @@ public class FinishTransaction {
     private JButton finishButton;
     private JButton exitButton;
 
+    public FinishTransaction() {
+        transaction();
+    }
     public void transaction() {
 
         FinishTransactionController transaction = new FinishTransactionController();
@@ -55,6 +58,7 @@ public class FinishTransaction {
 
         frame = new JFrame("Finish Transaction");
         frame.setUndecorated(true);
+        frame.setVisible(true);
         frame.setBounds(start_x, start_y, FRAME_WIDTH, FRAME_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -127,6 +131,10 @@ public class FinishTransaction {
         panel.add(exitButton);
 
         frame.add(panel);
-        frame.setVisible(true);
+        
+    }
+
+    public static void main(String[] args) {
+        new FinishTransaction();
     }
 }

@@ -15,6 +15,7 @@ public class FinishTransactionController {
     public Object[][] getCartItems() {
         int custId = LoginSingleton.getInstance().getID();
         try {
+            conn.connect();
             String query = "SELECT c.cart_id, e.judul AS event_name, e.harga, COUNT(c.ticket_id) AS quantity, (e.harga * COUNT(c.ticket_id)) AS total_price "
                          + "FROM cart c "
                          + "JOIN events e ON c.event_id = e.event_id "
@@ -49,6 +50,7 @@ public class FinishTransactionController {
     public double calculateTotalAmount(List<Integer> selectedCartIds) {
         double totalAmount = 0;
         try {
+            conn.connect();
             for (int cartId : selectedCartIds) {
                 String query = "SELECT e.harga, COUNT(c.ticket_id) AS quantity, (e.harga * COUNT(c.ticket_id)) AS total_price "
                              + "FROM cart c "
@@ -78,6 +80,7 @@ public class FinishTransactionController {
     
         if (currentBalance >= totalAmount) {
             try {
+                conn.connect();
                 for (int cartId : selectedCartIds) {
                     String query = "DELETE FROM cart WHERE cart_id = ? AND cust_id = ?";
                     PreparedStatement statement = conn.con.prepareStatement(query);
@@ -104,6 +107,7 @@ public class FinishTransactionController {
 
         int custId = LoginSingleton.getInstance().getID();
         try {
+            conn.connect();
             String query = "UPDATE customer SET balance = balance - ? WHERE cust_id = ?";
             PreparedStatement statement = conn.con.prepareStatement(query);
             statement.setDouble(1, totalAmount);

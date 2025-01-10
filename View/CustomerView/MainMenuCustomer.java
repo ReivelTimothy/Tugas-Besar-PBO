@@ -141,4 +141,8 @@ public class MainMenuCustomer {
         button.setBorderPainted(false);
         return button;
     }
+
+    public static void main(String[] args) {
+        new MainMenuCustomer();
+    }
 }
