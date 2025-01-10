@@ -68,6 +68,7 @@ public class EditCart {
                 if (success) {
                     JOptionPane.showMessageDialog(frame, "Cart updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     frame.dispose();
+                    new MainMenuCustomer();
                 } else {
                     JOptionPane.showMessageDialog(frame, "Failed to update cart!", "Error", JOptionPane.ERROR_MESSAGE);
                 }

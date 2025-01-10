@@ -68,6 +68,8 @@ public class Addtocart {
                     boolean success = CartControllerAdd.addToCart(eventid, ticketId);
                     if (success) {
                         JOptionPane.showMessageDialog(frame, "Item added to cart successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        frame.dispose();
+                        new MainMenuCustomer();
                     } else {
                         JOptionPane.showMessageDialog(frame, "Failed to add item to cart!", "Error", JOptionPane.ERROR_MESSAGE);
                     }

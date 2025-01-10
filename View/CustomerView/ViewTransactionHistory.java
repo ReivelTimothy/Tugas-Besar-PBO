@@ -45,6 +45,11 @@ public class ViewTransactionHistory {
 
         statusButton = new JButton("View Transaction History");
         statusButton.setBounds(10, 60, 200, 30);
+
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(30, 170, 200, 35);
+        frame.add(backButton);
+
         statusButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,5 +57,13 @@ public class ViewTransactionHistory {
             }
         });
         frame.add(statusButton);
+
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new MainMenuCustomer();
+            }
+        });
+
     }
 }

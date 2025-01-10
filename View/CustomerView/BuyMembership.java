@@ -24,7 +24,7 @@ public class BuyMembership {
 
     private void membershipBuy() {
         frame = new JFrame();
-        frame.setBounds(100, 100, 400, 200);
+        frame.setBounds(100, 100, 400, 290);
         frame.setLocationRelativeTo(null);
         frame.setTitle("Buy Membership");
         frame.getContentPane().setBackground(Color.getHSBColor(0.6f, 0.7f, 0.9f));
@@ -50,6 +50,8 @@ public class BuyMembership {
                 boolean isSuccessful = MembershipController.activateMembership();
                 if (isSuccessful) {
                     JOptionPane.showMessageDialog(frame, "Membership activated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    frame.dispose();
+                    new MainMenuCustomer();
                 } else {
                     JOptionPane.showMessageDialog(frame, "Insufficient balance to activate membership.", "Error", JOptionPane.ERROR_MESSAGE);
                 }

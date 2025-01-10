@@ -1,6 +1,8 @@
 package View.CustomerView;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -36,14 +38,27 @@ public class RefundView {
         statusLabel.setBounds(20, 100, 280, 25);
         frame.add(statusLabel);
 
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(30, 170, 200, 35);
+        frame.add(backButton);
+
         requestButton.addActionListener(e -> {
         
             if (new Controller.Customer.getRefundData().requestRefund(eventIdField.getText())) {
                 statusLabel.setText("Status : Berhasil Refund Ticket");
+                frame.dispose();
+                new MainMenuCustomer();
             }
            else {
             statusLabel.setText("Status : Gagal Refund Ticket");
            }
+        });
+
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new MainMenuCustomer();
+            }
         });
 
         requestButton.setBackground(new Color(0x2d5aed));

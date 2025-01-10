@@ -95,6 +95,8 @@ public class TopupBalance {
 
                 title.setText("Balance: Rp. " + newBalance);
                 inputSaldo.setText("");
+                frame.dispose();
+                new MainMenuCustomer();
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(frame, "Please enter a valid amount.", "Error", JOptionPane.ERROR_MESSAGE);
             }
