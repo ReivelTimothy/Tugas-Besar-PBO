@@ -24,10 +24,12 @@ public class ViewStatusMembership {
     public ViewStatusMembership() {
         frame = new JFrame("View Status Membership");
         frame.setVisible(true);
-        frame.setSize(600, 400);
+        frame.setSize(600, 600);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.getContentPane().setBackground(Color.getHSBColor(0.6f, 0.7f, 0.9f));
         frame.setLayout(null);
+        frame.setLocationRelativeTo(null);
+
 
         ControllerUser user = new ControllerUser();
 
@@ -44,7 +46,7 @@ public class ViewStatusMembership {
         statusButton.setBounds(10, 60, 200, 30);
 
         JButton backButton = new JButton("Back");
-        backButton.setBounds(30, 150, 200, 35);
+        backButton.setBounds(10, 370, 200, 35);
         frame.add(backButton);
         statusButton.addActionListener(new ActionListener() {
             @Override
