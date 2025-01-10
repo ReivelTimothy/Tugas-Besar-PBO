@@ -10,8 +10,8 @@ import javax.swing.JPanel;
 public class MainMenuSeller {
     private JFrame frame;
 
-    public static void main(String[] args) {
-        new MainMenuSeller().showMainMenu();
+    public MainMenuSeller() {
+        showMainMenu();
     }
 
     public void showMainMenu() {
@@ -28,8 +28,6 @@ public class MainMenuSeller {
         title2.setFont(new Font("SansSerif", Font.BOLD, 24));
         panel.add(title2);
 
-
-
         JButton createBtn = new JButton("Create Event");
         createBtn.setBounds(95, 150, 260, 50);
         panel.add(createBtn);
@@ -42,10 +40,6 @@ public class MainMenuSeller {
             new RequestEditPriceEvent();
         });
 
-
-
-
-
         JButton exitBtn = new JButton("EXIT");
         exitBtn.setBounds(95, 310, 260, 50);
         panel.add(exitBtn);
@@ -54,10 +48,6 @@ public class MainMenuSeller {
             frame.dispose();
         });
 
-
-
-
-        
         frame.add(panel);
         frame.setVisible(true);
     }

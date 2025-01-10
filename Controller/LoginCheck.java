@@ -32,8 +32,9 @@ public class LoginCheck {
                 if (emailLogin.equals(email) && pass.equals(password)) {
                     LoginSingleton.getInstance().setUser(id, 0);
                     JOptionPane.showMessageDialog(null, "Welcome Customer !");
-                } else if (emailLogin.equals(email) && (!pass.equals(password))) {
-                    JOptionPane.showMessageDialog(null, "Password salah.");
+                    break;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Email atau password salah !");
                 }
 
             }
@@ -72,9 +73,9 @@ public class LoginCheck {
                 if (emailLogin.equals(email) && pass.equals(password)) {
                     LoginSingleton.getInstance().setUser(id, 1);
                     JOptionPane.showMessageDialog(null, "Welcome Seller!");
-
-                } else if (emailLogin.equals(email) && (!pass.equals(password))) {
-                    JOptionPane.showMessageDialog(null, "Cek password nya lagi.");
+                    break;
+                } else if (!emailLogin.equals(email) && (!pass.equals(password))) {
+                    JOptionPane.showMessageDialog(null, "Email atau password salah !");
                 }
             }
             if (LoginSingleton.getInstance().getID() == 0) {
@@ -109,9 +110,9 @@ public class LoginCheck {
                 if (emailLogin.equals(email) && pass.equals(password)) {
                     JOptionPane.showMessageDialog(null, "Welcome Admin!");
                     LoginSingleton.getInstance().setUser(id, 2);
-
+                    break;
                 } else if (emailLogin.equals(email) && (!pass.equals(password))) {
-                    JOptionPane.showMessageDialog(null, "Cek password nya lagi.");
+                    JOptionPane.showMessageDialog(null, "Email atau password salah !");
                 } else {
                     JOptionPane.showMessageDialog(null, "Login gagal. Cek lagi email atau password nya.", "Error",
                             JOptionPane.ERROR_MESSAGE);
@@ -124,6 +125,7 @@ public class LoginCheck {
         } finally {
             conn.disconnect();
         }
+       
     }
-
+    
 }

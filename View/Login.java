@@ -13,6 +13,9 @@ import javax.swing.JTextField;
 
 import Controller.LoginCheck;
 import Controller.LoginSingleton;
+import View.AdminView.MainMenuAdmin;
+import View.CustomerView.MainMenuCustomer;
+import View.SellerView.MainMenuSeller;
 
 public class Login {
     private Frame frame;
@@ -51,12 +54,22 @@ public class Login {
             public void actionPerformed(ActionEvent e) {
                 String email = usernameField.getText();
                 String password = String.valueOf(passwordField.getPassword());
-                new LoginCheck(email, password);
-                if (LoginSingleton.getInstance().getID() == 0) {
-                    JOptionPane.showMessageDialog(null, "Maaf data anda tidak ditemukan silahkan coba lagi");
-                } else {
+                new Controller.LoginCheck(email,password);
+                
+                if(LoginSingleton.getInstance().getRole() == 0) {
                     frame.dispose();
-                    new ViewTicket();
+                    new MainMenuCustomer();
+                }
+                else if (LoginSingleton.getInstance().getRole()==1){
+                    frame.dispose();
+                    new MainMenuSeller();
+                }
+                else if (LoginSingleton.getInstance().getRole()==2){
+                    frame.dispose();
+                    new MainMenuAdmin();
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Email atau password salah !");
                 }
             }
         });

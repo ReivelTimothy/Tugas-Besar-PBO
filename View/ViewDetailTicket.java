@@ -24,6 +24,7 @@ public class ViewDetailTicket extends JFrame {
         JButton backButton = new JButton("<- Back");
         backButton.addActionListener(e -> {
             dispose();
+            new ViewTicket();
         });
         topPanel.add(backButton);
         add(topPanel, BorderLayout.NORTH);

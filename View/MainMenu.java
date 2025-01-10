@@ -9,10 +9,11 @@ import javax.swing.JPanel;
 
 public class MainMenu {
     private JFrame frame;
-    public static void main(String[] args) {
-        new MainMenu().showMainMenu();
+
+    public MainMenu() {
+        showMainMenu();
     }
-    
+
     public void showMainMenu() {
         frame = new JFrame("Main Menu");
         frame.setBounds(50, 50, 450, 800); // SET FRAME BOUND

@@ -36,8 +36,7 @@ public class MainMenuCustomer {
 
         frame = new JFrame("Main Menu - Customer");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBounds(start_x, start_y, FRAME_WIDTH, FRAME_HEIGHT);
-
+        frame.setBounds(start_x, start_y, FRAME_WIDTH + 250, FRAME_HEIGHT);
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -56,6 +55,20 @@ public class MainMenuCustomer {
             new Addtocart();
         });
         panel.add(addToCartButton);
+
+        JButton refundButton = new JButton("Request Refund");
+        refundButton.setBounds(500, 100, 250, 50);
+        refundButton.setFont(buttonFont);
+        refundButton.setBackground(new Color(0x2d5aed));
+        refundButton.setForeground(Color.WHITE);
+        refundButton.setFocusPainted(false);
+        refundButton.setBorderPainted(false);
+
+        refundButton.addActionListener(e -> {
+            frame.dispose();
+            new RefundView();
+        });
+        panel.add(refundButton);
 
         JButton viewCartButton = createButton("View Cart", 120, 160, buttonFont);
         viewCartButton.addActionListener(e -> {
@@ -126,7 +139,6 @@ public class MainMenuCustomer {
             new Feedback();
         });
         panel.add(feedbackButton);
-
         frame.add(panel);
         frame.setVisible(true);
     }
