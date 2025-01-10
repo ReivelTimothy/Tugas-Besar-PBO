@@ -16,11 +16,13 @@ public class FinishTransactionController {
         int custId = LoginSingleton.getInstance().getID();
         try {
             conn.connect();
-            String query = "SELECT c.cart_id, e.judul AS event_name, e.harga, COUNT(c.ticket_id) AS quantity, (e.harga * COUNT(c.ticket_id)) AS total_price "
-                         + "FROM cart c "
-                         + "JOIN events e ON c.event_id = e.event_id "
-                         + "WHERE c.cust_id = ? "
-                         + "GROUP BY c.cart_id, e.judul, e.harga";
+            String query = """
+                        SELECT c.cart_id, e.judul AS event_name, e.harga, COUNT(c.ticket_id) AS quantity, (e.harga * COUNT(c.ticket_id)) AS total_price
+                        FROM cart c
+                        JOIN events e ON c.event_id = e.event_id
+                        WHERE c.cust_id = ?
+                        GROUP BY c.cart_id, e.judul, e.harga
+                         """;
             PreparedStatement statement = conn.con.prepareStatement(query);
             statement.setInt(1, custId);
             ResultSet resultSet = statement.executeQuery();
@@ -52,11 +54,12 @@ public class FinishTransactionController {
         try {
             conn.connect();
             for (int cartId : selectedCartIds) {
-                String query = "SELECT e.harga, COUNT(c.ticket_id) AS quantity, (e.harga * COUNT(c.ticket_id)) AS total_price "
-                             + "FROM cart c "
-                             + "JOIN events e ON c.event_id = e.event_id "
-                             + "WHERE c.cart_id = ? "
-                             + "GROUP BY e.harga";
+                String query = """
+                            SELECT e.harga, COUNT(c.ticket_id) AS quantity, SUM(e.harga) AS total_price
+                            FROM cart c
+                            JOIN events e ON c.event_id = e.event_id
+                            WHERE c.cart_id = ?
+                            """;
                 PreparedStatement statement = conn.con.prepareStatement(query);
                 statement.setInt(1, cartId);
                 ResultSet resultSet = statement.executeQuery();
