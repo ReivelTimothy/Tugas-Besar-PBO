@@ -53,15 +53,15 @@ public class RefundTicketApproveView {
         resultLabel.setBounds(120, 230, 300, 30);
         resultLabel.setVisible(false);
         frame.add(resultLabel);
-        
+
         refundButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 RefundStatus status = approveButton.isSelected() ? RefundStatus.APPROVED : RefundStatus.REJECTED;
                 int eventId = Integer.parseInt(eventIDField.getText());
                 int custId = Integer.parseInt(custIdField.getText());
-
-                //new RefundTicketUser().Refund(custId, eventId, status);
+                
+                new RefundTicketUser().Refund(custId, eventId, status);
                 resultLabel.setText("Refund ticket user status : " + status);
                 resultLabel.setVisible(true);
                 // if (success) {
