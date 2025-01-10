@@ -2,14 +2,15 @@ package Models.Classess;
 
 import java.sql.Date;
 
+import Models.Enumeration.EventCat;
+
 public class EventEducation extends Event {
     String namaPembicara;
 
-
-    public EventEducation(int eventId, String title, String location, String snk, String vendor, 
-            String desc, String timeStart, String timeEnd, double price, int capacity, Date tanggal,
+    public EventEducation(int eventId, String title,
+            String desc, String path, double price, int capacity, Date tanggal,
             String namaPembicara) {
-        super(eventId, title, location, snk, vendor,  desc, timeStart, timeEnd, price, capacity, tanggal);
+        super(eventId, title, desc, path, price, capacity, tanggal, EventCat.EDUCATION);
         this.namaPembicara = namaPembicara;
     }
 
@@ -20,5 +21,5 @@ public class EventEducation extends Event {
     public void setNamaPembicara(String namaPembicara) {
         this.namaPembicara = namaPembicara;
     }
-    
+
 }

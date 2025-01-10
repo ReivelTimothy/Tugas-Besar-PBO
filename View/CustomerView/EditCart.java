@@ -29,7 +29,6 @@ public class EditCart {
 
         panel.add(new JLabel("Cart ID :"));
         cartIdField = new JTextField();
-        cartIdField.setEditable(false);
         panel.add(cartIdField);
 
         panel.add(new JLabel("Event ID :"));

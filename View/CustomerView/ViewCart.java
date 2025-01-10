@@ -50,4 +50,7 @@ public class ViewCart {
         });
         frame.add(viewButton);
     }
+    public static void main(String[] args) {
+        new ViewCart();
+    }
 }

@@ -12,6 +12,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import Controller.AddUserController;
+import View.CustomerView.BuyMembership;
 
 public class Register {
     private JFrame frame;
@@ -104,7 +105,7 @@ public class Register {
                 new BuyMembership();
             }
         });
-
+        //tambahan cardNum buat input register
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String username = usernameField.getText();

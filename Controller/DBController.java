@@ -78,8 +78,8 @@ public class DBController {
             stmt.setInt(1, 0);
             stmt.setString(2, event.getTitle());
             stmt.setDouble(3, event.getPrice());
-            stmt.setString(4, event.getTimeStart());
-            stmt.setString(5, event.getTimeEnd());
+            // stmt.setString(4, event.getTimeStart());
+            // stmt.setString(5, event.getTimeEnd());
             stmt.setString(6, event.getDesc());
             stmt.setString(7, EventCat.getEnum(EventCat.MUSIC));
             stmt.setInt(8, event.getCapacity());

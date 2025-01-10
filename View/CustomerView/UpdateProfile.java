@@ -83,4 +83,7 @@ public class UpdateProfile {
         });
         frame.add(updateButton);
     }
+    public static void main(String[] args) {
+        new UpdateProfile();
+    }
 }
