@@ -17,7 +17,7 @@ public class RefundView {
     public RefundView() {
         JFrame frame = new JFrame("REFUND TICKET");
         frame.setTitle("Delete Event");
-        frame.setSize(350, 200);
+        frame.setSize(350, 220);
         frame.setLayout(null);
         frame.getContentPane().setBackground(new Color(245, 245, 245));
         frame.setLocationRelativeTo(null);
@@ -39,7 +39,7 @@ public class RefundView {
         frame.add(statusLabel);
 
         JButton backButton = new JButton("Back");
-        backButton.setBounds(30, 170, 200, 35);
+        backButton.setBounds(30, 130, 200, 35);
         frame.add(backButton);
 
         requestButton.addActionListener(e -> {

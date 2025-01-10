@@ -29,6 +29,7 @@ public class UpdateProfile {
         frame.getContentPane().setBackground(Color.getHSBColor(0.6f, 0.7f, 0.9f));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
+        frame.setLocationRelativeTo(null);
 
         ControllerUser controller = new ControllerUser();
         
@@ -37,7 +38,7 @@ public class UpdateProfile {
         String notlp = controller.getNoTlp();
         String email = controller.getEmail();
 
-
+        // Username
         labelUsername = new JLabel("Username:");
         labelUsername.setBounds(10, 10, 150, 30);
         frame.add(labelUsername);
@@ -46,6 +47,7 @@ public class UpdateProfile {
         fieldUsername.setBounds(150, 10, 200, 30);
         frame.add(fieldUsername);
 
+        // Password
         labelPassword = new JLabel("Password:");
         labelPassword.setBounds(10, 50, 150, 30);
         frame.add(labelPassword);
@@ -54,6 +56,7 @@ public class UpdateProfile {
         fieldPassword.setBounds(150, 50, 200, 30);
         frame.add(fieldPassword);
 
+        // Phone Number
         labelNoTlp = new JLabel("Phone Number:");
         labelNoTlp.setBounds(10, 90, 150, 30);
         frame.add(labelNoTlp);
@@ -62,6 +65,7 @@ public class UpdateProfile {
         fieldNoTlp.setBounds(150, 90, 200, 30);
         frame.add(fieldNoTlp);
 
+        // Email
         labelEmail = new JLabel("Email:");
         labelEmail.setBounds(10, 130, 150, 30);
         frame.add(labelEmail);
@@ -70,13 +74,9 @@ public class UpdateProfile {
         fieldEmail.setBounds(150, 130, 200, 30);
         frame.add(fieldEmail);
 
+        // Update Button
         updateButton = new JButton("Update Profile");
-        updateButton.setBounds(10, 180, 150, 30);
-
-        JButton backButton = new JButton("Back");
-        backButton.setBounds(30, 150, 200, 35);
-        frame.add(backButton);
-        
+        updateButton.setBounds(150, 180, 200, 35);
         updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -97,6 +97,11 @@ public class UpdateProfile {
         });
         frame.add(updateButton);
 
+        // Back Button
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(10, 180, 120, 35);
+        frame.add(backButton);
+
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
@@ -104,6 +109,7 @@ public class UpdateProfile {
             }
         });
     }
+
     public static void main(String[] args) {
         new UpdateProfile();
     }

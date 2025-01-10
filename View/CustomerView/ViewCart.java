@@ -24,9 +24,10 @@ public class ViewCart {
     public ViewCart() {
         frame = new JFrame("View Cart");
         frame.setVisible(true);
-        frame.setSize(600, 400);
+        frame.setSize(600, 600);
         frame.getContentPane().setBackground(Color.getHSBColor(0.6f, 0.7f, 0.9f));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
         frame.setLayout(null);
 
         ControllerUser controller = new ControllerUser();
@@ -46,7 +47,7 @@ public class ViewCart {
         viewButton.setBounds(10, 60, 100, 30);
 
         JButton backButton = new JButton("Back");
-        backButton.setBounds(30, 150, 200, 35);
+        backButton.setBounds(10, 360, 100, 30);
         frame.add(backButton);
 
         viewButton.addActionListener(new ActionListener() {
