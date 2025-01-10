@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import Controller.Customer.FeedbackController;
@@ -20,6 +21,7 @@ import Controller.Customer.FeedbackController;
 public class Feedback {
     private JFrame frame;
     private JTextArea feedbackText;
+    private JTextField eventIdField;
 
     public Feedback() {
 
@@ -36,6 +38,14 @@ public class Feedback {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
 
+        JPanel eventPanel = new JPanel();
+        eventPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        JLabel eventLabel = new JLabel("Event ID:");
+        eventPanel.add(eventLabel);
+        eventIdField = new JTextField(20);
+        eventIdField.setBounds(100, 10, 200, 30);
+        eventPanel.add(eventIdField);
+
         JLabel feedbackLabel = new JLabel("Your Feedback:");
         feedbackLabel.setHorizontalAlignment(SwingConstants.LEFT);
         panel.add(feedbackLabel, BorderLayout.NORTH);
@@ -46,6 +56,7 @@ public class Feedback {
         JScrollPane scrollPane = new JScrollPane(feedbackText);
         panel.add(scrollPane, BorderLayout.CENTER);
 
+        frame.add(eventPanel, BorderLayout.NORTH);
         frame.add(panel, BorderLayout.CENTER);
 
         JPanel buttonPanel = new JPanel();
@@ -58,7 +69,14 @@ public class Feedback {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String feedback = feedbackText.getText();
-                if (check.insertFeedback(feedback)) {
+                int eventId = Integer.parseInt(eventIdField.getText());
+
+                if (eventId == 0) {
+                    JOptionPane.showMessageDialog(frame, "Event ID cannot be empty!", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                if (check.insertFeedback(feedback, eventId)) {
                     JOptionPane.showMessageDialog(frame, "Thank you for your feedback!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     frame.dispose();
                     new MainMenuCustomer();
@@ -81,8 +99,8 @@ public class Feedback {
         buttonPanel.add(cancelButton);
 
         frame.add(buttonPanel, BorderLayout.SOUTH);
-
     }
+
     public static void main(String[] args) {
         new Feedback();
     }
