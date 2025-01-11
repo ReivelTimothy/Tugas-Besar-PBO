@@ -78,7 +78,10 @@ public class ViewDetailTicket extends JFrame {
         JLabel dateLabel = new JLabel("Date: " + event.getTanggal());
         dateLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         dateLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-
+        JLabel idLabel = new JLabel("Event ID: " + event.getEventId());
+        idLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        idLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        detailsPanel.add(idLabel);
         detailsPanel.add(descLabel);
         detailsPanel.add(priceLabel);
         detailsPanel.add(capacityLabel);
