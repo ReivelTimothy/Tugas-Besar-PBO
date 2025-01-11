@@ -113,6 +113,7 @@ public class ViewTicket {
             ArrayList<Event> events = new ArrayList<>();
             for (int i = 0; i < arr.length; i++) {
                 events.add(GetEventWithIncome.getEventBySeller(arr[i]));
+                events.get(i).setEventId(arr[i]);
             }
             new EventTableView(events);
         });
@@ -197,7 +198,7 @@ public class ViewTicket {
                 itemPanel.add(imageLabel, BorderLayout.CENTER);
 
                 JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-                JButton buyNowButton = new JButton("Buy Now");
+                JButton buyNowButton = new JButton("Details");
 
                 buyNowButton.setFont(new Font("Arial", Font.BOLD, 14));
                 buyNowButton.setPreferredSize(new Dimension(100, 30));

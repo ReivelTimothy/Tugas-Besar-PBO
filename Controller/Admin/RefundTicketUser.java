@@ -19,11 +19,8 @@ public class RefundTicketUser {
                     + "' WHERE event_id = ? AND cust_id = ?";
             queryBalance = "UPDATE customer SET balance = balance + (SELECT amount FROM refund WHERE event_id = ? AND cust_id = ?) WHERE cust_id = ?";
             queryDeleteTicket = "DELETE FROM ticket where event_id = ? AND cust_id = ?";
-        } else {
-            queryStatus = "UPDATE refund SET status_refund = " + RefundStatus.REJECTED
-                    + " WHERE event_id = ? AND cust_id = ?";
-        }
 
+            
         try {
             conn.connect();
             PreparedStatement stmtStatus = conn.con.prepareStatement(queryStatus);
@@ -50,5 +47,26 @@ public class RefundTicketUser {
         } finally {
             conn.disconnect();
         }
+
+        } else if (status == RefundStatus.REJECTED){
+            queryStatus = "UPDATE refund SET status_refund = '" + RefundStatus.REJECTED
+                    +"' WHERE event_id = ? AND cust_id = ?";
+                    
+        try {
+            conn.connect();
+            PreparedStatement stmtStatus = conn.con.prepareStatement(queryStatus);
+           
+            stmtStatus.setInt(1, eventID);
+            stmtStatus.setInt(2, userID);
+            stmtStatus.executeUpdate();
+         
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            conn.disconnect();
+        }
+        }
+
     }
 }

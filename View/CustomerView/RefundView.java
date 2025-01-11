@@ -46,8 +46,6 @@ public class RefundView {
         
             if (new Controller.Customer.getRefundData().requestRefund(eventIdField.getText())) {
                 statusLabel.setText("Status : Berhasil Refund Ticket");
-                frame.dispose();
-                new MainMenuCustomer();
             }
            else {
             statusLabel.setText("Status : Gagal Refund Ticket");

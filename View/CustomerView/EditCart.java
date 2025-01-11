@@ -28,6 +28,7 @@ public class EditCart {
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(5, 2, 10, 10));
+        panel.setBackground(Color.getHSBColor(0.6f, 0.7f, 0.9f));
 
         panel.add(new JLabel("Cart ID :"));
         cartIdField = new JTextField();
