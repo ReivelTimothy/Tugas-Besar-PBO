@@ -1,7 +1,6 @@
 package View;
 
 import java.awt.Color;
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,7 +14,6 @@ import javax.swing.JTextField;
 import Controller.LoginSingleton;
 import View.AdminView.MainMenuAdmin;
 import View.CustomerView.MainMenuCustomer;
-import View.SellerView.MainMenuSeller;
 
 public class Login {
    
@@ -73,10 +71,10 @@ public class Login {
                     frame.dispose();
                     new MainMenuCustomer();
                 }
-                else if (LoginSingleton.getInstance().getRole()==1){
-                    frame.dispose();
-                    new MainMenuSeller();
-                }
+                // else if (LoginSingleton.getInstance().getRole()==1){
+                //     frame.dispose();
+                //     new MainMenuSeller();
+                // }
                 else if (LoginSingleton.getInstance().getRole()==2){
                     frame.dispose();
                     new MainMenuAdmin();
