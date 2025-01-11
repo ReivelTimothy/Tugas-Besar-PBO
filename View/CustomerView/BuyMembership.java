@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import Controller.Customer.MembershipController;
+import Models.Classess.Memberships;
+import Models.Enumeration.Membership;
 
 public class BuyMembership {
     private JFrame frame;
@@ -47,7 +49,11 @@ public class BuyMembership {
         buyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean isSuccessful = MembershipController.activateMembership();
+                MembershipController controller = new MembershipController();
+
+                Memberships memberships = new Memberships(Membership.PASSIVE);
+
+                boolean isSuccessful = controller.activateMembership(memberships);
                 if (isSuccessful) {
                     JOptionPane.showMessageDialog(frame, "Membership activated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     frame.dispose();
