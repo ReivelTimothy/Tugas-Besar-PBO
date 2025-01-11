@@ -13,7 +13,6 @@ import javax.swing.JTextField;
 
 import Controller.LoginSingleton;
 import View.AdminView.MainMenuAdmin;
-import View.CustomerView.MainMenuCustomer;
 
 public class Login {
    
@@ -69,7 +68,7 @@ public class Login {
                 
                 if(LoginSingleton.getInstance().getRole() == 0) {
                     frame.dispose();
-                    new MainMenuCustomer();
+                    new ViewTicket();
                 }
                 // else if (LoginSingleton.getInstance().getRole()==1){
                 //     frame.dispose();

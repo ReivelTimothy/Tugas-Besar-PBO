@@ -5,12 +5,14 @@ import java.sql.SQLException;
 
 import Controller.DatabaseHandler;
 import Controller.LoginSingleton;
+import Models.Classess.Memberships;
+import Models.Enumeration.Member;
+import Models.Enumeration.Membership;
 
-public class MembershipController {
-
+public class MembershipController implements Member {
     static DatabaseHandler conn = new DatabaseHandler();
 
-    public static boolean activateMembership() {
+    public boolean activateMembership(Memberships memberships) {
         int cust_id = LoginSingleton.getInstance().getID();
         ControllerUser controller = new ControllerUser();
         double balance = controller.getBalance();
@@ -32,13 +34,22 @@ public class MembershipController {
                 psMembership.setInt(1, cust_id);
                 psMembership.executeUpdate();
 
+                memberships.setStatus(Membership.ACTIVE);
+
                 return true;
             } catch (SQLException e) {
                 e.printStackTrace();
                 return false;
+            } finally {
+                conn.disconnect();
             }
         } else {
             return false;
         }
+    }
+
+    @Override
+    public void update(String message) {
+        System.out.println("MembershipController received update: " + message);
     }
 }
