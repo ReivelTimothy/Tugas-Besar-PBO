@@ -50,19 +50,24 @@ public class BuyMembership {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MembershipController controller = new MembershipController();
-
                 Memberships memberships = new Memberships(Membership.PASSIVE);
-
-                boolean isSuccessful = controller.activateMembership(memberships);
-                if (isSuccessful) {
-                    JOptionPane.showMessageDialog(frame, "Membership activated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    frame.dispose();
-                    new MainMenuCustomer();
+        
+                boolean isMembershipActive = controller.isMembershipActive();
+                if (isMembershipActive) {
+                    JOptionPane.showMessageDialog(frame, "You already have an active membership.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(frame, "Insufficient balance to activate membership.", "Error", JOptionPane.ERROR_MESSAGE);
+                    boolean isSuccessful = controller.activateMembership(memberships);
+                    if (isSuccessful) {
+                        JOptionPane.showMessageDialog(frame, "Membership activated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        frame.dispose();
+                        new MainMenuCustomer();
+                    } else {
+                        JOptionPane.showMessageDialog(frame, "Insufficient balance to activate membership.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         });
+        
         
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

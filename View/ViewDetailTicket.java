@@ -1,12 +1,25 @@
 package View;
 
-import Models.Classess.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import Models.Classess.Event;
-import Models.Enumeration.EventCat;
-
-import javax.swing.*;
-
-import java.awt.*;
+import Models.Classess.EventConcert;
+import Models.Classess.EventEducation;
+import Models.Classess.EventSport;
 
 public class ViewDetailTicket extends JFrame {
 
@@ -56,7 +69,7 @@ public class ViewDetailTicket extends JFrame {
         JLabel descLabel = new JLabel("Description: " + event.getDesc());
         descLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         descLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        JLabel priceLabel = new JLabel("Price: $" + event.getPrice());
+        JLabel priceLabel = new JLabel("Price: Rp." + event.getPrice());
         priceLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         priceLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         JLabel capacityLabel = new JLabel("Capacity: " + event.getCapacity());
@@ -66,33 +79,55 @@ public class ViewDetailTicket extends JFrame {
         dateLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         dateLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-
-
         detailsPanel.add(descLabel);
         detailsPanel.add(priceLabel);
         detailsPanel.add(capacityLabel);
         detailsPanel.add(dateLabel);
 
-        detailsPanel.add(Box.createVerticalStrut(10)); 
+        detailsPanel.add(Box.createVerticalStrut(10));
 
-        if (event.getCategory() == EventCat.MUSIC) {
-            EventConcert concert = (EventConcert) event;
-            JLabel concertTypeLabel = new JLabel("Concert Type: " + concert.getJenisKonser());
-            concertTypeLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-            JLabel singerLabel = new JLabel("Singer: " + concert.getSinger());
-            singerLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-            detailsPanel.add(concertTypeLabel);
-            detailsPanel.add(singerLabel);
-        } else if (event.getCategory() == EventCat.EDUCATION) {
-            EventEducation education = (EventEducation) event;
-            JLabel speakerLabel = new JLabel("Speaker: " + education.getNamaPembicara());
-            speakerLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-            detailsPanel.add(speakerLabel);
-        } else if (event.getCategory() == EventCat.SPORT) {
-            EventSport sport = (EventSport) event;
-            JLabel sportTypeLabel = new JLabel("Sport Type: " + sport.getJenisSport());
-            sportTypeLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-            detailsPanel.add(sportTypeLabel);
+        // Additional details based on category
+        JLabel categoryLabel = new JLabel("Category: " + event.getCategory().name());
+        categoryLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        categoryLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        detailsPanel.add(categoryLabel);
+
+        switch (event.getCategory()) {
+            case MUSIC:
+                if (event instanceof EventConcert) {
+                    EventConcert concert = (EventConcert) event;
+                    JLabel concertTypeLabel = new JLabel("Concert Type: " + concert.getJenisKonser());
+                    concertTypeLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+                    JLabel singerLabel = new JLabel("Singer: " + concert.getSinger());
+                    singerLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+                    detailsPanel.add(concertTypeLabel);
+                    detailsPanel.add(singerLabel);
+                }
+                break;
+
+            case EDUCATION:
+                if (event instanceof EventEducation) {
+                    EventEducation education = (EventEducation) event;
+                    JLabel speakerLabel = new JLabel("Speaker: " + education.getNamaPembicara());
+                    speakerLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+                    detailsPanel.add(speakerLabel);
+                }
+                break;
+
+            case SPORT:
+                if (event instanceof EventSport) {
+                    EventSport sport = (EventSport) event;
+                    JLabel sportTypeLabel = new JLabel("Sport Type: " + sport.getJenisSport());
+                    sportTypeLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+                    detailsPanel.add(sportTypeLabel);
+                }
+                break;
+
+            default:
+                JLabel unknownLabel = new JLabel("No additional details available for this category.");
+                unknownLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+                detailsPanel.add(unknownLabel);
+                break;
         }
 
         contentPanel.add(detailsPanel, BorderLayout.CENTER);
@@ -112,6 +147,4 @@ public class ViewDetailTicket extends JFrame {
         // Display the frame
         setVisible(true);
     }
-
-    // Test the ViewDetailTicket class
 }

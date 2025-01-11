@@ -32,9 +32,8 @@ public class LoginCheck {
                 if (emailLogin.equals(email) && pass.equals(password)) {
                     LoginSingleton.getInstance().setUser(id, 0);
                     JOptionPane.showMessageDialog(null, "Welcome Customer !");
-                    break;
-                } else {
-                    JOptionPane.showMessageDialog(null, "Email atau password salah !");
+                } else if (emailLogin.equals(email) && (!pass.equals(password))) {
+                    JOptionPane.showMessageDialog(null, "Password salah.");
                 }
 
             }
@@ -52,11 +51,10 @@ public class LoginCheck {
 
     }
 
-    public void cekSeller(String email, String password) {
+    public static void cekSeller(String email, String password) {
         String emailLogin = "";
         String pass = "";
         int id = 0;
-        System.out.println("haha");
 
         try {
             conn.connect();
@@ -73,9 +71,9 @@ public class LoginCheck {
                 if (emailLogin.equals(email) && pass.equals(password)) {
                     LoginSingleton.getInstance().setUser(id, 1);
                     JOptionPane.showMessageDialog(null, "Welcome Seller!");
-                    break;
-                } else if (!emailLogin.equals(email) && (!pass.equals(password))) {
-                    JOptionPane.showMessageDialog(null, "Email atau password salah !");
+                    
+                } else if (emailLogin.equals(email) && (!pass.equals(password))) {
+                    JOptionPane.showMessageDialog(null, "Cek password nya lagi.");
                 }
             }
             if (LoginSingleton.getInstance().getID() == 0) {
@@ -90,7 +88,7 @@ public class LoginCheck {
         }
     }
 
-    public void cekAdmin(String email, String password) {
+    public static void cekAdmin(String email, String password) {
         String emailLogin = "";
         String pass = "";
         int id = 0;
@@ -110,14 +108,15 @@ public class LoginCheck {
                 if (emailLogin.equals(email) && pass.equals(password)) {
                     JOptionPane.showMessageDialog(null, "Welcome Admin!");
                     LoginSingleton.getInstance().setUser(id, 2);
-                    break;
+                    
                 } else if (emailLogin.equals(email) && (!pass.equals(password))) {
-                    JOptionPane.showMessageDialog(null, "Email atau password salah !");
+                    JOptionPane.showMessageDialog(null, "Cek password nya lagi.");
                 } else {
                     JOptionPane.showMessageDialog(null, "Login gagal. Cek lagi email atau password nya.", "Error",
                             JOptionPane.ERROR_MESSAGE);
                 }
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Database error: " + e.getMessage(), "Error",
@@ -125,7 +124,6 @@ public class LoginCheck {
         } finally {
             conn.disconnect();
         }
-       
     }
-    
+
 }
