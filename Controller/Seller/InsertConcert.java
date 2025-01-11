@@ -13,7 +13,7 @@ import Models.Enumeration.*;
 public class InsertConcert {
     static DatabaseHandler conn = new DatabaseHandler();
 
-    public static void InsertConcertEvent(EventConcert eventConcert, int sellerId, String path) {
+    public static void InsertConcertEvent(EventConcert eventConcert, int sellerId) {
 
         try {
             conn.connect();
@@ -31,7 +31,7 @@ public class InsertConcert {
             stmt.setString(6, EventCat.MUSIC.name());
             stmt.setInt(7, eventConcert.getCapacity());
             stmt.setDate(8, sqlDate);
-            stmt.setString(9, path);
+            stmt.setString(9, eventConcert.getPath());
             stmt.setInt(10, sellerId);
 
 
@@ -54,7 +54,7 @@ public class InsertConcert {
 
         try {
             conn.connect();
-            String query = "INSERT INTO events (judul, speaker,  harga, description, kategori, capacity, Date, seller_id) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO events (judul, speaker,  harga, description, kategori, capacity, Date, seller_id, imagePath) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             
             
             java.sql.Date sqlDate = new java.sql.Date(eventEducation.getTanggal().getTime());     
@@ -68,6 +68,7 @@ public class InsertConcert {
             stmt.setInt(6, eventEducation.getCapacity());
             stmt.setDate(7, sqlDate);
             stmt.setInt(8, sellerId);
+            stmt.setString(9, eventEducation.getPath());
 
 
             int rows = stmt.executeUpdate();
@@ -89,7 +90,7 @@ public class InsertConcert {
 
         try {
             conn.connect();
-            String query = "INSERT INTO events (judul, SportType, harga, description, kategori, capacity, Date, seller_id) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO events (judul, SportType, harga, description, kategori, capacity, Date, seller_id, imagePath) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             
             
             java.sql.Date sqlDate = new java.sql.Date(eventSport.getTanggal().getTime());     
@@ -103,6 +104,7 @@ public class InsertConcert {
             stmt.setInt(7, eventSport.getCapacity());
             stmt.setDate(8, sqlDate);
             stmt.setInt(9, sellerId);
+            stmt.setString(10, eventSport.getPath());
 
 
             int rows = stmt.executeUpdate();

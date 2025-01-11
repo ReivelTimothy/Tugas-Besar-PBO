@@ -6,11 +6,10 @@ import Models.Enumeration.EventCat;
 
 import javax.swing.*;
 
-import Controller.Seller.GetEventData;
-
 import java.awt.*;
 
 public class ViewDetailTicket extends JFrame {
+
     public ViewDetailTicket(Event event) {
         // Set frame properties
         setTitle("Event Details - " + event.getTitle());
@@ -73,7 +72,7 @@ public class ViewDetailTicket extends JFrame {
         detailsPanel.add(capacityLabel);
         detailsPanel.add(dateLabel);
 
-        detailsPanel.add(Box.createVerticalStrut(10)); // Spacer
+        detailsPanel.add(Box.createVerticalStrut(10)); 
 
         if (event.getCategory() == EventCat.MUSIC) {
             EventConcert concert = (EventConcert) event;

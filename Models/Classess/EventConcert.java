@@ -9,8 +9,15 @@ public class EventConcert extends Event {
 
     public EventConcert(int eventId, String title,
             String desc, String path, double price, int capacity, Date tanggal, String jenisKonser,
+            String singer, Double income) {
+        super(eventId, title, desc, path, price, capacity, tanggal, EventCat.MUSIC, income);
+        this.jenisKonser = jenisKonser;
+        this.singer = singer;
+    }
+    public EventConcert(int eventId, String title,
+            String desc, String path, double price, int capacity, Date tanggal, String jenisKonser,
             String singer) {
-        super(eventId, title, desc, path, price, capacity, tanggal, EventCat.MUSIC);
+        super(eventId, title, desc, path, price, capacity, tanggal, EventCat.MUSIC, 0.0);
         this.jenisKonser = jenisKonser;
         this.singer = singer;
     }

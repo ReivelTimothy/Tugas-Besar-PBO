@@ -8,7 +8,12 @@ import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import Controller.LoginSingleton;
+import View.Login;
+import View.ViewTicket;
 
 public class MainMenuCustomer {
 
@@ -50,77 +55,84 @@ public class MainMenuCustomer {
         title.setForeground(Color.WHITE);
         panel.add(title);
 
-        JButton addToCartButton = createButton("Add to Cart", 120, 100, buttonFont);
+        JButton backButton = createButton("Back", 120, 70, buttonFont);
+        backButton.addActionListener(e -> {
+            frame.dispose();
+            new ViewTicket();
+        });
+        panel.add(backButton);
+
+        JButton addToCartButton = createButton("Add to Cart", 120, 125, buttonFont);
         addToCartButton.addActionListener(e -> {
             frame.dispose();
             new Addtocart();
         });
         panel.add(addToCartButton);
 
-        JButton viewCartButton = createButton("View Cart", 120, 160, buttonFont);
+        JButton viewCartButton = createButton("View Cart", 120, 180, buttonFont);
         viewCartButton.addActionListener(e -> {
             frame.dispose();
             new ViewCart();
         });
         panel.add(viewCartButton);
 
-        JButton editCartButton = createButton("Edit Cart", 120, 220, buttonFont);
+        JButton editCartButton = createButton("Edit Cart", 120, 240, buttonFont);
         editCartButton.addActionListener(e -> {
             frame.dispose();
             new EditCart();
         });
         panel.add(editCartButton);
 
-        JButton finishTransactionButton = createButton("Finish Transaction", 120, 280, buttonFont);
+        JButton finishTransactionButton = createButton("Finish Transaction", 120, 300, buttonFont);
         finishTransactionButton.addActionListener(e -> {
             frame.dispose();
             new FinishTransaction();
         });
         panel.add(finishTransactionButton);
 
-        JButton checkBalanceButton = createButton("Check Balance", 120, 340, buttonFont);
+        JButton checkBalanceButton = createButton("Check Balance", 120, 360, buttonFont);
         checkBalanceButton.addActionListener(e -> {
             frame.dispose();
             new CheckBalance();
         });
         panel.add(checkBalanceButton);
 
-        JButton updateProfileButton = createButton("Update Profile", 120, 400, buttonFont);
+        JButton updateProfileButton = createButton("Update Profile", 120, 420, buttonFont);
         updateProfileButton.addActionListener(e -> {
             frame.dispose();
             new UpdateProfile();
         });
         panel.add(updateProfileButton);
 
-        JButton viewMembershipButton = createButton("View Membership Status", 120, 460, buttonFont);
+        JButton viewMembershipButton = createButton("View Membership Status", 120, 480, buttonFont);
         viewMembershipButton.addActionListener(e -> {
             frame.dispose();
             new ViewStatusMembership();
         });
         panel.add(viewMembershipButton);
 
-        JButton transactionHistoryButton = createButton("View Transaction History", 120, 520, buttonFont);
+        JButton transactionHistoryButton = createButton("View Transaction History", 120, 540, buttonFont);
         transactionHistoryButton.addActionListener(e -> {
             frame.dispose();
             new ViewTransactionHistory();
         });
         panel.add(transactionHistoryButton);
 
-        JButton topUpBalanceButton = createButton("Top-Up Balance", 120, 580, buttonFont);
+        JButton topUpBalanceButton = createButton("Top-Up Balance", 120, 600, buttonFont);
         topUpBalanceButton.addActionListener(e -> {
             frame.dispose();
             new TopupBalance();
         });
         panel.add(topUpBalanceButton);
 
-        JButton buyMembershipButton = createButton("Buy Membership", 120, 640, buttonFont);
+        JButton buyMembershipButton = createButton("Buy Membership", 120, 660, buttonFont);
         buyMembershipButton.addActionListener(e -> {
             frame.dispose();
             new BuyMembership();
         });
         panel.add(buyMembershipButton);
 
-        JButton feedbackButton = createButton("Feedback", 120, 700, buttonFont);
+        JButton feedbackButton = createButton("Feedback", 120, 720, buttonFont);
         feedbackButton.addActionListener(e -> {
             frame.dispose();
             new Feedback();

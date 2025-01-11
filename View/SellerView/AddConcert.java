@@ -24,6 +24,7 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
+import Controller.LoginSingleton;
 import Controller.Seller.*;
 import Models.Classess.*;
 import Models.Enumeration.EventCat;
@@ -61,6 +62,7 @@ public class AddConcert {
         buttonPanel.add(eduButton);
 
         // variabel
+        JButton back = new JButton("Back");
         JButton button = new JButton("Submit");
         JPanel judul = createInputText("Judul");
         JPanel penyanyi = createInputText("Nama Penyanyi ");
@@ -92,9 +94,9 @@ public class AddConcert {
         masterPanel.add(kapasitas);
         masterPanel.add(desc);
         masterPanel.add(tanggal);
-
         masterPanel.add(gambar);
         masterPanel.add(button);
+        masterPanel.add(back);
 
         frame.add(masterPanel);
 
@@ -105,7 +107,8 @@ public class AddConcert {
         button.addActionListener(e -> {
             java.util.Date utilDate = (java.util.Date) date.getModel().getValue();
             java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-            String path = ((JTextField) gambar.getComponent(1)).getText();
+            String path = getText(gambar);
+            JOptionPane.showMessageDialog(null,path+ " : Path");
             if (!cekInput()) {
                 JOptionPane.showMessageDialog(null, "Maaf Tolong masukan semua data yang diperlukan");
             } else {
@@ -120,7 +123,7 @@ public class AddConcert {
                             sqlDate,
                             getText(jenisKonser),
                             getText(penyanyi));
-                    concert.InsertConcertEvent(event, 0, path);
+                    concert.InsertConcertEvent(event, LoginSingleton.getInstance().getID());
                 } else if (eventCat == EventCat.EDUCATION) {
                     EventEducation eventEducation = new EventEducation(
                             0,
@@ -131,7 +134,7 @@ public class AddConcert {
                             Integer.parseInt(getText(kapasitas)),
                             sqlDate,
                             getText(pembicara));
-                    concert.InsertEduEvent(eventEducation, 0);
+                    concert.InsertEduEvent(eventEducation, LoginSingleton.getInstance().getID());
                 } else {
                     EventSport eventSport = new EventSport(
                             0,
@@ -142,7 +145,7 @@ public class AddConcert {
                             Integer.parseInt(getText(kapasitas)),
                             sqlDate,
                             getText(jenisOlahraga));
-                    concert.InsertSportEvent(eventSport, 0);
+                    concert.InsertSportEvent(eventSport, LoginSingleton.getInstance().getID());
                 }
                 try {
                     Files.move(selectedPath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
@@ -152,6 +155,11 @@ public class AddConcert {
             }
             new ViewTicket();
             frame.dispose();
+        });
+
+        back.addActionListener(e ->{
+            frame.dispose();
+            new ViewTicket();
         });
 
         concertButton.addActionListener(e -> {
