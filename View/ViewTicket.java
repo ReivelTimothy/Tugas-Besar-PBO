@@ -22,7 +22,7 @@ public class ViewTicket {
         // Membuat frame utama
         JFrame frame = new JFrame("VIEW EVENT TICKET");
         frame.setSize(800, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  
         frame.setLayout(new BorderLayout());
 
         // Membuat panel untuk header

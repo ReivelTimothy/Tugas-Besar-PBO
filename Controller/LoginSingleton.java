@@ -3,7 +3,7 @@ package Controller;
 public class LoginSingleton {
     private static LoginSingleton instance;
     private int userID = 0; // jika 0 maka singleton belum di set 
-    private int roleID; // 0 = customer, 1=seller, 2=admin, 3=antonJonatan
+    private int roleID = -1; // 0 = customer, 1=seller, 2=admin, 3=antonJonatan
 
     public static LoginSingleton getInstance() {
         if (instance == null) {

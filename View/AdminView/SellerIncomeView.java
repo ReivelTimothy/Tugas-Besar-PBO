@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 import Controller.Admin.ViewSellerIncome;
 
 import java.awt.event.ActionListener;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 
 public class SellerIncomeView {
@@ -50,6 +51,8 @@ public class SellerIncomeView {
                 resultLabel.setText("Income: " + income);
             }
         });
+        frame.getContentPane() .setBackground(new Color(0x567af0));
+       
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
     }

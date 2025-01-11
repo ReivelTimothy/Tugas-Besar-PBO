@@ -50,10 +50,20 @@ public class BlockUserView {
         customerButton.setBackground(new Color(245, 245, 245));
         frame.add(customerButton);
 
+        customerButton.setBackground(new Color(0x2d5aed));
+        customerButton.setForeground(Color.WHITE);
+        customerButton.setFocusPainted(false);
+        customerButton.setBorderPainted(false);
+
         sellerButton = new JRadioButton("Seller");
         sellerButton.setBounds(220, 100, 100, 25);
         sellerButton.setBackground(new Color(245, 245, 245));
         frame.add(sellerButton);
+
+        sellerButton.setBackground(new Color(0x2d5aed));
+        sellerButton.setForeground(Color.WHITE);
+        sellerButton.setFocusPainted(false);
+        sellerButton.setBorderPainted(false);
 
         ButtonGroup roleGroup = new ButtonGroup();
         roleGroup.add(customerButton);
@@ -73,9 +83,26 @@ public class BlockUserView {
         actionGroup.add(blockButton);
         actionGroup.add(unblockButton);
 
+        blockButton.setBackground(new Color(0x2d5aed));
+        blockButton.setForeground(Color.WHITE);
+        blockButton.setFocusPainted(false);
+        blockButton.setBorderPainted(false);
+        
+        
+        unblockButton.setBackground(new Color(0x2d5aed));
+        unblockButton.setForeground(Color.WHITE);
+        unblockButton.setFocusPainted(false);
+        unblockButton.setBorderPainted(false);
+        
         executeButton = new JButton("Execute");
         executeButton.setBounds(120, 180, 200, 30);
         frame.add(executeButton);
+
+        executeButton.setBackground(new Color(0x2d5aed));
+        executeButton.setForeground(Color.WHITE);
+        executeButton.setFocusPainted(false);
+        executeButton.setBorderPainted(false);
+        
 
         statusLabel = new JLabel("Status: ");
         statusLabel.setBounds(20, 220, 340, 25);
@@ -111,7 +138,8 @@ public class BlockUserView {
                 }
             }
         });
-
+        frame.getContentPane() .setBackground(new Color(0x567af0));
+       
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }

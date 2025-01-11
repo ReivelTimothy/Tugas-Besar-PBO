@@ -1,41 +1,74 @@
 package View.CustomerView;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-
-import Controller.Customer.ControllerUser;
-import Controller.Customer.StatusMembershipController;
-import Controller.Customer.getRefundData;
+import javax.swing.JTextField;
 
 public class RefundView {
-    private JFrame frame;
-    private JButton statusButton;
-    private JTable statusTable;
-
     public static void main(String[] args) {
         new RefundView();
     }
 
     public RefundView() {
-        frame = new JFrame("Refund Ticket");
-        frame.setVisible(true);
-        frame.setSize(600, 400);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        JFrame frame = new JFrame("REFUND TICKET");
+        frame.setTitle("Delete Event");
+        frame.setSize(350, 220);
         frame.setLayout(null);
+        frame.getContentPane().setBackground(new Color(245, 245, 245));
         frame.setLocationRelativeTo(null);
 
-        JLabel eventLabel = new JLabel("Event : ");
-        eventLabel.setBounds(30, 0, 0, 0);
+        JLabel eventNameLabel = new JLabel("Event Name:");
+        eventNameLabel.setBounds(20, 20, 80, 25);
+        frame.add(eventNameLabel);
 
-        new getRefundData();
-        // getRefundData.displayRefund(statusTable);
+        JTextField eventIdField = new JTextField();
+        eventIdField.setBounds(120, 20, 180, 25);
+        frame.add(eventIdField);
 
-        frame.add(statusButton);
+        JButton requestButton = new JButton("Request Refund Ticket");
+        requestButton.setBounds(20, 60, 280, 30);
+        frame.add(requestButton);
+
+        JLabel statusLabel = new JLabel("Status: ");
+        statusLabel.setBounds(20, 100, 280, 25);
+        frame.add(statusLabel);
+
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(30, 130, 200, 35);
+        frame.add(backButton);
+
+        requestButton.addActionListener(e -> {
+        
+            if (new Controller.Customer.getRefundData().requestRefund(eventIdField.getText())) {
+                statusLabel.setText("Status : Berhasil Refund Ticket");
+                frame.dispose();
+                new MainMenuCustomer();
+            }
+           else {
+            statusLabel.setText("Status : Gagal Refund Ticket");
+           }
+        });
+
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new MainMenuCustomer();
+            }
+        });
+
+        requestButton.setBackground(new Color(0x2d5aed));
+        requestButton.setForeground(Color.WHITE);
+        requestButton.setFocusPainted(false);
+        requestButton.setBorderPainted(false);
+
+     
+
+        frame.getContentPane().setBackground(Color.getHSBColor(0.6f, 0.7f, 0.9f));
+        frame.setVisible(true);
     }
 }

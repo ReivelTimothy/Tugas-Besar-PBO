@@ -1,6 +1,8 @@
 package View.AdminView;
 
 import javax.swing.*;
+
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Controller.Admin.RefundTicketUser;
@@ -36,10 +38,18 @@ public class RefundTicketApproveView {
         JRadioButton approveButton = new JRadioButton("Approve");
         approveButton.setBounds(80, 110, 100, 30);
         frame.add(approveButton);
+        approveButton.setBackground(new Color(0x2d5aed));
+        approveButton.setForeground(Color.WHITE);
+        approveButton.setFocusPainted(false);
+        approveButton.setBorderPainted(false);
 
         JRadioButton rejectButton = new JRadioButton("Reject");
-        rejectButton.setBounds(180, 110, 150, 30);
+        rejectButton.setBounds(180, 110, 100, 30);
         frame.add(rejectButton);
+        rejectButton.setBackground(new Color(0x2d5aed));
+        rejectButton.setForeground(Color.WHITE);
+        rejectButton.setFocusPainted(false);
+        rejectButton.setBorderPainted(false);
 
         ButtonGroup statusGroup = new ButtonGroup();
         statusGroup.add(approveButton);
@@ -48,6 +58,10 @@ public class RefundTicketApproveView {
         JButton refundButton = new JButton("Proceed");
         refundButton.setBounds(140, 180, 100, 30);
         frame.add(refundButton);
+        refundButton.setBackground(new Color(0x2d5aed));
+        refundButton.setForeground(Color.WHITE);
+        refundButton.setFocusPainted(false);
+        refundButton.setBorderPainted(false);
 
         JLabel resultLabel = new JLabel();
         resultLabel.setBounds(120, 230, 300, 30);
@@ -71,7 +85,8 @@ public class RefundTicketApproveView {
                 // }
             }
         });
-
+        frame.getContentPane() .setBackground(new Color(0x567af0));
+       
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }

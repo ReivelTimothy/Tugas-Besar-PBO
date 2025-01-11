@@ -1,5 +1,6 @@
 package View.CustomerView;
   
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,6 +23,7 @@ public class Addtocart {
         JFrame frame = new JFrame("Add to Cart");
         frame.setSize(400, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setBackground(Color.getHSBColor(0.6f, 0.7f, 0.9f));
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
 
@@ -66,6 +68,8 @@ public class Addtocart {
                     boolean success = CartControllerAdd.addToCart(eventid, ticketId);
                     if (success) {
                         JOptionPane.showMessageDialog(frame, "Item added to cart successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        frame.dispose();
+                        new MainMenuCustomer();
                     } else {
                         JOptionPane.showMessageDialog(frame, "Failed to add item to cart!", "Error", JOptionPane.ERROR_MESSAGE);
                     }

@@ -35,6 +35,11 @@ public class DeleteEventView {
         deleteButton.setBounds(20, 60, 280, 30);
         frame.add(deleteButton);
 
+        deleteButton.setBackground(new Color(0x2d5aed));
+        deleteButton.setForeground(Color.WHITE);
+        deleteButton.setFocusPainted(false);
+        deleteButton.setBorderPainted(false);
+        
         statusLabel = new JLabel("Status: ");
         statusLabel.setBounds(20, 100, 280, 25);
         frame.add(statusLabel);
@@ -54,7 +59,8 @@ public class DeleteEventView {
                 }
             }
         });
-
+        frame.getContentPane() .setBackground(new Color(0x567af0));
+       
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }

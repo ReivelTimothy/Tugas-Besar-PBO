@@ -1,11 +1,13 @@
 package View.CustomerView;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -24,8 +26,10 @@ public class UpdateProfile {
         frame = new JFrame("Update Profile");
         frame.setVisible(true);
         frame.setSize(400, 300);
+        frame.getContentPane().setBackground(Color.getHSBColor(0.6f, 0.7f, 0.9f));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
+        frame.setLocationRelativeTo(null);
 
         ControllerUser controller = new ControllerUser();
         
@@ -34,7 +38,7 @@ public class UpdateProfile {
         String notlp = controller.getNoTlp();
         String email = controller.getEmail();
 
-
+        // Username
         labelUsername = new JLabel("Username:");
         labelUsername.setBounds(10, 10, 150, 30);
         frame.add(labelUsername);
@@ -43,6 +47,7 @@ public class UpdateProfile {
         fieldUsername.setBounds(150, 10, 200, 30);
         frame.add(fieldUsername);
 
+        // Password
         labelPassword = new JLabel("Password:");
         labelPassword.setBounds(10, 50, 150, 30);
         frame.add(labelPassword);
@@ -51,6 +56,7 @@ public class UpdateProfile {
         fieldPassword.setBounds(150, 50, 200, 30);
         frame.add(fieldPassword);
 
+        // Phone Number
         labelNoTlp = new JLabel("Phone Number:");
         labelNoTlp.setBounds(10, 90, 150, 30);
         frame.add(labelNoTlp);
@@ -59,6 +65,7 @@ public class UpdateProfile {
         fieldNoTlp.setBounds(150, 90, 200, 30);
         frame.add(fieldNoTlp);
 
+        // Email
         labelEmail = new JLabel("Email:");
         labelEmail.setBounds(10, 130, 150, 30);
         frame.add(labelEmail);
@@ -67,8 +74,9 @@ public class UpdateProfile {
         fieldEmail.setBounds(150, 130, 200, 30);
         frame.add(fieldEmail);
 
+        // Update Button
         updateButton = new JButton("Update Profile");
-        updateButton.setBounds(10, 180, 150, 30);
+        updateButton.setBounds(150, 180, 200, 35);
         updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -78,11 +86,30 @@ public class UpdateProfile {
                 String newPhone = fieldNoTlp.getText();
                 String newEmail = fieldEmail.getText();
                 
-                profileController.updateUserInDatabase(newUsername, newPassword, newPhone, newEmail);
+                if (profileController.updateUserInDatabase(newUsername, newPassword, newPhone, newEmail)) {
+                    JOptionPane.showMessageDialog(frame, "Update Profile berhasil!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    frame.dispose();
+                    new MainMenuCustomer();
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Update gagal.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         frame.add(updateButton);
+
+        // Back Button
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(10, 180, 120, 35);
+        frame.add(backButton);
+
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new MainMenuCustomer();
+            }
+        });
     }
+
     public static void main(String[] args) {
         new UpdateProfile();
     }
