@@ -64,16 +64,15 @@ public class Login {
             public void actionPerformed(ActionEvent e) {
                 String email = usernameField.getText();
                 String password = String.valueOf(passwordField.getPassword());
-                new Controller.LoginCheck(email,password);
-                
+                new Controller.LoginCheck(email,password);  
                 if(LoginSingleton.getInstance().getRole() == 0) {
                     frame.dispose();
                     new ViewTicket();
                 }
-                // else if (LoginSingleton.getInstance().getRole()==1){
-                //     frame.dispose();
-                //     new MainMenuSeller();
-                // }
+                else if (LoginSingleton.getInstance().getRole()==1){
+                    frame.dispose();
+                    new ViewTicket();
+                }
                 else if (LoginSingleton.getInstance().getRole()==2){
                     frame.dispose();
                     new MainMenuAdmin();
