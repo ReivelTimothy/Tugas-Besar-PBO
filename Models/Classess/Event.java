@@ -7,13 +7,13 @@ import Models.Enumeration.EventCat;
 public abstract class Event {
     int eventId;
     String title, location, desc, path;
-    double price;
+    double price, income;
     int capacity;
     Date tanggal;
     EventCat category;
 
     public Event(int eventId, String title, String desc,
-            String path, double price, int capacity, Date tanggal, EventCat cat) {
+            String path, double price, int capacity, Date tanggal, EventCat cat, double income) {
         this.eventId = eventId;
         this.title = title;
         this.desc = desc;
@@ -22,6 +22,7 @@ public abstract class Event {
         this.tanggal = tanggal;
         this.path = path;
         this.category = cat;
+        this.income = income;
     }
     
 
@@ -97,6 +98,16 @@ public abstract class Event {
 
     public void setCategory(EventCat category) {
         this.category = category;
+    }
+
+
+    public double getIncome() {
+        return income;
+    }
+
+
+    public void setIncome(double income) {
+        this.income = income;
     }
 
 }

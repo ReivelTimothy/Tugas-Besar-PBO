@@ -1,14 +1,21 @@
 package View;
+
 import javax.swing.*;
 
 import Controller.LoginSingleton;
 import Controller.Seller.GetEventData;
+import Controller.Seller.GetEventId;
+import Controller.Seller.GetEventWithIncome;
 
 import java.awt.*;
 import Models.Classess.Event;
+import View.CustomerView.MainMenuCustomer;
 import View.SellerView.AddConcert;
+import View.SellerView.EventTableView;
+import View.SellerView.RequestEditPriceEvent;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class ViewTicket {
     public ViewTicket() {
@@ -36,6 +43,8 @@ public class ViewTicket {
         JButton addConcertButton = new JButton("Add Concert");
         JButton viewIncomeButtonSeller = new JButton("View Income");
         JButton viewIncomeButtonAdmin = new JButton("View Income");
+        JButton reqEditPrice = new JButton("change Event Price");
+        JButton mainMenuCustomer = new JButton("Main Menu");
 
         if (LoginSingleton.getInstance().getID() == 0) {
             loginButton.setVisible(true);
@@ -44,6 +53,8 @@ public class ViewTicket {
             viewIncomeButtonSeller.setVisible(false);
             viewIncomeButtonAdmin.setVisible(false);
             logout.setVisible(false);
+            reqEditPrice.setVisible(false);
+            mainMenuCustomer.setVisible(false);
         } else {
             logout.setVisible(true);
             loginButton.setVisible(false);
@@ -52,39 +63,57 @@ public class ViewTicket {
                 addConcertButton.setVisible(false);
                 viewIncomeButtonSeller.setVisible(false);
                 viewIncomeButtonAdmin.setVisible(false);
+                reqEditPrice.setVisible(false);
+                mainMenuCustomer.setVisible(true);
             } else if (LoginSingleton.getInstance().getRole() == 1) { // seller
                 addConcertButton.setVisible(true);
                 viewIncomeButtonSeller.setVisible(true);
                 viewIncomeButtonAdmin.setVisible(false);
+                reqEditPrice.setVisible(true);
+                mainMenuCustomer.setVisible(false);
             } else { // admin
                 addConcertButton.setVisible(false);
                 viewIncomeButtonSeller.setVisible(false);
                 viewIncomeButtonAdmin.setVisible(true);
+                reqEditPrice.setVisible(false);
+                mainMenuCustomer.setVisible(false);
             }
         }
-        logout.addActionListener(e ->{
+        viewIncomeButtonSeller.addActionListener(e -> {
+            frame.dispose();
+            int [] arr = GetEventId.getEventIdsBySeller();
+            ArrayList<Event> events = new ArrayList<>();
+            for (int i = 0; i < arr.length; i++) {
+                events.add(GetEventWithIncome.getEventBySeller(arr[i]));
+            }
+            new EventTableView(events);
+        });
+        logout.addActionListener(e -> {
             JOptionPane.showMessageDialog(null, "Terima Kasih Selamat Tinggal ");
             LoginSingleton.getInstance().setNullInstance();
             new ViewTicket();
             frame.dispose();
         });
-        loginButton.addActionListener(e->{
-           new Login();
-           frame.dispose(); 
+        loginButton.addActionListener(e -> {
+            new Login();
+            frame.dispose();
         });
-        registerButton.addActionListener(e->{
+        reqEditPrice.addActionListener(e->{
+            new RequestEditPriceEvent();
+            frame.dispose();
+        });
+        registerButton.addActionListener(e -> {
             new Register();
             frame.dispose();
         });
-        addConcertButton.addActionListener(e ->{
+        addConcertButton.addActionListener(e -> {
             new AddConcert();
             frame.dispose();
         });
-
-
-
-
-
+        mainMenuCustomer.addActionListener(e -> {
+            new MainMenuCustomer();
+            frame.dispose();
+        });
 
         menuPanel.add(logout);
         menuPanel.add(loginButton);
@@ -92,6 +121,8 @@ public class ViewTicket {
         menuPanel.add(addConcertButton);
         menuPanel.add(viewIncomeButtonSeller);
         menuPanel.add(viewIncomeButtonAdmin);
+        menuPanel.add(reqEditPrice);
+        menuPanel.add(mainMenuCustomer);
 
         headerPanel.add(menuPanel, BorderLayout.EAST);
 
@@ -114,8 +145,8 @@ public class ViewTicket {
                     JPanel itemPanel = new JPanel();
                     itemPanel.setLayout(new BorderLayout());
                     itemPanel.setBorder(BorderFactory.createCompoundBorder(
-                        BorderFactory.createLineBorder(Color.GRAY, 1),
-                        BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+                            BorderFactory.createLineBorder(Color.GRAY, 1),
+                            BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
                     ImageIcon originalIcon = new ImageIcon(imageFile.getPath());
                     Image scaledImage = originalIcon.getImage().getScaledInstance(200, 250, Image.SCALE_SMOOTH);
@@ -126,7 +157,7 @@ public class ViewTicket {
 
                     JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
                     JButton buyNowButton = new JButton("Buy Now");
-                    
+
                     buyNowButton.setFont(new Font("Arial", Font.BOLD, 14));
                     buyNowButton.setPreferredSize(new Dimension(100, 30));
                     buyNowButton.addActionListener(e -> {
@@ -150,7 +181,6 @@ public class ViewTicket {
             contentPanel.add(errorLabel);
         }
 
-        // Menambahkan footer
         JPanel footerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         footerPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         JLabel footerLabel = new JLabel("Thank you for choosing our service!");
@@ -158,7 +188,6 @@ public class ViewTicket {
         footerPanel.add(footerLabel);
         frame.add(footerPanel, BorderLayout.SOUTH);
 
-        // Menampilkan frame
         frame.setVisible(true);
     }
 }
